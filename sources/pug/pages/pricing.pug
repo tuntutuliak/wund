@@ -1,0 +1,33 @@
+extends  ../_skeleton
+
+//- Includes
+block variables
+	- var activeCategory = 'pages'
+	- var pageName = 'Pricing'
+
+block page
+	include ../sections/_header-thin
+
+	+breadcrumbs({
+		category: activeCategory,
+		path: [pageName],
+		bgImage: 'bg-about-us'
+	})
+
+	// 4 Column Layout
+	section.section.section-lg.text-center
+		.container
+			h2.wow-outer.font-weight-bold.text-gray-800.title-indent 4 Column Layout
+			p: span.text-width-1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+			include ../includes/_pricing-group-modern
+				
+
+	// 3 Column Layout
+	section.section.section-lg.bg-gray-100
+		.container
+			h2.wow-outer.font-weight-bold.text-gray-800.text-center.title-indent 3 Column Layout
+			include ../includes/_row-pricing-3-columns
+						
+			
+	// Page Footer
+	include ../sections/_footer-linked

@@ -1,0 +1,35 @@
+// Variables: шрифты, размеры, spacing
+
+// Шрифты
+$font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+$font-secondary: Georgia, serif;
+
+// Размеры шрифтов
+$font-size-base: 16px;
+$font-size-small: 14px;
+$font-size-large: 18px;
+$font-size-h1: 2.5rem;
+$font-size-h2: 2rem;
+$font-size-h3: 1.75rem;
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 3rem;
+$spacing-xl: 4rem;
+
+// Цвета
+$color-primary: #007bff;
+$color-secondary: #6c757d;
+$color-text: #333;
+$color-text-light: #666;
+$color-bg: #ffffff;
+$color-bg-light: #f8f9fa;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+

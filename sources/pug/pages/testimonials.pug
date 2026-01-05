@@ -1,0 +1,34 @@
+extends  ../_skeleton
+
+block variables
+	- var activeCategory = 'pages'
+	- var pageName = 'Testimonials'
+
+block page 
+	// Page Header
+	include ../sections/_header-thin
+
+	+breadcrumbs({
+		category: activeCategory,
+		path: [pageName],
+		bgImage: 'bg-about-us'
+	})
+
+	// Testimonials
+	section.section.section-lg.bg-gray-100.section-first.text-center
+		.container
+			h2.wow-outer.font-weight-bold.text-gray-800 Testimonials
+			include ../includes/_slick-widget-testimonials
+			
+	include ../sections/_section-testimonials-3-cols
+	include ../sections/_section-testimonials-and-video
+		
+		
+	// 2 Column Layout
+	section.section.section-lg.text-center
+		.container
+			h2.wow-outer.font-weight-bold.text-gray-800.title-indent 2 Column Layout
+			include ../includes/_owl-testimonials-2-cols
+
+	// Page Footer
+	include ../sections/_footer-linked

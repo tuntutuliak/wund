@@ -1,0 +1,69 @@
+extends  ../_skeleton
+
+//- Includes
+include ../components/_ui-thumbnail-modern
+
+block variables
+	- var activeCategory = 'pages'
+	- var pageName = 'Modern Gallery'
+
+block page
+	include ../sections/_header-thin
+
+
+	+breadcrumbs({
+		category: activeCategory,
+		path: [pageName],
+		bgImage: 'bg-about-us'
+	})
+
+	section.section.section-lg.oh
+		.container
+			// Isotope Filters
+			.isotope-filters.isotope-filters-modern
+				button.isotope-filters-toggle.button.button-sm.button-primary(data-custom-toggle='#isotope-filters', data-custom-toggle-disable-on-blur="true") Filter
+					span.caret
+				ul.isotope-filters-list#isotope-filters
+					li: a.active(data-isotope-filter='*', data-isotope-group='gallery', href='#') All Types
+					li: a(data-isotope-filter='Type 1', data-isotope-group='gallery', href='#') Type 1 
+					li: a(data-isotope-filter='Type 2', data-isotope-group='gallery', href='#') Type 2
+
+			.isotope.isotope-condensed.row(data-isotope-layout='masonry' data-isotope-group='gallery' data-lightgallery='group')
+				.col-sm-6.col-lg-4.isotope-item(data-filter='Type 2')
+					+thumbnail-modern({
+						img: 'gallery-masonry-condensed-1-390x576',
+						original: 'images/gallery-original-10.jpg'
+					}).thumbnail-modern-lg
+
+				.col-sm-6.col-lg-4.isotope-item(data-filter='Type 1')
+					+thumbnail-modern({
+						img: 'gallery-masonry-condensed-2-390x288',
+						original: 'images/gallery-original-11.jpg'
+					})
+
+				.col-sm-6.col-lg-4.isotope-item(data-filter='Type 2')
+					+thumbnail-modern({
+						img: 'gallery-masonry-condensed-3-390x576',
+						original: 'images/gallery-original-12.jpg'
+					}).thumbnail-modern-lg
+
+				.col-sm-6.col-lg-4.isotope-item(data-filter='Type 2')
+					+thumbnail-modern({
+						img: 'gallery-masonry-condensed-5-390x576',
+						original: 'images/gallery-original-14.jpg'
+					}).thumbnail-modern-lg
+
+				.col-sm-6.col-lg-4.isotope-item(data-filter='Type 1')
+					+thumbnail-modern({
+						img: 'gallery-masonry-condensed-4-390x288',
+						original: 'images/gallery-original-13.jpg'
+					}) 
+
+				.col-sm-6.col-lg-4.isotope-item(data-filter='Type 1')
+					+thumbnail-modern({
+						img: 'gallery-masonry-condensed-6-390x288',
+						original: 'images/gallery-original-15.jpg'
+					})
+
+	// Page Footer
+	include ../sections/_footer-linked

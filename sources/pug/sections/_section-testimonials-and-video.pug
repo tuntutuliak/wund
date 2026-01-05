@@ -1,0 +1,49 @@
+section.section.section-md.bg-gray-100
+	.container
+		h2.wow-outer.font-weight-bold.text-gray-800.title-indent.text-center: span.wow.slideInUp Testimonials & Video
+		.row.row-50.justify-content-center
+			.col-md-10.col-lg-5.wow-outer
+				.owl-carousel.wow.slideInLeft(
+				data-items='1'
+				data-dots='true'
+				data-nav='false'
+				data-loop='true'
+				data-margin='30'
+				data-stage-padding='0'
+				data-mouse-drag="false")
+					blockquote.quote-modern
+						+quote-mark.quote-modern-mark
+						.quote-modern-text
+							p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+						.quote-modern-meta
+							.quote-modern-avatar: +jpg('testimonials-person-3-96x96')
+							.quote-modern-info
+								cite.quote-modern-cite Albert Webb
+								p.quote-modern-caption Regular client
+
+					blockquote.quote-modern
+						+quote-mark.quote-modern-mark
+						.quote-modern-text
+							p Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+						.quote-modern-meta
+							.quote-modern-avatar: +jpg('testimonials-person-1-96x96')
+							.quote-modern-info
+								cite.quote-modern-cite Kelly McMillan
+								p.quote-modern-caption Regular client
+
+					blockquote.quote-modern
+						+quote-mark.quote-modern-mark
+						.quote-modern-text
+							p Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
+						.quote-modern-meta
+							.quote-modern-avatar: +jpg('testimonials-person-2-96x96')
+							.quote-modern-info
+								cite.quote-modern-cite Harold Barnett
+								p.quote-modern-caption Regular client
+
+			.col-md-10.col-lg-6.wow-outer
+				.thumbnail-video-1.bg-gray-700.wow.slideInLeft
+					.embed-responsive.embed-responsive-16by9: iframe(width='570' height='320' src='//www.youtube.com/embed/QZzbm-FrkGk' allowfullscreen='')
+					.thumbnail-video__overlay.video-overlay(style='background-image: url(images/video-preview-1-570x320.jpg)')
+						.button-video
+						h5 Lawrence Alvarado

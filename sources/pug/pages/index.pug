@@ -1,0 +1,166 @@
+extends  ../_skeleton
+
+block variables
+  - var activeCategory = 'home'
+  - var pageName = 'Cruise'
+
+block page
+  // Page Header
+  include ../sections/_header-thin
+  include ../sections/_section-fscreen-centered
+
+
+  // Popular Cruises
+  section.section.section-lg.text-center
+    .container
+      h2.wow-outer.font-weight-bold.text-title-block: span.wow.slideInUp Popular Cruises
+      .row.row-50
+        .col-sm-6.col-lg-4.wow-outer
+          // Post Classic
+          article.post-classic.wow.slideInLeft
+            a.post-classic-media(href=links.post): +jpg('popular-cruises-1-370x264')
+            ul.post-classic-meta
+              li: a.button-winona(href='#') From $480
+              li: time(datetime='2018') 7 days
+            h5.post-classic-title.text-gray-800: a(href=links.post) Greece, Italy & Croatia Cruise (7 Nights)
+
+        .col-sm-6.col-lg-4.wow-outer
+          // Post Classic
+          article.post-classic.wow.slideInLeft(data-wow-delay='.05s')
+            a.post-classic-media(href=links.post): +jpg('popular-cruises-2-370x264')
+            ul.post-classic-meta
+              li: a.button-winona(href='#') From $330
+              li: time(datetime='2018') 6 days
+            h5.post-classic-title.text-gray-800: a(href=links.post) The Fjords and Glaciers Cruise through Norway and Scandinavia
+
+        .col-sm-6.col-lg-4.wow-outer
+          // Post Classic
+          article.post-classic.wow.slideInLeft(data-wow-delay='.1s')
+            a.post-classic-media(href=links.post): +jpg('popular-cruises-3-370x264')
+            ul.post-classic-meta
+              li: a.button-winona(href='#') From $470
+              li: time(datetime='2018') 15 days
+            h5.post-classic-title.text-gray-800: a(href=links.post) 15-Night Cruise: Norway, Sweden, Denmark & Finland
+
+        .col-sm-6.col-lg-4.wow-outer
+          // Post Classic
+          article.post-classic.wow.slideInLeft
+            a.post-classic-media(href=links.post): +jpg('popular-cruises-4-370x264')
+            ul.post-classic-meta
+              li: a.button-winona(href='#') From $450
+              li: time(datetime='2018') 8 days
+            h5.post-classic-title.text-gray-800: a(href=links.post) Cruise from South to North of Norway
+
+        .col-sm-6.col-lg-4.wow-outer
+          // Post Classic
+          article.post-classic.wow.slideInLeft(data-wow-delay='.05s')
+            a.post-classic-media(href=links.post): +jpg('popular-cruises-5-370x264')
+            ul.post-classic-meta
+              li: a.button-winona(href='#') From $740
+              li.text-gray-700: time(datetime='2018') 7 days
+            h5.post-classic-title.text-gray-800: a(href=links.post) 7-day Western Mediterranean Cruise From Barcelona
+
+        .col-sm-6.col-lg-4.wow-outer
+          // Post Classic
+          article.post-classic.wow.slideInLeft(data-wow-delay='.1s')
+            a.post-classic-media(href=links.post): +jpg('popular-cruises-6-370x264')
+            ul.post-classic-meta
+              li: a.button-winona(href='#') From $580
+              li: time(datetime='2018') 5 days
+            h5.post-classic-title.text-gray-800: a(href=links.post) 5-Night Europe Coastal Cruise (6 Countries)
+
+  // What Awaits You
+  include ../sections/_section-awaits-you
+
+
+  // About our Company
+  section.section.section-sm.bg-gray-100.bg-image.bg-image-3.left-pattern(style='background-image: url(images/dots-bg-30x4.png);')
+    .container
+      .row.row-50.justify-content-center.justify-content-lg-between.flex-lg-row-reverse
+        .col-md-10.col-lg-6.col-xl-5
+          h2.wow-outer.font-weight-bold.text-gray-800: span.wow.slideInUp About our Company
+          p.wow-outer: span.wow.slideInDown(data-wow-delay='.05s') Cruise is the world’s first inspirational cruise search & booking service that focuses on what’s really important: your Interests and your Budget!
+          p.wow-outer: span.wow.slideInDown(data-wow-delay='.1s') Our company offers an innovative and useful online cruise booking experience, so you can find your perfect destination in just a couple of clicks!
+          .row.justify-content-left.wow.slideInDown
+            .col-md-4
+              +png('logo-painting-136x61', 'quote-light-image')
+            .col-md-8
+              h5.text-gray-800.font-weight-medium Oliver Morgan
+              h6.font-weight-light Founder, Cruise
+        .col-md-10.col-lg-6.wow-outer
+          +png('about-our-company-560x480', 'img-responsive').wow.slideInLeft
+
+
+
+  // Light 4 Columns Layout
+
+  section.section.section-lg.text-center
+    .container
+      .row.row-30.row-xxl-70.offset-top-2
+        .col-sm-6.col-md-4.col-lg-3.wow-outer
+          // Box Light
+          article.box-light.wow.slideInLeft
+            .box-light-icon.linearicons-sun
+            h4.text-gray-800.box-light-title Friendly Managers
+            p We are a team of friendly managers who are always ready to help you choose a cruise of your dream.
+
+        .col-sm-6.col-md-4.col-lg-3.wow-outer
+          // Box Light
+          article.box-light.wow.slideInLeft(data-wow-delay='.05s')
+            .box-light-icon.linearicons-ship2
+            h4.text-gray-800.box-light-title Flexible Prices
+            p Cruise has a flexible pricing policy, which applies to all our offers. No matter what cruise it is, it won’t be overpriced.
+
+        .col-sm-6.col-md-4.col-lg-3.wow-outer
+          // Box Light
+          article.box-light.wow.slideInLeft(data-wow-delay='.1s')
+            .box-light-icon.linearicons-map2
+            h4.text-gray-800.box-light-title Lots of Cruises
+            p Since our establishment, we have been offering a wide range of cruises to all our customers worldwide.
+
+        .col-sm-6.col-md-4.col-lg-3.wow-outer
+          // Box Light
+          article.box-light.wow.slideInLeft(data-wow-delay='.15s')
+            .box-light-icon.linearicons-mouse-right
+            h4.text-gray-800.box-light-title Online Booking
+            p Booking a cruise online has never been so easy! Just a couple of clicks to find what you need and you’re all set!
+
+
+  // Testimonials
+  section.section.section-lg.text-center.bg-image.bg-image-1.context-dark(style='background-image: url(images/testimonials-bg-1920x719.jpg);')
+    .container
+      h2.wow-outer.text-white.text-title-block-white: span.wow.slideInUp Testimonials
+      include ../includes/_slick-widget-testimonials
+
+  // Latest Blog Posts
+  section.section.section-lg.text-center
+    .container
+      h2.wow-outer.font-weight-bold.text-title-block: span.wow.slideInUp Latest Blog Posts
+      .row.row-50
+        .col-md-6.wow-outer
+          // Post Modern
+          article.post-modern.wow.slideInLeft
+            a.post-modern-media(href=links.post): +jpg('grid-blog-1-570x352')
+            h4.post-modern-title: a(href=links.post) Top Ten Cruise Destinations
+            ul.post-modern-meta
+              li.text-color-3 by Mike Barnes
+              li: time(datetime='2018') Apr 25, 2018 at 3:13 pm
+              li: a.button-winona.text-gray-800(href='#') News
+            p Travelers may argue over which city provides the most beautiful arrival by ship, but few would leave Rio de Janeiro far from the top of the list. Cruise ships sail into Guanabara Bay past...
+        .col-md-6.wow-outer
+          // Post Modern
+          article.post-modern.wow.slideInLeft
+            a.post-modern-media(href=links.post): +jpg('grid-blog-2-570x352')
+            h4.post-modern-title: a(href=links.post) 5 Adventure Cruises You Cannot Miss
+            ul.post-modern-meta
+              li.text-color-3 by Mike Barnes
+              li: time(datetime='2018') Apr 25, 2018 at 3:13 pm
+              li: a.button-winona.text-gray-800(href='#') News
+            p For many cruise lovers, setting sail is half the fun. The other half is packing as much full-scale adventure into a cruise as possible. Top cruise companies are ready to oblige, with adventure-cruise...
+
+
+  // Newsletter
+  include ../sections/_section-photo-newsletter-form
+
+  // Page Footer
+  include ../sections/_footer-linked

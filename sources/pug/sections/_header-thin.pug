@@ -1,0 +1,80 @@
+- navbarCounter++
+
+header.section.page-header
+	// RD Navbar
+	.rd-navbar-wrap
+		nav.rd-navbar.rd-navbar-thin(
+		data-layout=                'rd-navbar-fixed'
+		data-sm-layout=             'rd-navbar-fixed'
+		data-md-layout=             'rd-navbar-fixed'
+		data-md-device-layout=      'rd-navbar-fixed'
+		data-lg-layout=             'rd-navbar-static'
+		data-lg-device-layout=      'rd-navbar-fixed'
+		data-xl-layout=             'rd-navbar-static'
+		data-xl-device-layout=      'rd-navbar-fixed'
+		data-xxl-layout=            'rd-navbar-static'
+		data-xxl-device-layout=     'rd-navbar-static'
+		data-lg-stick-up-offset=    '46px'
+		data-xl-stick-up-offset=    '46px'
+		data-xxl-stick-up-offset=   '46px'
+		data-lg-stick-up=           'true'
+		data-xl-stick-up=           'true'
+		data-xxl-stick-up=          'true')
+			.rd-navbar-main-outer
+				.rd-navbar-main
+					// RD Navbar Panel
+					.rd-navbar-panel
+						// RD Navbar Toggle
+						button.rd-navbar-toggle(data-rd-navbar-toggle='#rd-navbar-nav-wrap-' + navbarCounter): span
+							
+						// RD Navbar Brand
+						a.rd-navbar-brand(href='index.html')
+							+png(logo.default.trueSize)(srcset='images/' + logo.inverse.retina + '.png 2x')
+
+						.rd-navbar-block
+							ul.list-inline-bordered
+								li
+									button.rd-navbar-popup-toggle.text-uppercase.font-weight-light(data-rd-navbar-toggle='#rd-navbar-login-' + navbarCounter)
+										span.mdi.mdi-pencil
+											span.hidden-info.font-weight-light  Book now
+									div.rd-navbar-popup(id='rd-navbar-login-' + navbarCounter)
+										h4 Book now
+										form.rd-form.rd-form-small
+											.form-wrap
+												input.form-input(id='register-name-1' + navbarCounter type='text' name='username' data-constraints='@Required')
+												label.form-label(for='register-name-1' + navbarCounter) Check in
+
+											.form-wrap
+												input.form-input(id='register-name-2' + navbarCounter type='text' name='username' data-constraints='@Required')
+												label.form-label(for='register-name-2' + navbarCounter) Check out
+
+											.form-wrap
+												input.form-input(id='register-name-3' + navbarCounter type='text' name='username' data-constraints='@Required')
+												label.form-label(for='register-name-3' + navbarCounter) Guests
+
+											.form-wrap
+												button.button.button-block.button-primary.button-winona(type='submit') Book Now
+								li
+									a.link-title(href="tel:#")
+										span.mdi.mdi-cellphone-android
+											span.text-subtitle.hidden-info.font-weight-light  +1-800-1234-567
+
+
+							
+							button.rd-navbar-search-toggle(data-rd-navbar-toggle='#rd-navbar-search-' + navbarCounter): span
+					
+					// RD Navbar Search
+					.rd-navbar-search(id='rd-navbar-search-' + navbarCounter)
+						form.rd-search(action='search-results.html' data-search-live='rd-search-results-live-' + navbarCounter, method='GET')
+							.form-wrap
+								label.form-label(for='rd-navbar-search-form-input-' + navbarCounter) Search...
+								input.form-input(class='rd-navbar-search-form-input' id='rd-navbar-search-form-input-' + navbarCounter, type='text' name='s' autocomplete="off")
+								.rd-search-results-live(id='rd-search-results-live-' + navbarCounter)
+							button.rd-search-form-submit.fa-search(type='submit')
+							
+					.rd-navbar-nav-wrap(id='rd-navbar-nav-wrap-' + navbarCounter)
+						// RD Navbar Brand
+						a.rd-navbar-brand(href='index.html')
+							+png(logo.inverse.trueSize)(srcset='images/' + logo.inverse.retina + '.png 2x')
+							
+						include ../includes/_navigation

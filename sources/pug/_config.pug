@@ -1,0 +1,92 @@
+-
+	var
+		htmlClass = "wide wow-animation",
+		fonts = "//fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700,800%7COswald:300,400,500%7CAlegreya+Sans+SC:300,400,700%7COld+Standard+TT:400,700",
+
+		logo = {
+			name: 'Cruise Travel',
+			default: { trueSize: 'logo-default-135x43', retina: 'logo-default-135x43' },
+			inverse: { trueSize: 'logo-default-135x43', retina: 'logo-default-135x43' },
+			light: { trueSize: 'logo-light-135x43', retina: 'logo-light-135x43' }
+		},
+		links = {
+			post: 'single-blog-post.html',
+			getTemplate: 'https://themeforest.net/item/casecraft-elegant-business-and-financial-company-multipage-html-template/21536362'
+		},
+		colors = {
+			primary: '#f93d4e'
+		},
+		menu = [
+			{
+				title: 'Home',
+				category: 'home',  
+				link: 'index.html'
+			},
+			{
+				title: 'About Us',
+				category: 'about us',
+				link: 'about-us.html'
+
+			},
+			{
+				title: 'Cruises',
+				category: 'cruises',
+				dropdown: [
+				{ title: 'Single Cruise' }
+				]
+			},
+			{
+				title: 'Blog',
+				category: 'blog',
+				link: '#',
+				dropdown: [
+					{ title: 'Grid Blog' },
+					{ title: 'Sidebar Blog' },
+					{ title: 'Single Blog Post', link: links.post }
+				] 
+			},
+			{
+				title: 'Pages', 
+				category: 'pages',
+				link: '#',
+				megamenu: [
+					{
+						list: [
+						{ title: 'Buttons' },
+						{ title: 'Progress bars' },
+						{ title: 'Tabs' },
+						{ title: 'Accordions' },
+						{ title: 'Testimonials' },
+						{ title: 'Typography' },
+						{ title: 'Forms' }
+						]
+					},
+					{
+						list: [
+							{ title: '404 Page' },
+							{ title: '503 Page' },
+							{ title: 'Coming Soon' },
+							{ title: 'Under Construction' },
+							{ title: 'Gallery' },
+							{ title: 'Grid Gallery' },
+							{ title: 'Modern Gallery' }
+						]
+					},
+					{
+						list: [
+						{ title: 'Careers' },
+						{ title: 'Search results' },
+						{ title: 'Features' },
+						{ title: 'Single Job' },
+						{ title: 'Privacy policy' },
+						{ title: 'Team' },
+						{ title: 'Pricing' }
+						]
+					}
+				]
+			},
+			{
+				title: 'Contacts',
+				category: 'contacts'
+			}
+		];

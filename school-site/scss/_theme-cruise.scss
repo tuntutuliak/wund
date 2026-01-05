@@ -1,0 +1,24 @@
+// Тема для круизного сайта (из существующего проекта)
+
+@import 'variables';
+
+// Специфичные стили для круизной темы
+.theme-cruise {
+    // Основные цвета темы круиза
+    --primary-color: #1e3a8a;
+    --secondary-color: #3b82f6;
+    --accent-color: #f59e0b;
+    
+    // Применение темы
+    background-color: $color-bg;
+    color: $color-text;
+    
+    // Стили для секций
+    .hero {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: $spacing-xl 0;
+        text-align: center;
+    }
+}
+

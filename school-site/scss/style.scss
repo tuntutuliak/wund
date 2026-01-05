@@ -1,0 +1,15 @@
+// Entrypoint для сборки SCSS
+
+// Импорт переменных
+@import 'variables';
+
+// Импорт основных стилей
+@import 'main';
+
+// Импорт тем
+@import 'theme-school';
+@import 'theme-cruise';
+
+// Дополнительные стили
+// Добавьте здесь свои кастомные стили
+

@@ -1,0 +1,21 @@
+extends  ../_skeleton
+
+block variables
+	- var activeCategory = 'contacts'
+	- var pageName = 'Contacts'
+
+block page 
+	// Page Header
+	include ../sections/_header-thin
+
+	+breadcrumbs({
+		category: activeCategory,
+		path: [pageName],
+		bgImage: 'bg-about-us'
+	})
+
+	include ../sections/_section-contact-info
+	include ../sections/_section-contact-form-and-map
+
+	// Page Footer
+	include ../sections/_footer-linked

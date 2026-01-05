@@ -1,0 +1,28 @@
+extends  ../_skeleton
+
+block variables
+	- var activeCategory = 'pages'
+	- var pageName = '503 Page'
+
+block page
+	// Page content
+	section.section.section-single.bg-gray-800(style='background-image: url(images/bg-image-4.jpg);')
+		.section-single-inner
+			.section-single-dummy
+			.section-single-main: .container 
+				.row.row-30
+					.col-sm-6.text-center.text-sm-left: p.text-extra-large 503
+					.col-sm-6
+						.section-single-main-content
+							h6.title-decorated.title-decorated-lg.text-uppercase.text-font-sec Service is temporary unavailable
+							p: span.text-width-2 Sorry, we're offline right now to make our site even better. Please, come back later and check what we've been up to.
+							a.button.button-lg.button-primary.button-winona(href='index.html') Back to home page
+							
+						
+			.footer-minimal.section-single-footer
+				.container
+					.footer-minimal-inner
+						a.brand(href='index.html')
+							+png(logo.light.trueSize)(srcset='images/' + logo.light.retina + '.png 2x')
+						+rights
+				

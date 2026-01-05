@@ -1,0 +1,51 @@
+section.section.bg-gray-100
+	.range.justify-content-xl-between
+		.cell-xl-6.align-self-center.container
+			.row
+				.col-lg-9.cell-inner: .section-lg
+					h3.wow-outer: span.wow.slideInDown Contact Us
+					// RD Mailform
+					form.rd-form.rd-mailform(data-form-output='form-output-global', data-form-type='contact', method='post', action='bat/rd-mailform.php')
+						.row.row-10
+							.col-md-6.wow-outer
+								.form-wrap.wow.fadeSlideInUp
+									label.form-label-outside(for='contact-first-name') First Name
+									input#contact-first-name.form-input(type='text' name='name' data-constraints='@Required')
+
+							.col-md-6.wow-outer
+								.form-wrap.wow.fadeSlideInUp
+									label.form-label-outside(for='contact-last-name') Last Name
+									input#contact-last-name.form-input(type='text' name='name' data-constraints='@Required')
+
+							.col-md-6.wow-outer
+								.form-wrap.wow.fadeSlideInUp
+									label.form-label-outside(for='contact-email') E-mail
+									input#contact-email.form-input(type='email' name='email' data-constraints='@Email @Required')
+
+							.col-md-6.wow-outer
+								.form-wrap.wow.fadeSlideInUp
+									label.form-label-outside(for='contact-phone') Phone
+									input#contact-phone.form-input(type='text' name='phone' data-constraints='@PhoneNumber')
+
+							.col-12.wow-outer
+								.form-wrap.wow.fadeSlideInUp
+									label.form-label-outside(for='contact-message') Your Message
+									textarea#contact-message.form-input(name='message' data-constraints='@Required')
+
+
+						.group.group-middle
+							.wow-outer 
+								button.button.button-primary.button-winona.wow.slideInRight(type='submit') Send Message
+							p or use
+							.wow-outer
+								a.button.button-primary-outline.button-icon.button-icon-left.button-winona.wow.slideInLeft(href='#')
+									span.icon.text-primary.mdi.mdi-facebook-messenger
+									| Messenger
+
+		.cell-xl-5.height-fill.wow.fadeIn
+			section.section
+				.google-map-container( data-center='9870 St Vincent Place, Glasgow, DC 45 Fr 45.', data-styles='[{"featureType":"all","elementType":"all","stylers":[{"saturation":"32"},{"lightness":"-3"},{"visibility":"on"},{"weight":"1.18"}]},{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"saturation":"-70"},{"lightness":"14"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"saturation":"100"},{"lightness":"-14"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"},{"lightness":"12"}]}]' )
+					.google-map
+					ul.google-map-markers
+						li( data-location='9870 St Vincent Place, Glasgow, DC 45 Fr 45.', data-description='9870 St Vincent Place, Glasgow', data-icon='images/gmap_marker.png', data-icon-active='images/gmap_marker_active.png' )
+

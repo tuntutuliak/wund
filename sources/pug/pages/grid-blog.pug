@@ -1,0 +1,69 @@
+extends  ../_skeleton
+
+block variables
+	- var activeCategory = 'blog'
+	- var pageName = 'Grid Blog'
+
+block page 
+	// Page Header
+	include ../sections/_header-thin
+
+	+breadcrumbs({
+		category: activeCategory,
+		path: [pageName],
+		bgImage: 'bg-about-us'
+	})
+	
+	section.section.section-lg
+		.container
+			.row.row-50.row-xxl-70
+				.col-md-6.wow-outer
+					// Post Modern
+					article.post-modern.wow.slideInLeft
+						a.post-modern-media(href=links.post): +jpg('grid-blog-1-570x352')
+						h4.post-modern-title: a(href=links.post) Why Choose Cruises Instead of Tours
+						ul.post-modern-meta
+							li.text-color-3 by Mike Barnes
+							li: time(datetime='2018') Apr 25, 2018 at 3:13 pm
+							li: a.button-winona.text-gray-800(href='#') News
+						p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+				.col-md-6.wow-outer
+					// Post Modern
+					article.post-modern.wow.slideInLeft
+						a.post-modern-media(href=links.post): +jpg('grid-blog-2-570x352')
+						h4.post-modern-title: a(href=links.post) 5 Adventure Cruises You Cannot Miss
+						ul.post-modern-meta
+							li.text-color-3 by Mike Barnes
+							li: time(datetime='2018') Apr 25, 2018 at 3:13 pm
+							li: a.button-winona.text-gray-800(href='#') News
+						p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+				.col-md-6.wow-outer
+					// Post Modern
+					article.post-modern.wow.slideInLeft
+						a.post-modern-media(href=links.post): +jpg('grid-blog-3-570x352')
+						h4.post-modern-title: a(href=links.post) Top Ten Cruise Destinations
+						ul.post-modern-meta
+							li.text-color-3 by Mike Barnes
+							li: time(datetime='2018') Apr 25, 2018 at 3:13 pm
+							li: a.button-winona.text-gray-800(href='#') News
+						p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+				.col-md-6.wow-outer
+					// Post Modern
+					article.post-modern.wow.slideInLeft
+						a.post-modern-media(href=links.post): +jpg('grid-blog-4-570x352')
+						h4.post-modern-title: a(href=links.post) Best Family Friendly Cruises of This Season
+						ul.post-modern-meta
+							li.text-color-3 by Mike Barnes
+							li: time(datetime='2018') Apr 25, 2018 at 3:13 pm
+							li: a.button-winona.text-gray-800(href='#') News
+						p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+
+
+			.pagination.justify-content-center.justify-content-md-start
+				.page-item.active: a.page-link.button-winona(href='#') 1
+				.page-item: a.page-link.button-winona(href='#') 2
+				.page-item: a.page-link.button-winona(href='#') 3
+				.page-item: a.page-link.button-winona(href='#') 4
+				
+	// Page Footer
+	include ../sections/_footer-linked
