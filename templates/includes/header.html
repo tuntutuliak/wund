@@ -1,0 +1,89 @@
+{% load static %}
+<!-- Page Header-->
+<header class="section page-header">
+  <!-- RD Navbar-->
+  <div class="rd-navbar-wrap">
+    <nav class="rd-navbar rd-navbar-thin" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-fixed" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="46px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+      <div class="rd-navbar-main-outer">
+        <div class="rd-navbar-main">
+          <!-- RD Navbar Panel (иконка редактирования = заявка, телефон, поиск, гармошка) -->
+          <div class="rd-navbar-panel">
+            <!-- Гармошка: открывает меню со всеми страницами -->
+            <button class="rd-navbar-toggle" data-rd-navbar-toggle="#rd-navbar-nav-wrap-school" aria-label="Меню"><span></span></button>
+            <!-- RD Navbar Brand -->
+            <a class="rd-navbar-brand" href="/"><img src="{% static 'img/w_logo_43X43.jpg' %}" alt="" width="43" height="43"/></a>
+            <div class="rd-navbar-block">
+              <ul class="list-inline-bordered">
+                <!-- Значок редактирования: при нажатии открывается форма заявки -->
+                <li>
+                  <button class="rd-navbar-popup-toggle text-uppercase font-weight-light" data-rd-navbar-toggle="#rd-navbar-application-school" type="button"><span class="mdi mdi-pencil"></span><span class="hidden-info font-weight-light"> Оставить заявку</span></button>
+                  <div class="rd-navbar-popup" id="rd-navbar-application-school">
+                    <h4>Оставить заявку</h4>
+                    <form class="rd-form rd-form-small rd-mailform" action="#" method="post" data-form-output="form-output-global" data-form-type="contact">
+                      {% csrf_token %}
+                      <div class="form-wrap">
+                        <input class="form-input" id="application-name-school" type="text" name="name" data-constraints="@Required">
+                        <label class="form-label" for="application-name-school">Имя</label>
+                      </div>
+                      <div class="form-wrap">
+                        <input class="form-input" id="application-phone-school" type="tel" name="phone" data-constraints="@Required">
+                        <label class="form-label" for="application-phone-school">Телефон</label>
+                      </div>
+                      <div class="form-wrap">
+                        <input class="form-input" id="application-email-school" type="email" name="email" data-constraints="@Email @Required">
+                        <label class="form-label" for="application-email-school">E-mail</label>
+                      </div>
+                      <div class="form-wrap">
+                        <select class="form-input select" name="program" data-minimum-results-for-search="Infinity">
+                          <option value="">Выберите программу</option>
+                          <option value="math">Математика</option>
+                          <option value="russian">Русский язык</option>
+                          <option value="english">Английский язык</option>
+                          <option value="programming">Программирование</option>
+                          <option value="other">Другое</option>
+                        </select>
+                        <label class="form-label">Программа</label>
+                      </div>
+                      <div class="form-wrap">
+                        <textarea class="form-input textarea" id="application-comment-school" name="comment" rows="3" data-constraints="@Required"></textarea>
+                        <label class="form-label" for="application-comment-school">Комментарий</label>
+                      </div>
+                      <div class="form-wrap">
+                        <button class="button button-block button-primary button-winona" type="submit">Отправить заявку</button>
+                      </div>
+                    </form>
+                  </div>
+                </li>
+                <li><a class="link-title" href="tel:#"><span class="mdi mdi-cellphone-android"></span><span class="text-subtitle hidden-info font-weight-light"> +7 (495) 123-45-67</span></a></li>
+              </ul>
+              <button class="rd-navbar-search-toggle" data-rd-navbar-toggle="#rd-navbar-search-school" aria-label="Поиск"><span></span></button>
+            </div>
+          </div>
+          <!-- RD Navbar Search -->
+          <div class="rd-navbar-search" id="rd-navbar-search-school">
+            <form class="rd-search" action="#" data-search-live="rd-search-results-live-school" method="GET">
+              <div class="form-wrap">
+                <label class="form-label" for="rd-navbar-search-form-input-school">Поиск...</label>
+                <input class="form-input rd-navbar-search-form-input" id="rd-navbar-search-form-input-school" type="text" name="s" autocomplete="off">
+                <div class="rd-search-results-live" id="rd-search-results-live-school"></div>
+              </div>
+              <button class="rd-search-form-submit fa-search" type="submit"></button>
+            </form>
+          </div>
+          <!-- Гармошка раскрывает этот блок: названия всех страниц -->
+          <div class="rd-navbar-nav-wrap" id="rd-navbar-nav-wrap-school">
+            <a class="rd-navbar-brand" href="/"><img src="{% static 'img/w_logo.jpg' %}" alt="" width="135" height="43" srcset="{% static 'images/logo-default-135x43.png' %} 2x"/></a>
+            <ul class="rd-navbar-nav">
+              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'home' %} active{% endif %}"><a class="rd-nav-link" href="/">Главная</a></li>
+              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'about' %} active{% endif %}"><a class="rd-nav-link" href="/about/">О нас</a></li>
+              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'programs' %} active{% endif %}"><a class="rd-nav-link" href="/programs/">Программы</a></li>
+              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'teachers' %} active{% endif %}"><a class="rd-nav-link" href="/teachers/">Преподаватели</a></li>
+              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'testimonials' %} active{% endif %}"><a class="rd-nav-link" href="/testimonials/">Отзывы</a></li>
+              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'contact' %} active{% endif %}"><a class="rd-nav-link" href="/contact/">Контакты</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
