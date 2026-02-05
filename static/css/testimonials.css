@@ -1,0 +1,152 @@
+/**
+ * Блок «Отзывы» — белый фон, горизонтальная карусель аватаров и текста
+ */
+
+/* Секция отзывов: только белый фон, без изображения */
+.testimonials-light {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+/* Заголовок — тёмный, жирный */
+.testimonials-light .testimonials-heading {
+  color: #151515;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+/* Декоративная волнистая линия под заголовком */
+.testimonials-light .testimonials-heading::after {
+  content: '';
+  display: block;
+  width: 70px;
+  height: 4px;
+  margin: 20px auto 0;
+  background: url("../images/line-text.png") no-repeat center;
+  background-size: contain;
+}
+@media (min-width: 768px) {
+  .testimonials-light .testimonials-heading::after {
+    margin-top: 30px;
+  }
+}
+
+/* Контейнер карусели аватаров — горизонтальный ряд */
+.testimonials-light .carousel-child {
+  max-width: 570px;
+  margin: 0 auto 30px;
+  padding: 0 50px;
+}
+
+/* Элемент аватара — круг, фиксированный размер */
+.testimonials-light .carousel-child .item {
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.testimonials-light .carousel-child .item img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Центральный (активный) слайд — крупнее */
+.testimonials-light .carousel-child .slick-center .item {
+  transform: scale(1);
+}
+.testimonials-light .carousel-child .slick-slide .item {
+  transform: scale(0.85);
+  transition: transform 0.25s ease;
+}
+
+/* Стрелки карусели аватаров — тёмные на белом фоне */
+.testimonials-light .carousel-child .slick-prev,
+.testimonials-light .carousel-child .slick-next {
+  width: 40px;
+  height: 40px;
+  z-index: 2;
+}
+.testimonials-light .carousel-child .slick-prev { left: 0; }
+.testimonials-light .carousel-child .slick-next { right: 0; }
+.testimonials-light .carousel-child .slick-prev:before,
+.testimonials-light .carousel-child .slick-next:before {
+  color: #151515;
+  font-size: 24px;
+  opacity: 0.8;
+}
+.testimonials-light .carousel-child .slick-prev:hover:before,
+.testimonials-light .carousel-child .slick-next:hover:before {
+  color: #333;
+  opacity: 1;
+}
+
+/* Блок цитаты под каруселью */
+.testimonials-light .carousel-parent {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* Текст отзыва — тёмный на белом */
+.testimonials-light .quote-light .quote-light-cite {
+  color: #151515;
+  font-size: 20px;
+  font-weight: 600;
+}
+@media (min-width: 768px) {
+  .testimonials-light .quote-light .quote-light-cite {
+    font-size: 24px;
+  }
+}
+
+.testimonials-light .quote-light .quote-light-caption {
+  color: #6c757d;
+  margin-top: 4px;
+}
+
+.testimonials-light .quote-light .quote-light-text,
+.testimonials-light .quote-light .quote-light-text p {
+  color: #333333;
+  font-size: 16px;
+  line-height: 1.5;
+}
+@media (min-width: 768px) {
+  .testimonials-light .quote-light .quote-light-text,
+  .testimonials-light .quote-light .quote-light-text p {
+    font-size: 18px;
+  }
+}
+
+/* Иконка кавычек — светло-серая */
+.testimonials-light .quote-light-mark {
+  fill: #b0b4be;
+}
+
+/* Синхронизация: скрыть неактивные слайды текста, показать активный */
+.testimonials-light .carousel-parent .item > * {
+  transition: opacity 0.3s ease;
+}
+.testimonials-light .carousel-parent .slick-slide:not(.slick-active) > * {
+  opacity: 0;
+  pointer-events: none;
+}
+.testimonials-light .carousel-parent .slick-slide.slick-active > * {
+  opacity: 1;
+}
+
+/* Fallback: до инициализации Slick — аватары в одну строку */
+.testimonials-light .carousel-child:not(.slick-initialized) {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.testimonials-light .carousel-child:not(.slick-initialized) .item {
+  flex: 0 0 auto;
+}

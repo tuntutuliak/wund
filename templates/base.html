@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" id="main-styles-link">
+    <link rel="stylesheet" href="{% static 'css/testimonials.css' %}">
+    {% block extra_css %}{% endblock %}
     <!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="{% static 'images/ie8-panel/warning_bar_0000_us.jpg' %}" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="{% static 'js/html5shiv.min.js' %}"></script>
@@ -216,91 +218,7 @@
       </section>
       <!-- Section Divider (between content and testimonials)-->
       <section class="section section-sm bg-image bg-image-1 section-divider" style="background-image: url({% static 'img/bg_class_1920X719.jpg' %});"></section>
-      <!-- Testimonials-->
-      <section class="section section-lg text-center bg-gray-100 testimonials-light">
-        <div class="container">
-          <h2 class="wow-outer font-weight-bold text-gray-800"><span class="wow slideInUp">Отзывы</span></h2>
-          <div class="slick-widget-testimonials wow fadeIn">
-            <div class="slick-slider carousel-child" id="child-carousel" data-for=".carousel-parent" data-arrows="true" data-loop="true" data-dots="false" data-swipe="true" data-items="1" data-sm-items="3" data-md-items="5" data-lg-items="5" data-xl-items="5" data-center-mode="true" data-slide-to-scroll="1">
-              <div class="item wow-outer"><img class="wow slideInLeft" src="{% static 'img/person-1-96x96.jpg' %}" alt="" width="96" height="96"/>
-              </div>
-              <div class="item wow-outer"><img class="wow slideInLeft" src="{% static 'img/person-2-96x96.jpg' %}" alt="" width="96" height="96"/>
-              </div>
-              <div class="item wow-outer"><img class="wow slideInLeft" src="{% static 'images/testimonials-person-4-96x96.jpg' %}" alt="" width="96" height="96"/>
-              </div>
-              <div class="item wow-outer"><img class="wow slideInLeft" src="{% static 'images/testimonials-person-3-96x96.jpg' %}" alt="" width="96" height="96"/>
-              </div>
-              <div class="item wow-outer"><img class="wow slideInLeft" src="{% static 'img/person-1-96x96.jpg' %}" alt="" width="96" height="96"/>
-              </div>
-              <div class="item wow-outer"><img class="wow slideInLeft" src="{% static 'images/testimonials-person-4-96x96.jpg' %}" alt="" width="96" height="96"/>
-              </div>
-            </div>
-            <!-- Slick Carousel-->
-            <div class="slick-slider carousel-parent" data-arrows="false" data-loop="true" data-dots="false" data-swipe="false" data-items="1" data-fade="true" data-child="#child-carousel" data-for="#child-carousel" data-autoplay="true">
-              <div class="item">
-                <blockquote class="quote-light">
-                  <cite class="quote-light-cite">Мария Смирнова</cite>
-                  <p class="quote-light-caption">Ученица</p>
-                  <svg class="quote-light-mark" x="0px" y="0px" width="35px" height="25px" viewbox="0 0 35 25">
-                    <path d="M27.461,10.206h7.5v15h-15v-15L25,0.127h7.5L27.461,10.206z M7.539,10.206h7.5v15h-15v-15L4.961,0.127h7.5                L7.539,10.206z"></path>
-                  </svg>
-                  <div class="quote-light-text">
-                    <p>Я только что закончила курс и хочу сказать, как много я получила от каждого занятия. Наша программа включала подготовку к ЕГЭ по математике. Какое фантастическое впечатление это было!</p>
-                  </div>
-                </blockquote>
-              </div>
-              <div class="item">
-                <blockquote class="quote-light">
-                  <cite class="quote-light-cite">Александр Иванов</cite>
-                  <p class="quote-light-caption">Ученик</p>
-                  <svg class="quote-light-mark" x="0px" y="0px" width="35px" height="25px" viewbox="0 0 35 25">
-                    <path d="M27.461,10.206h7.5v15h-15v-15L25,0.127h7.5L27.461,10.206z M7.539,10.206h7.5v15h-15v-15L4.961,0.127h7.5                L7.539,10.206z"></path>
-                  </svg>
-                  <div class="quote-light-text">
-                    <p>Еще раз команда школы была профессиональной и дружелюбной в общении с учениками, и я абсолютно рекомендую их программы и услуги без колебаний.</p>
-                  </div>
-                </blockquote>
-              </div>
-              <div class="item">
-                <blockquote class="quote-light">
-                  <cite class="quote-light-cite">Елена Петрова</cite>
-                  <p class="quote-light-caption">Родитель</p>
-                  <svg class="quote-light-mark" x="0px" y="0px" width="35px" height="25px" viewbox="0 0 35 25">
-                    <path d="M27.461,10.206h7.5v15h-15v-15L25,0.127h7.5L27.461,10.206z M7.539,10.206h7.5v15h-15v-15L4.961,0.127h7.5                L7.539,10.206z"></path>
-                  </svg>
-                  <div class="quote-light-text">
-                    <p>Изучение английского языка было увлекательным. Это был незабываемый опыт, и общение с преподавателями было конструктивным. Спасибо за лучшее образование и опыт!</p>
-                  </div>
-                </blockquote>
-              </div>
-              <div class="item">
-                <blockquote class="quote-light">
-                  <cite class="quote-light-cite">Дмитрий Козлов</cite>
-                  <p class="quote-light-caption">Родитель</p>
-                  <svg class="quote-light-mark" x="0px" y="0px" width="35px" height="25px" viewbox="0 0 35 25">
-                    <path d="M27.461,10.206h7.5v15h-15v-15L25,0.127h7.5L27.461,10.206z M7.539,10.206h7.5v15h-15v-15L4.961,0.127h7.5                L7.539,10.206z"></path>
-                  </svg>
-                  <div class="quote-light-text">
-                    <p>Большое спасибо за организацию курса программирования. У нас было фантастическое время. Это был наш первый опыт со школой, но определенно не последний. Мы уже с нетерпением ждем следующего года.</p>
-                  </div>
-                </blockquote>
-              </div>
-              <div class="item">
-                <blockquote class="quote-light">
-                  <cite class="quote-light-cite">Илья Сидоров</cite>
-                  <p class="quote-light-caption">Родитель</p>
-                  <svg class="quote-light-mark" x="0px" y="0px" width="35px" height="25px" viewbox="0 0 35 25">
-                    <path d="M27.461,10.206h7.5v15h-15v-15L25,0.127h7.5L27.461,10.206z M7.539,10.206h7.5v15h-15v-15L4.961,0.127h7.5                L7.539,10.206z"></path>
-                  </svg>
-                  <div class="quote-light-text">
-                    <p>Мой сын записался на курс в вашей школе, который стал одним из лучших курсов, которые мы прошли. Ваша команда проделала отличную работу по планированию всего, и весь опыт был потрясающим!</p>
-                  </div>
-                </blockquote>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {% include 'includes/testimonials.html' %}
       <!-- Newsletter-->
       <section class="section section-lg bg-image bg-image-light" style="background-image: url({% static 'img/news_back_1920X432.jpg' %});">
         <div class="container">
@@ -409,6 +327,8 @@
     <!-- Javascript-->
     <script src="{% static 'js/core.min.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/testimonials.js' %}"></script>
+    {% block extra_js %}{% endblock %}
     <!-- Выпадающая форма заявки по клику на значок редактирования -->
     <script>
       (function() {
