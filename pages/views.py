@@ -9,3 +9,8 @@ def home(request):
 def testimonials(request):
     """Страница отзывов — та же функциональность, что и school-site/templates/testimonials.html."""
     return render(request, 'testimonials.html')
+
+
+def about(request):
+    """Страница «О нас»."""
+    return render(request, 'about.html')
