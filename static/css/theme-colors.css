@@ -1,0 +1,320 @@
+/*
+* Theme color palette overrides
+* Primary: #009966 | Secondary: #993399 | Accent: #FF6633
+*/
+:root {
+	--color-primary: #009966;
+	--color-primary-hover: #007a52;
+	--color-primary-dark: #006644;
+	--color-secondary: #993399;
+	--color-secondary-hover: #7a2a7a;
+	--color-secondary-light: rgba(153, 51, 153, 0.15);
+	--color-accent: #FF6633;
+	--color-accent-hover: #e65c2e;
+	--color-accent-light: rgba(255, 102, 51, 0.12);
+}
+
+/* Links and headings */
+a, a:focus, a:active,
+.link-default, .link-default:active, .link-default:focus,
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, [class^='heading-'] a {
+	color: var(--color-primary);
+}
+a:hover,
+.link-default:hover,
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover, [class^='heading-'] a:hover {
+	color: var(--color-secondary);
+}
+html .page .text-primary {
+	color: var(--color-primary);
+}
+
+/* Buttons */
+.button.button-primary,
+.button.button-primary:focus,
+html .button.button-primary-lighten,
+html .button.button-primary-lighten:focus,
+.btn-primary, .btn-primary:active, .btn-primary:focus {
+	background-color: var(--color-primary);
+	border-color: var(--color-primary);
+	color: #fff;
+}
+.button.button-primary:hover,
+.button.button-primary:active {
+	background-color: var(--color-primary-hover);
+	border-color: var(--color-primary-hover);
+	color: #fff;
+}
+.button-primary-outline,
+.button-primary-outline:focus {
+	color: #151515;
+	background-color: transparent;
+	border-color: #000;
+}
+.button-primary-outline:hover,
+.button-primary-outline:active {
+	background-color: var(--color-primary);
+	border-color: var(--color-primary);
+	color: #fff;
+}
+.button.button-secondary,
+.button.button-secondary:focus {
+	background-color: var(--color-secondary);
+	border-color: var(--color-secondary);
+	color: #fff;
+}
+.button.button-secondary:hover,
+.button.button-secondary:active {
+	background-color: var(--color-secondary-hover);
+	border-color: var(--color-secondary-hover);
+	color: #fff;
+}
+.button-default:hover,
+.button-default:active {
+	background-color: var(--color-primary);
+	border-color: var(--color-primary);
+	color: #fff;
+}
+
+/* CTA / accent buttons (hero, highlights) */
+.jumbotron-modern .button-primary,
+.jumbotron-modern .button.button-primary,
+.jumbotron-modern .form-wrap-button .button,
+.button.button-primary.button-winona,
+.section .button-primary.button-winona {
+	background-color: var(--color-accent);
+	border-color: var(--color-accent);
+	color: #fff;
+}
+.jumbotron-modern .button-primary:hover,
+.jumbotron-modern .button.button-primary:hover,
+.jumbotron-modern .form-wrap-button .button:hover,
+.button.button-primary.button-winona:hover,
+.section .button-primary.button-winona:hover {
+	background-color: var(--color-accent-hover);
+	border-color: var(--color-accent-hover);
+	color: #fff;
+}
+/* Hero section select / Select2 (dark background) */
+.jumbotron-modern .select2-container--default .select2-selection--single,
+.bg-gray-700 .select2-container--default .select2-selection--single {
+	background-color: rgba(255, 255, 255, 0.95);
+	border-color: rgba(255, 255, 255, 0.5);
+}
+.jumbotron-modern .select2-container--default.select2-container--focus .select2-selection--single .select2-selection__rendered,
+.jumbotron-modern .select2-container--default .select2-selection--single .select2-selection__arrow b {
+	color: var(--color-primary);
+}
+.jumbotron-modern .select2-container--default.select2-container--focus .select2-selection--single,
+.jumbotron-modern .select2-container--default.select2-container--open .select2-selection--single {
+	border-color: var(--color-accent);
+	box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+/* Form focus and borders */
+.form-wrap.has-focus .form-input,
+.form-input:focus {
+	border-color: var(--color-primary);
+	box-shadow: 0 0 0 1px var(--color-primary);
+}
+.form-input.select:focus,
+.form-wrap-select .form-input:focus {
+	border-color: var(--color-primary);
+	outline: 0;
+}
+
+/* Select2 overrides */
+.select2-container--default .select2-selection--single {
+	background-color: #fff;
+	border: 1px solid #e8e9ee;
+	border-radius: 6px;
+	transition: border-color .25s, box-shadow .25s;
+}
+.select2-container--default.select2-container--focus .select2-selection--single,
+.select2-container--default.select2-container--open .select2-selection--single {
+	border-color: var(--color-primary);
+	box-shadow: 0 0 0 1px var(--color-primary);
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+	color: var(--color-primary);
+}
+.select2-dropdown {
+	background-color: #fff;
+	border: 1px solid #e8e9ee;
+	border-radius: 6px;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+.select2-results__option,
+.select2-results__option *,
+.select2-results__options,
+.select2-results__option[role="option"] {
+	color: #151515 !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+	color: #151515 !important;
+}
+.select2-container--default .select2-search--dropdown .select2-search__field {
+	border: 1px solid #e8e9ee;
+	border-radius: 4px;
+	color: #151515;
+}
+.select2-container--default .select2-search--dropdown .select2-search__field:focus {
+	border-color: var(--color-primary);
+	outline: 0;
+}
+.select2-container--default .select2-results__option[aria-selected=true] {
+	background-color: var(--color-primary) !important;
+	color: #fff !important;
+}
+.select2-container--default .select2-results__option[aria-selected=true] * {
+	color: #fff !important;
+}
+/* Hover/highlight in dropdown — accent (no blue), override any default blue */
+.select2-container--default .select2-results__option--highlighted,
+.select2-container--default .select2-results__option--highlighted[aria-selected],
+.select2-container--default .select2-results__option--highlighted[aria-selected="true"],
+.select2-container--default .select2-results__option--highlighted[aria-selected="false"],
+.select2-results__option.select2-results__option--highlighted,
+#select2-program-type-results .select2-results__option--highlighted,
+#select2-age-group-results .select2-results__option--highlighted,
+.select2-dropdown .select2-results__option--highlighted {
+	background-color: var(--color-accent) !important;
+	background: var(--color-accent) !important;
+	color: #fff !important;
+}
+.select2-container--default .select2-results__option--highlighted *,
+.select2-container--default .select2-results__option--highlighted[aria-selected] *,
+.select2-container--default .select2-results__option--highlighted[aria-selected="false"] *,
+.select2-results__option--highlighted * {
+	color: #fff !important;
+}
+.select2-container--default .select2-results__group {
+	color: #151515;
+}
+.select2-dropdown a,
+.select2-results__option a,
+.select2-container--default .select2-results__option:focus,
+.select2-container--default .select2-results__option:active {
+	color: inherit;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+	background-color: var(--color-secondary-light);
+	border: 1px solid var(--color-secondary);
+	border-radius: 4px;
+	color: #151515;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+	color: var(--color-secondary);
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+	color: var(--color-secondary-hover);
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+	border-color: var(--color-primary);
+	outline: 0;
+}
+
+/* Native select (fallback / unstyled) */
+select.form-input.select,
+.form-wrap-select select {
+	appearance: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23009966' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 12px center;
+	padding-right: 36px;
+}
+select.form-input:focus {
+	border-color: var(--color-primary);
+}
+
+/* Navigation and list links */
+.list-nav a:hover,
+.list-inline-bordered > li > button:hover,
+.list-inline-bordered a:hover,
+.list-inline-bordered > li a:hover,
+.list-inline-comma a:hover,
+.list-inline-comma-default a:hover {
+	color: var(--color-primary);
+}
+.rd-navbar .rd-nav-link:hover,
+.rd-navbar .rd-nav-link.active {
+	color: var(--color-primary);
+}
+.rd-nav-item.active .rd-nav-link {
+	color: var(--color-primary);
+}
+
+/* Box / card accents */
+.block-center:hover .block-center-header,
+.box-creative:hover .box-creative-icon::after,
+.box-light-title a:hover,
+.post-classic-title a:hover,
+.post-inline-title a:hover,
+.post-block-title a:hover,
+.post-block-meta a:hover,
+.post-inline-meta a:hover {
+	color: var(--color-primary);
+}
+.box-creative:hover .box-creative-icon {
+	color: #fff;
+}
+.box-creative:hover .box-creative-icon::after {
+	background: var(--color-primary);
+}
+.box-creative .box-creative-icon::after {
+	transition: background .25s;
+}
+.icon-creative:hover {
+	color: #fff;
+}
+.icon-creative:hover::after {
+	background: var(--color-primary);
+}
+
+/* HR and dividers */
+hr,
+.context-dark hr {
+	border-top-color: var(--color-primary);
+}
+.bg-gray-700 .list-inline-bordered > li:not(:last-child)::after,
+.bg-gray-800 .list-inline-bordered > li:not(:last-child)::after {
+	border-right-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Toggle / checkbox checked */
+.toggle-custom:checked ~ .checkbox-custom-dummy::after {
+	background: var(--color-primary);
+}
+.checkbox .checkbox-custom:checked + .checkbox-custom-dummy::after,
+.checkbox-inline .checkbox-custom:checked + .checkbox-custom-dummy::after {
+	color: var(--color-primary);
+}
+
+/* Video / play button */
+.button-video:hover,
+.context-dark .button-video:hover {
+	color: var(--color-primary);
+	border-color: var(--color-primary);
+}
+
+/* Remove legacy blue from social (keep brand if needed, or use palette) */
+.button.button-facebook,
+.button.button-facebook:focus {
+	background-color: #2059a0;
+	border-color: #2059a0;
+}
+.button.button-facebook:hover,
+.button.button-facebook:active {
+	background-color: #2465b5;
+	border-color: #2465b5;
+}
+.button.button-twitter,
+.button.button-twitter:focus {
+	background-color: #00aae6;
+	border-color: #00aae6;
+}
+.button.button-twitter:hover,
+.button.button-twitter:active {
+	background-color: #01bdff;
+	border-color: #01bdff;
+}

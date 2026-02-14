@@ -1,0 +1,33 @@
+{% load static %}
+<section class="section jumbotron-modern bg-gray-700 bg-image" id="hero" style="background-image: url({% static 'img/wunder-bg1.jpg' %});">
+  <div class="jumbotron-modern-inner">
+    <div class="container">
+      <div class="jumbotron-modern-content">
+        <h1 class="text-extra-large-title wow-outer font-weight-bold"><span class="wow slideInUp">Образование</span></h1>
+        <h4 class="text-normal font-weight-light wow-outer hero-subtitle"><span class="wow slideInDown hero-subtitle-text">для тех, кто стремится к знаниям</span></h4>
+        <div class="jumbotron-bg-text">добро пожаловать</div>
+        <div class="rd-form form-lg form-layout-1 rd-mailform">
+          <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".3s">
+            <select class="form-input select" name="program-type" data-minimum-results-for-search="Infinity">
+              <option value="1">Тип программы</option>
+              <option value="2">Базовые программы</option>
+              <option value="3">Углубленные программы</option>
+              <option value="4">Подготовка к экзаменам</option>
+            </select>
+          </div>
+          <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".3s">
+            <select class="form-input select" name="age-group" data-minimum-results-for-search="Infinity">
+              <option value="1">Возрастная группа</option>
+              <option value="2">7-10 лет</option>
+              <option value="3">11-14 лет</option>
+              <option value="4">15-17 лет</option>
+            </select>
+          </div>
+          <div class="form-wrap form-wrap-button">
+            <button class="button button-lg button-primary button-winona wow fadeInLeftSmall" type="submit" data-wow-delay=".4s">Найти программу</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
