@@ -24,3 +24,8 @@ def contacts(request):
 def team(request):
     """Страница «Преподаватели»."""
     return render(request, 'team.html')
+
+
+def programms(request):
+    """Страница «Программы»."""
+    return render(request, 'programms.html')
