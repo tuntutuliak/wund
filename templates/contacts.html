@@ -8,15 +8,24 @@
 {% endblock %}
 
 {% block content %}
-<div class="contacts-page">
-  <header class="contacts-header">
-    <div class="breadcrumb">
-      <a href="/">Главная</a> • <a href="{% url 'about' %}">О школе</a> • Контакты
+<section class="contacts-page-links section breadcrumbs-custom bg-image context-dark">
+  <div class="breadcrumbs-custom-inner">
+    <div class="container breadcrumbs-custom-container">
+      <div class="breadcrumbs-custom-main">
+        <h6 class="breadcrumbs-custom-subtitle title-decorated">Навигация</h6>
+        <h2 class="breadcrumbs-custom-title">Контакты</h2>
+      </div>
+      <ul class="breadcrumbs-custom-path">
+        <li><a href="{% url 'home' %}">Главная</a></li>
+        <li><a href="{% url 'about' %}">О школе</a></li>
+        <li class="active">Контакты</li>
+      </ul>
     </div>
-    <h1 class="contacts-title">Контакты</h1>
-  </header>
+  </div>
+</section>
 
-  <main class="contacts-main container">
+<section class="contacts-page-content contacts-page section">
+  <div class="contacts-main">
     <aside class="sidebar">
       <nav class="sidebar-menu">
         <div class="menu-header">Контакты</div>
@@ -158,8 +167,8 @@
         <p><strong>Электронная почта:</strong> junior@letovo.ru</p>
       </article>
     </section>
-  </main>
-</div>
+  </div>
+</section>
 {% endblock %}
 
 {% block extra_js %}
