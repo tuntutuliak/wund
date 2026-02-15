@@ -1,0 +1,17 @@
+/* Team page — hero block (same pattern as about/contacts/testimonials) */
+
+.team-page-links {
+  background-image: url("../img/wunder-bg1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.team-page-links .breadcrumbs-custom-title {
+  font-size: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .team-page-links {
+    min-height: 280px;
+  }
+}

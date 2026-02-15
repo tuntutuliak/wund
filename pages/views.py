@@ -19,3 +19,8 @@ def about(request):
 def contacts(request):
     """Контакты и сведения об образовательной организации."""
     return render(request, 'contacts.html')
+
+
+def team(request):
+    """Страница «Преподаватели»."""
+    return render(request, 'team.html')

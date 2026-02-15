@@ -77,7 +77,7 @@
               <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'home' %} active{% endif %}"><a class="rd-nav-link" href="/">Главная</a></li>
               <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'about' %} active{% endif %}"><a class="rd-nav-link" href="/about/">О нас</a></li>
               <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'programs' %} active{% endif %}"><a class="rd-nav-link" href="/programs/">Программы</a></li>
-              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'teachers' %} active{% endif %}"><a class="rd-nav-link" href="/teachers/">Преподаватели</a></li>
+              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'team' %} active{% endif %}"><a class="rd-nav-link" href="{% url 'team' %}">Преподаватели</a></li>
               <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'testimonials' %} active{% endif %}"><a class="rd-nav-link" href="/testimonials/">Отзывы</a></li>
               <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'contacts' %} active{% endif %}"><a class="rd-nav-link" href="{% url 'contacts' %}">Контакты</a></li>
             </ul>
