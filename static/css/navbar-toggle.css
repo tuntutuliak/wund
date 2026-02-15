@@ -1,0 +1,92 @@
+/**
+ * CSS-only navbar toggle (checkbox hack).
+ * No JS for button.rd-navbar-toggle and #rd-navbar-nav-wrap-school.
+ */
+
+/* Hidden checkbox, no layout */
+.rd-navbar-toggle-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Overlay: close menu when clicking outside (only when menu open) */
+.rd-navbar-toggle-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1078;
+  cursor: default;
+}
+
+#rd-navbar-toggle-checkbox:checked ~ .rd-navbar-toggle-overlay {
+  display: block;
+}
+
+/* Menu visible when checkbox checked */
+.rd-navbar-fixed #rd-navbar-toggle-checkbox:checked ~ #rd-navbar-nav-wrap-school {
+  transform: translateX(0);
+}
+
+.rd-navbar-fixed .rd-navbar-nav-wrap {
+  transition: transform 0.35s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+/* Hamburger icon = active (X) when menu open */
+.rd-navbar-fixed #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span {
+  background: transparent;
+  transition: 0.01s;
+}
+
+.rd-navbar-fixed #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::before,
+.rd-navbar-fixed #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::after {
+  transform-origin: 50% 50%;
+  top: 0;
+}
+
+.rd-navbar-fixed #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::before {
+  transform: rotate(45deg);
+}
+
+.rd-navbar-fixed #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::after {
+  transform: rotate(-45deg);
+}
+
+/* Context-dark (hero, dark header) */
+.context-dark #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span,
+.bg-gray-700 #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span,
+.bg-gray-800 #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span {
+  background: transparent;
+  transition: 0.01s;
+}
+
+.context-dark #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::before,
+.context-dark #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::after,
+.bg-gray-700 #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::before,
+.bg-gray-700 #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::after,
+.bg-gray-800 #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::before,
+.bg-gray-800 #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::after {
+  transform-origin: 50% 50%;
+  top: 0;
+}
+
+.context-dark #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::before,
+.bg-gray-700 #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::before,
+.bg-gray-800 #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::before {
+  transform: rotate(45deg);
+}
+
+.context-dark #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::after,
+.bg-gray-700 #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::after,
+.bg-gray-800 #rd-navbar-toggle-checkbox:checked ~ .rd-navbar-panel .rd-navbar-toggle span::after {
+  transform: rotate(-45deg);
+}

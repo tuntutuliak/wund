@@ -1,102 +1,107 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block title %}О нас - Школа{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
 {% block content %}
-<section class="section section-lg bg-gray-100">
-  <div class="container">
-    <h2 class="wow-outer font-weight-bold text-gray-800"><span class="wow slideInUp">О нашем образовательном центре</span></h2>
-    <p class="offset-top-3 text-gray-800 font-weight-light big">
-      Мы создаём среду, в которой каждый ученик может раскрыть свой потенциал. Наша миссия — дать доступное и качественное дополнительное образование, помочь школьникам уверенно подготовиться к экзаменам и выбрать свой путь.
-    </p>
-  </div>
-</section>
+<div class="about-page">
+  <header class="about-page-header">
+    <div class="breadcrumb">Главная • О школе • О самом важном</div>
+    <h1 class="about-page-title">О нас</h1>
+  </header>
 
-<section class="section section-lg">
-  <div class="container">
-    <h2 class="wow-outer font-weight-bold text-gray-800"><span class="wow slideInUp">Наши принципы</span></h2>
-    <div class="row row-50 offset-top-4">
-      <div class="col-sm-6 col-lg-3 wow-outer">
-        <article class="box-light wow slideInLeft">
-          <div class="box-light-icon linearicons-sun"></div>
-          <h3 class="text-gray-800 box-light-title">Качество обучения</h3>
-          <p>Программы строятся на актуальных методиках и проверенных материалах. Регулярная обратная связь и контроль прогресса — часть нашего стандарта.</p>
-        </article>
+  <main class="about-page-main">
+    <section class="hero-section">
+      <img src="{% static 'img/about-hero.jpg' %}" alt="Person in business attire" class="hero-image">
+      <div class="hero-content">
+        <div class="hero-text">
+          <p>Мне кажется, самое красивое и доброе — это вкладываться в детей, в их развитие и образование. Я сам не перестаю учиться. Люблю пример Алисы из Зазеркалья, которая, чтобы оставаться на месте, бежала. Сегодня, если вы не учитесь, вас отрасвывает назад. Вы должны соответствовать меняющемуся миру.</p>
+          <p>Проект «Летово» сделан для России, а не для экспорта. Я хочу, чтобы дети инвестировали полученные знания в свою страну.</p>
+        </div>
+        <div class="pagination-controls">
+          <button type="button" class="prev-btn" aria-label="Предыдущая страница">&lt;</button>
+          <span class="page-number">1 / 2</span>
+          <button type="button" class="next-btn" aria-label="Следующая страница">&gt;</button>
+        </div>
       </div>
-      <div class="col-sm-6 col-lg-3 wow-outer">
-        <article class="box-light wow slideInLeft" data-wow-delay=".05s">
-          <div class="box-light-icon linearicons-ship2"></div>
-          <h3 class="text-gray-800 box-light-title">Индивидуальный подход</h3>
-          <p>Учитываем цели, темп и особенности каждого ученика. Небольшие группы и персональные консультации помогают достигать лучших результатов.</p>
-        </article>
-      </div>
-      <div class="col-sm-6 col-lg-3 wow-outer">
-        <article class="box-light wow slideInLeft" data-wow-delay=".1s">
-          <div class="box-light-icon linearicons-map2"></div>
-          <h3 class="text-gray-800 box-light-title">Прозрачность и открытость</h3>
-          <p>Чёткие условия, понятные программы и честная обратная связь. Родители и ученики всегда в курсе прогресса и следующих шагов.</p>
-        </article>
-      </div>
-      <div class="col-sm-6 col-lg-3 wow-outer">
-        <article class="box-light wow slideInLeft" data-wow-delay=".15s">
-          <div class="box-light-icon linearicons-sun"></div>
-          <h3 class="text-gray-800 box-light-title">Развитие на перспективу</h3>
-          <p>Готовим не только к экзаменам, но и к учёбе в вузе и дальнейшей карьере. Учим учиться, планировать время и ставить цели.</p>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="section section-lg bg-gray-100">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10 col-xl-8">
-        <blockquote class="quote-light text-center">
-          <cite class="quote-light-cite">Наша философия</cite>
-          <p class="quote-light-caption font-weight-light">Образование — это не только знания, но и умение ими пользоваться</p>
-          <svg class="quote-light-mark" x="0px" y="0px" width="35px" height="25px" viewbox="0 0 35 25">
-            <path d="M27.461,10.206h7.5v15h-15v-15L25,0.127h7.5L27.461,10.206z M7.539,10.206h7.5v15h-15v-15L4.961,0.127h7.5 L7.539,10.206z"></path>
-          </svg>
-          <div class="quote-light-text">
-            <p>Мы верим, что сильное дополнительное образование открывает двери в лучшие вузы и в будущую профессию. Поэтому делаем акцент на понимании предмета, а не на заучивании, и помогаем ученикам становиться самостоятельными и уверенными.</p>
+    <section class="history-section">
+      <h2>История школы</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="date-marker" aria-hidden="true">●</div>
+          <div>
+            <div class="timeline-date">2006 год</div>
+            <p>Вадим Николаевич Мошкович впервые рассматривает идею создания принципиально новой школы. Начинаются годы исследования, анализа, изучения ведущего мирового и отечественного опыта.</p>
           </div>
-        </blockquote>
+        </div>
+        <div class="timeline-item">
+          <div class="date-marker" aria-hidden="true">●</div>
+          <div>
+            <div class="timeline-date">2012 год</div>
+            <p>Консалтинговая компания McKinsey разрабатывает проект школы «Летово».</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="date-marker" aria-hidden="true">●</div>
+          <div>
+            <div class="timeline-date">2014 год</div>
+            <p>Проводится конкурс на проект кампуса среди ведущих архитектурных бюро мира. Создан Экспертный совет школы.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="date-marker" aria-hidden="true">●</div>
+          <div>
+            <div class="timeline-date">2015 год</div>
+            <p>В школу приходят первые учителя.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="date-marker" aria-hidden="true">●</div>
+          <div>
+            <div class="timeline-date">2016 год</div>
+            <p>Начало строительства кампуса школы.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="date-marker" aria-hidden="true">●</div>
+          <div>
+            <div class="timeline-date">Октябрь 2017 — апрель 2018 года</div>
+            <p>Первая приемная кампания. Получено более 6 тысяч заявок на поступление, их география включает всю Россию и страны ближнего и дальнего зарубежья.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="date-marker" aria-hidden="true">●</div>
+          <div>
+            <div class="timeline-date">1 сентября 2018 года</div>
+            <p>Открытие школы «Летово». В школу приходят первые 242 ученика 7-9 классов.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="date-marker" aria-hidden="true">●</div>
+          <div>
+            <div class="timeline-date">Сентябрь 2018 года — май 2019 года</div>
+            <p>Первый учебный год — год становления традиций школы, первых серьезных успехов и побед в олимпиадах, как российских, так и международных.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="date-marker" aria-hidden="true">●</div>
+          <div>
+            <div class="timeline-date">Июнь 2021 года</div>
+            <p>Первый выпуск школы «Летово». 98 выпускников получают высокие баллы ЕГЭ и экзаменов IB</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+  </main>
+</div>
+{% endblock %}
 
-<section class="section section-lg">
-  <div class="container">
-    <h2 class="wow-outer font-weight-bold text-gray-800"><span class="wow slideInUp">Почему выбирают нас</span></h2>
-    <p class="offset-top-3 text-gray-800 font-weight-light">
-      Образовательный центр объединяет опытных преподавателей, современные форматы занятий и комфортную среду для учёбы. Мы работаем с учениками 7–11 классов и помогаем им достигать целей — от повышения успеваемости до поступления в ведущие университеты.
-    </p>
-    <div class="row row-30 offset-top-4">
-      <div class="col-md-6 col-lg-4 wow-outer">
-        <article class="box-light wow slideInLeft">
-          <div class="box-light-icon linearicons-sun"></div>
-          <h3 class="text-gray-800 box-light-title">Подготовка к ЕГЭ и ОГЭ</h3>
-          <p>Системные курсы по основным предметам с разбором заданий, пробными экзаменами и поддержкой до самого экзамена.</p>
-        </article>
-      </div>
-      <div class="col-md-6 col-lg-4 wow-outer">
-        <article class="box-light wow slideInLeft" data-wow-delay=".05s">
-          <div class="box-light-icon linearicons-map2"></div>
-          <h3 class="text-gray-800 box-light-title">Углублённые программы</h3>
-          <p>Математика, естественные и гуманитарные науки, программирование — для тех, кто хочет знать больше школьной программы.</p>
-        </article>
-      </div>
-      <div class="col-md-6 col-lg-4 wow-outer">
-        <article class="box-light wow slideInLeft" data-wow-delay=".1s">
-          <div class="box-light-icon linearicons-mouse-right"></div>
-          <h3 class="text-gray-800 box-light-title">Удобная запись и связь</h3>
-          <p>Онлайн-запись на курсы, личный кабинет и оперативная связь с кураторами и преподавателями.</p>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
+{% block extra_js %}
+<script src="{% static 'js/about.js' %}"></script>
 {% endblock %}
