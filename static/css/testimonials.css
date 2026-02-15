@@ -150,3 +150,18 @@
 .testimonials-light .carousel-child:not(.slick-initialized) .item {
   flex: 0 0 auto;
 }
+
+/* Нижний блок страницы отзывов: фон + ссылки */
+.testimonials-page-links {
+  background-image: url("../img/wunder-bg1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.testimonials-page-links .breadcrumbs-custom-title {
+  font-size: 1.75rem;
+}
+@media (min-width: 768px) {
+  .testimonials-page-links {
+    min-height: 280px;
+  }
+}
