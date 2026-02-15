@@ -32,18 +32,47 @@
 }
 
 .about-page .hero-section {
-  display: flex;
-  gap: 2rem;
   background-color: #fff;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
+.about-page .hero-slider {
+  position: relative;
+  min-height: 320px;
+}
+
+.about-page .hero-slider-inner {
+  position: relative;
+  min-height: 320px;
+}
+
+.about-page .hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  pointer-events: none;
+}
+
+.about-page .hero-slide.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
 .about-page .hero-image {
   width: 40%;
   height: auto;
   display: block;
+  flex-shrink: 0;
 }
 
 .about-page .hero-content {
@@ -63,12 +92,16 @@
   margin-bottom: 0;
 }
 
-.about-page .pagination-controls {
+.about-page .hero-slider .pagination-controls {
   display: flex;
   align-items: center;
   gap: 1rem;
   justify-content: flex-end;
-  margin-top: 1.5rem;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  border-radius: 0 0 8px 8px;
+  position: relative;
+  z-index: 2;
 }
 
 .about-page .pagination-controls button {
@@ -117,7 +150,7 @@
   width: 24px;
   height: 24px;
   min-width: 24px;
-  background-color: #ffca28;
+  background-color: var(--color-accent);
   color: #fff;
   border-radius: 50%;
   display: flex;
@@ -129,7 +162,7 @@
 
 .about-page .timeline-date {
   font-weight: bold;
-  color: #4a6da7;
+  color: var(--color-accent);
   margin-bottom: 0.5rem;
 }
 
@@ -139,7 +172,7 @@
 }
 
 @media (max-width: 768px) {
-  .about-page .hero-section {
+  .about-page .hero-slide {
     flex-direction: column;
   }
 

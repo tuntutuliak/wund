@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import RedirectView
 from pages import views
 
 urlpatterns = [
@@ -23,4 +24,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('testimonials/', views.testimonials, name='testimonials'),
     path('about/', views.about, name='about'),
+    path('contacts/', views.contacts, name='contacts'),
+    path('svedeniya/', RedirectView.as_view(url='/contacts/', permanent=True)),
 ]

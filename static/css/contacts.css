@@ -1,0 +1,176 @@
+/* Contacts page — scoped under .contacts-page */
+
+.contacts-page {
+  font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8fafc;
+}
+
+.contacts-header {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.contacts-page .breadcrumb {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.contacts-page .breadcrumb a {
+  color: var(--color-primary, #009966);
+}
+
+.contacts-page .breadcrumb a:hover {
+  color: var(--color-secondary, #993399);
+}
+
+.contacts-title {
+  font-size: 2rem;
+  color: #222;
+  margin: 0;
+}
+
+.contacts-main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.contacts-page .sidebar {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.contacts-page .sidebar-menu {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.contacts-page .menu-header {
+  padding: 1rem;
+  font-weight: bold;
+  color: #555;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.contacts-page .menu-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contacts-page .menu-item {
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-left-color 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.contacts-page .menu-item:hover {
+  background-color: #f5f7fa;
+  border-left-color: var(--color-primary, #009966);
+}
+
+.contacts-page .menu-item.active {
+  background-color: #f5f7fa;
+  border-left-color: var(--color-primary, #009966);
+  font-weight: bold;
+}
+
+.contacts-page .main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.contacts-page .main-content section {
+  margin-bottom: 3rem;
+}
+
+.contacts-page .main-content h2 {
+  font-size: 1.8rem;
+  color: #222;
+  margin-bottom: 1.5rem;
+}
+
+.contacts-page .info-block {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.contacts-page .info-block h3 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.contacts-page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.contacts-page th,
+.contacts-page td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.contacts-page thead th {
+  background-color: #f5f7fa;
+  font-weight: bold;
+  color: #555;
+}
+
+.contacts-page tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.contacts-page .documents-section h3 {
+  margin-bottom: 1rem;
+}
+
+.contacts-page .document-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 4px;
+  background-color: #f5f7fa;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.contacts-page .document-item:hover {
+  background-color: #e9edf3;
+}
+
+.contacts-page .document-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .contacts-main {
+    flex-direction: column;
+  }
+
+  .contacts-page .sidebar {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .contacts-page table {
+    font-size: 0.9rem;
+  }
+}

@@ -14,3 +14,8 @@ def testimonials(request):
 def about(request):
     """Страница «О нас»."""
     return render(request, 'about.html')
+
+
+def contacts(request):
+    """Контакты и сведения об образовательной организации."""
+    return render(request, 'contacts.html')

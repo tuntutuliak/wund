@@ -79,7 +79,7 @@
               <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'programs' %} active{% endif %}"><a class="rd-nav-link" href="/programs/">Программы</a></li>
               <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'teachers' %} active{% endif %}"><a class="rd-nav-link" href="/teachers/">Преподаватели</a></li>
               <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'testimonials' %} active{% endif %}"><a class="rd-nav-link" href="/testimonials/">Отзывы</a></li>
-              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'contact' %} active{% endif %}"><a class="rd-nav-link" href="/contact/">Контакты</a></li>
+              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'contacts' %} active{% endif %}"><a class="rd-nav-link" href="{% url 'contacts' %}">Контакты</a></li>
             </ul>
           </div>
         </div>

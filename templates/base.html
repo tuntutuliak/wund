@@ -260,22 +260,22 @@
                       <li><a href="/programs/">Дополнительные курсы</a></li>
                     </ul>
                   </div>
+            <div class="col-6 col-sm-3">
+              <ul class="list list-xs">
+                <li><a href="#">Новости</a></li>
+                <li><a href="/about/">О нас</a></li>
+                <li><a href="/teachers/">Преподаватели</a></li>
+                <li><a href="/testimonials/">Отзывы</a></li>
+                <li><a href="{% url 'contacts' %}">Контакты</a></li>
+              </ul>
+            </div>
                   <div class="col-6 col-sm-3">
                     <ul class="list list-xs">
-                      <li><a href="#">Новости</a></li>
-                      <li><a href="/about/">О нас</a></li>
-                      <li><a href="/teachers/">Преподаватели</a></li>
-                      <li><a href="/testimonials/">Отзывы</a></li>
-                      <li><a href="/contact/">Контакты</a></li>
-                    </ul>
-                  </div>
-                  <div class="col-6 col-sm-3">
-                    <ul class="list list-xs">
-                      <li><a href="/contact/">Контакты</a></li>
+                      <li><a href="{% url 'contacts' %}">Контакты</a></li>
                       <li><a href="/about/">История школы</a></li>
                       <li><a href="/programs/">Образовательные программы</a></li>
                       <li><a href="/teachers/">Наша команда</a></li>
-                      <li><a href="/contact/">Записаться</a></li>
+                      <li><a href="{% url 'contacts' %}">Записаться</a></li>
                     </ul>
                   </div>
                   <div class="col-6 col-sm-3">

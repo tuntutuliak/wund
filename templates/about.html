@@ -15,18 +15,31 @@
   </header>
 
   <main class="about-page-main">
-    <section class="hero-section">
-      <img src="{% static 'img/about-hero.jpg' %}" alt="Person in business attire" class="hero-image">
-      <div class="hero-content">
-        <div class="hero-text">
-          <p>Мне кажется, самое красивое и доброе — это вкладываться в детей, в их развитие и образование. Я сам не перестаю учиться. Люблю пример Алисы из Зазеркалья, которая, чтобы оставаться на месте, бежала. Сегодня, если вы не учитесь, вас отрасвывает назад. Вы должны соответствовать меняющемуся миру.</p>
-          <p>Проект «Летово» сделан для России, а не для экспорта. Я хочу, чтобы дети инвестировали полученные знания в свою страну.</p>
+    <section class="hero-section hero-slider">
+      <div class="hero-slider-inner">
+        <div class="hero-slide active" data-slide="0">
+          <img src="{% static 'img/dyu.jpg' %}" alt="О школе" class="hero-image">
+          <div class="hero-content">
+            <div class="hero-text">
+              <p>Мне кажется, самое красивое и доброе — это вкладываться в детей, в их развитие и образование. Я сам не перестаю учиться. Люблю пример Алисы из Зазеркалья, которая, чтобы оставаться на месте, бежала. Сегодня, если вы не учитесь, вас отбрасывает назад. Вы должны соответствовать меняющемуся миру.</p>
+              <p>Проект «Вундер» сделан для России, а не для экспорта. Я хочу, чтобы дети инвестировали полученные знания в свою страну.</p>
+            </div>
+          </div>
         </div>
-        <div class="pagination-controls">
-          <button type="button" class="prev-btn" aria-label="Предыдущая страница">&lt;</button>
-          <span class="page-number">1 / 2</span>
-          <button type="button" class="next-btn" aria-label="Следующая страница">&gt;</button>
+        <div class="hero-slide" data-slide="1">
+          <img src="{% static 'img/av_history.jpg' %}" alt="О школе" class="hero-image">
+          <div class="hero-content">
+            <div class="hero-text">
+              <p>Мы создаём среду, в которой каждый ученик может раскрыть свой потенциал. Наша миссия — дать доступное и качественное дополнительное образование.</p>
+              <p>Мы помогаем школьникам уверенно подготовиться к экзаменам и выбрать свой путь в меняющемся мире.</p>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="pagination-controls">
+        <button type="button" class="prev-btn" aria-label="Предыдущий слайд">&lt;</button>
+        <span class="page-number">1 / 2</span>
+        <button type="button" class="next-btn" aria-label="Следующий слайд">&gt;</button>
       </div>
     </section>
 
@@ -37,21 +50,21 @@
           <div class="date-marker" aria-hidden="true">●</div>
           <div>
             <div class="timeline-date">2006 год</div>
-            <p>Вадим Николаевич Мошкович впервые рассматривает идею создания принципиально новой школы. Начинаются годы исследования, анализа, изучения ведущего мирового и отечественного опыта.</p>
+            <p>Дмитрий Юрьевич Коптяев впервые рассматривает идею создания принципиально новой школы. Начинаются годы исследования, анализа, изучения ведущего мирового и отечественного опыта.</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="date-marker" aria-hidden="true">●</div>
           <div>
             <div class="timeline-date">2012 год</div>
-            <p>Консалтинговая компания McKinsey разрабатывает проект школы «Летово».</p>
+            <p>Выход на новый уровень. Создание нескольких центров дополнительного школьного образования.</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="date-marker" aria-hidden="true">●</div>
           <div>
             <div class="timeline-date">2014 год</div>
-            <p>Проводится конкурс на проект кампуса среди ведущих архитектурных бюро мира. Создан Экспертный совет школы.</p>
+            <p>Работа совместно с центром "Гуманитарные техноголии" в области профориентации.</p>
           </div>
         </div>
         <div class="timeline-item">
@@ -65,35 +78,36 @@
           <div class="date-marker" aria-hidden="true">●</div>
           <div>
             <div class="timeline-date">2016 год</div>
-            <p>Начало строительства кампуса школы.</p>
+            <p>Открытие новых центров и работа по профориентации.</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="date-marker" aria-hidden="true">●</div>
           <div>
-            <div class="timeline-date">Октябрь 2017 — апрель 2018 года</div>
-            <p>Первая приемная кампания. Получено более 6 тысяч заявок на поступление, их география включает всю Россию и страны ближнего и дальнего зарубежья.</p>
+            <div class="timeline-date">Октябрь 2021 — апрель 2022 года</div>
+            <p>Первая приемная кампания. Презентации нашего образовательного проекта
+             "ИДУ В ДЕСЯТЫЙ".</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="date-marker" aria-hidden="true">●</div>
           <div>
-            <div class="timeline-date">1 сентября 2018 года</div>
-            <p>Открытие школы «Летово». В школу приходят первые 242 ученика 7-9 классов.</p>
+            <div class="timeline-date">1 сентября 2022 года</div>
+            <p>Открытие школы «Вундер». В школу приходят первые 6 учеников в 10 класс.</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="date-marker" aria-hidden="true">●</div>
           <div>
-            <div class="timeline-date">Сентябрь 2018 года — май 2019 года</div>
-            <p>Первый учебный год — год становления традиций школы, первых серьезных успехов и побед в олимпиадах, как российских, так и международных.</p>
+            <div class="timeline-date">Сентябрь 2022 года — май 2023 года</div>
+            <p>Первый учебный год — год становления традиций школы, первых серьезных успехов и побед.</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="date-marker" aria-hidden="true">●</div>
           <div>
-            <div class="timeline-date">Июнь 2021 года</div>
-            <p>Первый выпуск школы «Летово». 98 выпускников получают высокие баллы ЕГЭ и экзаменов IB</p>
+            <div class="timeline-date">Июнь 2023 года</div>
+            <p>Первый выпуск школы «Вундер». 8 выпускников получают высокие баллы ЕГЭ и экзаменов IB</p>
           </div>
         </div>
       </div>
@@ -103,5 +117,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/about.js' %}"></script>
+<script src="{% static 'js/about-slider.js' %}"></script>
 {% endblock %}
