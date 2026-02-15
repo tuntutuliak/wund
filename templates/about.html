@@ -8,13 +8,23 @@
 {% endblock %}
 
 {% block content %}
-<div class="about-page">
-  <header class="about-page-header">
-    <div class="breadcrumb">Главная • О школе • О самом важном</div>
-    <h1 class="about-page-title">О нас</h1>
-  </header>
+<section class="about-page-links section breadcrumbs-custom bg-image context-dark">
+  <div class="breadcrumbs-custom-inner">
+    <div class="container breadcrumbs-custom-container">
+      <div class="breadcrumbs-custom-main">
+        <h6 class="breadcrumbs-custom-subtitle title-decorated">Навигация</h6>
+        <h2 class="breadcrumbs-custom-title">О нас</h2>
+      </div>
+      <ul class="breadcrumbs-custom-path">
+        <li><a href="{% url 'home' %}">Главная</a></li>
+        <li class="active">О нас</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-  <main class="about-page-main">
+<section class="about-page-content about-page section">
+  <div class="about-page-main">
     <section class="hero-section hero-slider">
       <div class="hero-slider-inner">
         <div class="hero-slide active" data-slide="0">
@@ -112,8 +122,8 @@
         </div>
       </div>
     </section>
-  </main>
-</div>
+  </div>
+</section>
 {% endblock %}
 
 {% block extra_js %}

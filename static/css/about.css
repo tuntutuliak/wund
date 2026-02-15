@@ -7,22 +7,19 @@
   background-color: #f8fafc;
 }
 
-.about-page-header {
-  padding: 1rem 2rem;
-  background-color: #fff;
-  border-bottom: 1px solid #eaeaea;
+/* Hero block: image + breadcrumb + title (same pattern as testimonials/contacts) */
+.about-page-links {
+  background-image: url("../img/wunder-bg1.jpg");
+  background-size: cover;
+  background-position: center;
 }
-
-.about-page .breadcrumb {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 0.5rem;
+.about-page-links .breadcrumbs-custom-title {
+  font-size: 1.75rem;
 }
-
-.about-page-title {
-  font-size: 2rem;
-  color: #222;
-  margin: 0;
+@media (min-width: 768px) {
+  .about-page-links {
+    min-height: 280px;
+  }
 }
 
 .about-page-main {
