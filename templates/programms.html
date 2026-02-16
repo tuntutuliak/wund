@@ -23,11 +23,11 @@
   </div>
 </section>
 
-<section class="section section-lg">
+<section class="section section-lg" id="programms-cards-section">
   <div class="container">
-    <div class="row row-50 row-xxl-70">
+    <div class="row row-50 row-xxl-70" id="programms-cards-row">
       {% for course in courses %}
-      <div class="col-md-6 wow-outer">
+      <div class="col-md-6 wow-outer program-card">
         <article class="post-modern wow slideInLeft">
           <a class="post-modern-media" href="{% url 'course_detail' course.slug %}">
             <img src="{% static 'img/ai_570x352.jpg' %}" alt="{{ course.title }}" width="570" height="352"/>
@@ -46,12 +46,122 @@
         <p class="text-gray-800">Пока нет программ. Скоро здесь появятся курсы.</p>
       </div>
       {% endfor %}
+      {% for course in courses %}
+      <div class="col-md-6 wow-outer program-card">
+        <article class="post-modern wow slideInLeft">
+          <a class="post-modern-media" href="{% url 'course_detail' course.slug %}">
+            <img src="{% static 'img/ai_570x352.jpg' %}" alt="{{ course.title }}" width="570" height="352"/>
+          </a>
+          <h4 class="post-modern-title"><a href="{% url 'course_detail' course.slug %}">{{ course.title }}</a></h4>
+          <ul class="post-modern-meta">
+            <li class="text-color-3">{{ course.teacher|default:"Образовательный центр" }}</li>
+            <li><time>{% if course.start_date %}{{ course.start_date }}{% else %}{{ course.duration }}{% endif %}</time></li>
+            {% if course.price %}<li><a class="button-winona text-gray-800" href="{% url 'course_detail' course.slug %}">{{ course.price }}</a></li>{% endif %}
+          </ul>
+          <p>{% if course.subtitle %}{{ course.subtitle|truncatewords:20 }}{% else %}{{ course.description|striptags|truncatewords:20 }}{% endif %}</p>
+        </article>
+      </div>
+      {% endfor %}
     </div>
-    <div class="pagination justify-content-center justify-content-md-start">
-      <div class="page-item active"><a class="page-link button-winona" href="#">1</a></div>
-      <div class="page-item"><a class="page-link button-winona" href="#">2</a></div>
-      <div class="page-item"><a class="page-link button-winona" href="#">3</a></div>
+    <div class="pagination justify-content-center justify-content-md-start" id="programms-pagination">
+      <div class="page-item active" data-page="1"><a class="page-link button-winona" href="#">1</a></div>
+      <div class="page-item" data-page="2"><a class="page-link button-winona" href="#">2</a></div>
+      <div class="page-item" data-page="3"><a class="page-link button-winona" href="#">3</a></div>
     </div>
   </div>
 </section>
+
+<script>
+(function() {
+  var PROGRAMMS_SECTION = '.programms-page-links';
+  var CARDS_SEL = '.program-card';
+  var PAGINATION_ID = 'programms-pagination';
+  var ROW_ID = 'programms-cards-row';
+  var DESKTOP_BREAK = 992;
+  var PER_PAGE_DESKTOP = 4;
+  var PER_PAGE_MOBILE = 6;
+
+  if (!document.querySelector(PROGRAMMS_SECTION)) return;
+
+  function initProgrammsPagination() {
+    var cards = document.querySelectorAll(CARDS_SEL);
+    var totalCards = cards.length;
+    if (totalCards === 0) return;
+    var pagination = document.getElementById(PAGINATION_ID);
+    var cardsBlock = document.getElementById(ROW_ID);
+    if (!pagination) return;
+
+    var perPage = window.innerWidth >= DESKTOP_BREAK ? PER_PAGE_DESKTOP : PER_PAGE_MOBILE;
+    var totalPages = Math.ceil(totalCards / perPage);
+    var currentPage = 1;
+
+    function updateCards() {
+      var start = (currentPage - 1) * perPage;
+      var end = Math.min(start + perPage, totalCards);
+      for (var i = 0; i < cards.length; i++) {
+        if (i >= start && i < end) {
+          cards[i].style.removeProperty('display');
+        } else {
+          cards[i].style.display = 'none';
+        }
+      }
+    }
+
+    function updatePaginationButtons() {
+      var items = pagination.querySelectorAll('.page-item');
+      for (var j = 0; j < items.length; j++) {
+        var pageNum = j + 1;
+        var it = items[j];
+        if (pageNum > totalPages) {
+          it.classList.add('d-none');
+        } else {
+          it.classList.remove('d-none');
+          it.classList.toggle('active', pageNum === currentPage);
+        }
+      }
+    }
+
+    function goToPage(pageNum) {
+      if (pageNum < 1 || pageNum > totalPages) return;
+      currentPage = pageNum;
+      updateCards();
+      updatePaginationButtons();
+      if (cardsBlock) {
+        cardsBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    pagination.addEventListener('click', function(e) {
+      var link = e.target.closest('.page-link');
+      if (!link) return;
+      e.preventDefault();
+      var item = link.closest('.page-item');
+      if (!item || item.classList.contains('d-none')) return;
+      var page = parseInt(item.getAttribute('data-page'), 10);
+      if (!isNaN(page)) goToPage(page);
+    });
+
+    function onResize() {
+      var newPerPage = window.innerWidth >= DESKTOP_BREAK ? PER_PAGE_DESKTOP : PER_PAGE_MOBILE;
+      if (newPerPage !== perPage) {
+        perPage = newPerPage;
+        totalPages = Math.ceil(totalCards / perPage);
+        if (currentPage > totalPages) currentPage = totalPages;
+        updateCards();
+        updatePaginationButtons();
+      }
+    }
+
+    window.addEventListener('resize', onResize);
+    updateCards();
+    updatePaginationButtons();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProgrammsPagination);
+  } else {
+    initProgrammsPagination();
+  }
+})();
+</script>
 {% endblock %}

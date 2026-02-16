@@ -15,3 +15,12 @@
     min-height: 280px;
   }
 }
+
+/* Cards section: min-height so footer is pushed down on vertical/tall screens */
+#programms-cards-section {
+  min-height: 65vh;
+}
+
+#programms-cards-section .row.row-50.row-xxl-70 {
+  min-height: 40vh;
+}
