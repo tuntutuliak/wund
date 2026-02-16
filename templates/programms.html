@@ -33,7 +33,7 @@
             {% if course.image %}
             <img src="{% static course.image %}" alt="{{ course.title }}" width="570" height="352"/>
             {% else %}
-            <img src="{% static 'images/grid-blog-1-570x352.jpg' %}" alt="{{ course.title }}" width="570" height="352"/>
+            <img src="{% static 'img/ai_570x352.jpg' %}" alt="{{ course.title }}" width="570" height="352"/>
             {% endif %}
           </a>
           <h4 class="post-modern-title"><a href="{% url 'course_detail' course.slug %}">{{ course.title }}</a></h4>
