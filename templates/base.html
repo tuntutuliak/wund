@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" id="main-styles-link">
     <link rel="stylesheet" href="{% static 'css/theme-colors.css' %}">
     <link rel="stylesheet" href="{% static 'css/testimonials.css' %}">
+    <link rel="stylesheet" href="{% static 'css/application-modal.css' %}">
     {% block extra_css %}{% endblock %}
     <!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="{% static 'images/ie8-panel/warning_bar_0000_us.jpg' %}" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
@@ -325,30 +326,94 @@
     </div>
     <!-- Global Mailform Output-->
     <div class="snackbars" id="form-output-global"></div>
+    <!-- Application modal (pencil button) -->
+    <div class="application-modal-overlay" id="application-modal-overlay" aria-hidden="true">
+      <div class="application-modal-content application-modal" role="dialog" aria-labelledby="application-modal-title">
+        <div class="application-modal-header">
+          <h2 id="application-modal-title">Оставить заявку</h2>
+          <button type="button" class="application-modal-close" id="application-modal-close" aria-label="Закрыть">×</button>
+        </div>
+        <div class="application-modal-success" id="application-modal-success">Заявка отправлена. Мы свяжемся с вами.</div>
+        <form class="application-form" id="application-form" novalidate>
+          {% csrf_token %}
+          <div class="application-form-group">
+            <label for="application-form-name">Имя</label>
+            <input type="text" id="application-form-name" name="name" required placeholder="Введите имя">
+          </div>
+          <div class="application-form-group">
+            <label for="application-form-phone">Телефон</label>
+            <input type="tel" id="application-form-phone" name="phone" required placeholder="Введите телефон">
+          </div>
+          <div class="application-form-group">
+            <label for="application-form-email">E-mail</label>
+            <input type="email" id="application-form-email" name="email" required placeholder="Введите e-mail">
+          </div>
+          <div class="application-form-group">
+            <label for="application-form-message">Сообщение</label>
+            <textarea id="application-form-message" name="message" rows="4" placeholder="Введите сообщение"></textarea>
+          </div>
+          <button type="submit" class="button button-block button-primary button-winona btn-primary">Отправить заявку</button>
+        </form>
+      </div>
+    </div>
     <!-- Javascript-->
     <script src="{% static 'js/core.min.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
     <script src="{% static 'js/testimonials.js' %}"></script>
     {% block extra_js %}{% endblock %}
-    <!-- RD Navbar: popup «Оставить заявку» — data-rd-navbar-toggle + class .active -->
+    <!-- Application modal: open on pencil button, close on overlay/ESC/close btn, lock body scroll -->
     <script>
       (function() {
-        var toggle = document.querySelector('.rd-navbar-popup-toggle[data-rd-navbar-toggle="#rd-navbar-application-school"]');
-        var popup = document.getElementById('rd-navbar-application-school');
-        if (!toggle || !popup) return;
-        function closePopup() {
-          popup.classList.remove('active');
-          toggle.classList.remove('active');
-        }
-        toggle.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          popup.classList.toggle('active');
-          toggle.classList.toggle('active');
-        });
-        document.addEventListener('click', function(e) {
-          if (popup.classList.contains('active') && !popup.contains(e.target) && !toggle.contains(e.target)) {
-            closePopup();
+        document.addEventListener('DOMContentLoaded', function() {
+          var overlay = document.getElementById('application-modal-overlay');
+          var openBtn = document.querySelector('[data-application-modal-toggle]');
+          var closeBtn = document.getElementById('application-modal-close');
+          var form = document.getElementById('application-form');
+          var successEl = document.getElementById('application-modal-success');
+          if (!overlay || !openBtn) return;
+
+          function openModal() {
+            overlay.classList.add('active');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+          }
+
+          function closeModal() {
+            overlay.classList.remove('active');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+          }
+
+          openBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            openModal();
+          }, true);
+
+          if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+          overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) closeModal();
+          });
+
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) closeModal();
+          });
+
+          if (form) {
+            form.addEventListener('submit', function(e) {
+              e.preventDefault();
+              var data = new FormData(form);
+              var obj = {};
+              data.forEach(function(v, k) { obj[k] = v; });
+              console.log('Application form data:', obj);
+              successEl.classList.add('visible');
+              setTimeout(function() {
+                successEl.classList.remove('visible');
+                closeModal();
+              }, 2500);
+            });
           }
         });
       })();
