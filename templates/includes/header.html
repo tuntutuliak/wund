@@ -11,7 +11,7 @@
             <!-- Гармошка: открывает меню со всеми страницами -->
             <button class="rd-navbar-toggle" data-rd-navbar-toggle="#rd-navbar-nav-wrap-school" aria-label="Меню"><span></span></button>
             <!-- RD Navbar Brand -->
-            <a class="rd-navbar-brand" href="/"><img src="{% static 'img/w_logo_43X43.jpg' %}" alt="" width="43" height="43"/></a>
+            <a class="rd-navbar-brand" href="/"><img src="{% static 'img/logo_w_135x43.png' %}" alt="" width="43" height="43"/></a>
             <div class="rd-navbar-block">
               <ul class="list-inline-bordered">
                 <!-- Значок редактирования: при нажатии открывается форма заявки -->
@@ -72,7 +72,7 @@
           </div>
           <!-- Гармошка раскрывает этот блок: названия всех страниц -->
           <div class="rd-navbar-nav-wrap" id="rd-navbar-nav-wrap-school">
-            <a class="rd-navbar-brand" href="/"><img src="{% static 'img/w_logo.jpg' %}" alt="" width="135" height="43" srcset="{% static 'images/logo-default-135x43.png' %} 2x"/></a>
+            <a class="rd-navbar-brand" href="/"><img src="{% static 'img/logo_w_135x43.png' %}" alt="" width="135" height="43" srcset="{% static 'images/logo_w_135x43.png' %} 2x"/></a>
             <ul class="rd-navbar-nav">
               <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'home' %} active{% endif %}"><a class="rd-nav-link" href="/">Главная</a></li>
               <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'about' %} active{% endif %}"><a class="rd-nav-link" href="/about/">О нас</a></li>
