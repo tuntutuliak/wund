@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ course.title }} — Школа{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/programms.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="programms-page-links section breadcrumbs-custom bg-image context-dark">
+  <div class="breadcrumbs-custom-inner">
+    <div class="container breadcrumbs-custom-container">
+      <div class="breadcrumbs-custom-main">
+        <h6 class="breadcrumbs-custom-subtitle title-decorated">Навигация</h6>
+        <h2 class="breadcrumbs-custom-title">{{ course.title }}</h2>
+      </div>
+      <ul class="breadcrumbs-custom-path">
+        <li><a href="{% url 'home' %}">Главная</a></li>
+        <li><a href="{% url 'programms' %}">Программы</a></li>
+        <li class="active">{{ course.title }}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section-lg">
+  <div class="container">
+    <div class="row row-50">
+      <div class="col-lg-8">
+        <article class="post-creative">
+          <h3 class="post-creative-title font-weight-bold text-gray-800">{{ course.title }}</h3>
+          <ul class="post-creative-meta">
+            {% if course.start_date %}
+            <li><span class="icon mdi mdi-calendar-clock"></span>
+              <time>{{ course.start_date }}</time>
+            </li>
+            {% endif %}
+            {% if course.duration %}
+            <li><span class="icon mdi mdi-clock-outline"></span>{{ course.duration }}</li>
+            {% endif %}
+            {% if course.price %}
+            <li><span class="icon mdi mdi-currency-rub"></span>{{ course.price }}</li>
+            {% endif %}
+          </ul>
+          {% if course.subtitle %}
+          <h4 class="text-gray-800 font-weight-light">{{ course.subtitle }}</h4>
+          {% endif %}
+          {% if course.image %}
+          <img src="{% static course.image %}" alt="{{ course.title }}" width="770" height="458"/>
+          {% endif %}
+          <div class="post-creative-body">
+            {{ course.description|safe }}
+          </div>
+          <ul class="post-creative-footer">
+            <li>Поделиться</li>
+            <li>
+              <div class="group group-xs group-middle"><a class="icon icon-sm icon-creative mdi mdi-facebook" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-twitter" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-instagram" href="#"></a></div>
+            </li>
+          </ul>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="profile-thin">
+          <div class="profile-thin-main">
+            <p class="profile-thin-title">{{ course.teacher }}</p>
+            <p class="profile-thin-subtitle">Преподаватель</p>
+            <a class="button button-sm button-primary-outline button-winona" href="{% url 'contacts' %}">Записаться на курс</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

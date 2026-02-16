@@ -330,20 +330,25 @@
     <script src="{% static 'js/script.js' %}"></script>
     <script src="{% static 'js/testimonials.js' %}"></script>
     {% block extra_js %}{% endblock %}
-    <!-- Выпадающая форма заявки по клику на значок редактирования -->
+    <!-- RD Navbar: popup «Оставить заявку» — data-rd-navbar-toggle + class .active -->
     <script>
       (function() {
         var toggle = document.querySelector('.rd-navbar-popup-toggle[data-rd-navbar-toggle="#rd-navbar-application-school"]');
         var popup = document.getElementById('rd-navbar-application-school');
         if (!toggle || !popup) return;
+        function closePopup() {
+          popup.classList.remove('active');
+          toggle.classList.remove('active');
+        }
         toggle.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
           popup.classList.toggle('active');
+          toggle.classList.toggle('active');
         });
         document.addEventListener('click', function(e) {
           if (popup.classList.contains('active') && !popup.contains(e.target) && !toggle.contains(e.target)) {
-            popup.classList.remove('active');
+            closePopup();
           }
         });
       })();
