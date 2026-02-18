@@ -94,3 +94,7 @@ def news_list(request):
     """Список опубликованных новостей."""
     news_list_qs = News.objects.filter(is_published=True)
     return render(request, 'news.html', {'news_list': news_list_qs})
+
+
+def events(request):
+    return render(request, 'events.html')
