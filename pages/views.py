@@ -98,3 +98,7 @@ def news_list(request):
 
 def events(request):
     return render(request, 'events.html')
+
+
+def group_course(request):
+    return render(request, 'group_course.html')
