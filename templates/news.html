@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Новости — Школа{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/programms.css' %}">
+{% endblock %}
+
+{% block content %}
+      <!-- Breadcrumbs -->
+      <section class="programms-page-links section breadcrumbs-custom bg-image context-dark">
+        <div class="breadcrumbs-custom-inner">
+          <div class="container breadcrumbs-custom-container">
+            <div class="breadcrumbs-custom-main">
+              <h6 class="breadcrumbs-custom-subtitle title-decorated">Блог</h6>
+              <h1 class="breadcrumbs-custom-title">Новости</h1>
+            </div>
+            <ul class="breadcrumbs-custom-path">
+              <li><a href="{% url 'home' %}">Главная</a></li>
+              <li><a href="#">Блог</a></li>
+              <li class="active">Новости</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="section section-lg">
+        <div class="container">
+          <article class="blog-layout">
+            <div class="blog-layout-main">
+              <div class="row row-50 row-xxl-70">
+                {% for news in news_list %}
+                <div class="col-sm-6">
+                  <!-- Post Classic-->
+                  <article class="post-classic"><a class="post-classic-media" href="{% url 'news_detail' news.slug %}">{% if news.image %}<img src="{{ news.image.url }}" alt="{{ news.title }}" width="370" height="264"/>{% else %}<img src="{% static 'img/ai_570x352.jpg' %}" alt="{{ news.title }}" width="370" height="264"/>{% endif %}</a>
+                    <ul class="post-classic-meta">
+                      <li><a class="button-winona" href="#">Новости</a></li>
+                      <li>
+                        <time datetime="{{ news.created_at|date:'c' }}">{{ news.created_at|date:"d E Y" }}</time>
+                      </li>
+                    </ul>
+                    <h4 class="post-classic-title"><a href="{% url 'news_detail' news.slug %}">{{ news.title }}</a></h4>
+                    {% if news.short_description %}<p>{{ news.short_description|truncatewords:15 }}</p>{% endif %}
+                  </article>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                  <p class="text-gray-800">Новостей пока нет.</p>
+                </div>
+                {% endfor %}
+              </div>
+              {% if page_obj %}
+              <div class="pagination justify-content-sm-center justify-content-md-start">
+                {% if page_obj.has_previous %}
+                <div class="page-item"><a class="page-link button-winona" href="?page={{ page_obj.previous_page_number }}">Назад</a></div>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                <div class="page-item {% if page_obj.number == num %}active{% endif %}"><a class="page-link button-winona" href="?page={{ num }}">{{ num }}</a></div>
+                {% endfor %}
+                {% if page_obj.has_next %}
+                <div class="page-item"><a class="page-link button-winona" href="?page={{ page_obj.next_page_number }}">Вперёд</a></div>
+                {% endif %}
+              </div>
+              {% endif %}
+            </div>
+            <div class="blog-layout-aside">
+              <div class="blog-layout-aside-item">
+                <p class="blog-layout-aside-title">Поиск по новостям</p>
+                <!-- RD Search-->
+                <form class="rd-form rd-search rd-search-classic" action="#" method="GET">
+                  <div class="form-wrap">
+                    <input class="form-input" id="rd-search-form-input-news" type="text" name="s" autocomplete="off">
+                    <label class="form-label" for="rd-search-form-input-news">Поиск</label>
+                  </div>
+                  <button class="rd-search-submit" type="submit"></button>
+                </form>
+              </div>
+              <div class="blog-layout-aside-item">
+                <p class="blog-layout-aside-title">Архив</p>
+                <ul class="list-marked">
+                  <li><a href="#">Май 2018</a></li>
+                  <li><a href="#">Апрель 2018</a></li>
+                  <li><a href="#">Март 2018</a></li>
+                  <li><a href="#">Февраль 2018</a></li>
+                  <li><a href="#">Январь 2018</a></li>
+                </ul>
+              </div>
+              <div class="blog-layout-aside-item">
+                <p class="blog-layout-aside-title">О нас</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+              </div>
+              <div class="blog-layout-aside-item">
+                <p class="blog-layout-aside-title">Категории</p>
+                <ul class="list-marked">
+                  <li><a href="#">Новости</a></li>
+                  <li><a href="#">События</a></li>
+                  <li><a href="#">Объявления</a></li>
+                  <li><a href="#">Советы</a></li>
+                  <li><a href="#">Школа</a></li>
+                </ul>
+              </div>
+              <div class="blog-layout-aside-item">
+                <p class="blog-layout-aside-title">Теги</p>
+                <ul class="list-inline-comma">
+                  <li><a href="#">Новости</a></li>
+                  <li><a href="#">Советы</a></li>
+                  <li><a href="#">Школа</a></li>
+                  <li><a href="#">Рекомендации</a></li>
+                  <li><a href="#">События</a></li>
+                  <li><a href="#">Объявления</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+{% endblock %}
