@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import Http404
 
+from .models import News
+
 # MOCK DATA – replace with real database later
 MOCK_COURSES = [
     {
@@ -86,3 +88,9 @@ def course_detail(request, slug):
     if course is None:
         raise Http404()
     return render(request, 'single_course.html', {'course': course})
+
+
+def news_list(request):
+    """Список опубликованных новостей."""
+    news_list_qs = News.objects.filter(is_published=True)
+    return render(request, 'news.html', {'news_list': news_list_qs})

@@ -18,3 +18,21 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class News(models.Model):
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
+    short_description = models.CharField(max_length=500, blank=True)
+    content = models.TextField(blank=True)
+    image = models.FileField(upload_to="news/", blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_published = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "Новость"
+        verbose_name_plural = "Новости"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return self.title

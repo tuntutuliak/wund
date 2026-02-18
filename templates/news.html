@@ -8,8 +8,7 @@
 {% endblock %}
 
 {% block content %}
-      <!-- Breadcrumbs -->
-      <section class="programms-page-links section breadcrumbs-custom bg-image context-dark">
+      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url({% static 'images/bg-about-us.jpg' %});">
         <div class="breadcrumbs-custom-inner">
           <div class="container breadcrumbs-custom-container">
             <div class="breadcrumbs-custom-main">
@@ -29,85 +28,136 @@
           <article class="blog-layout">
             <div class="blog-layout-main">
               <div class="row row-50 row-xxl-70">
-                {% for news in news_list %}
                 <div class="col-sm-6">
-                  <!-- Post Classic-->
-                  <article class="post-classic"><a class="post-classic-media" href="{% url 'news_detail' news.slug %}">{% if news.image %}<img src="{{ news.image.url }}" alt="{{ news.title }}" width="370" height="264"/>{% else %}<img src="{% static 'img/ai_570x352.jpg' %}" alt="{{ news.title }}" width="370" height="264"/>{% endif %}</a>
+                  <article class="post-classic"><a class="post-classic-media" href="#"><img src="{% static 'images/popular-cruises-1-370x264.jpg' %}" alt="" width="370" height="264"/></a>
                     <ul class="post-classic-meta">
                       <li><a class="button-winona" href="#">Новости</a></li>
                       <li>
-                        <time datetime="{{ news.created_at|date:'c' }}">{{ news.created_at|date:"d E Y" }}</time>
+                        <time datetime="2025-02-15">15 февраля 2025</time>
                       </li>
                     </ul>
-                    <h4 class="post-classic-title"><a href="{% url 'news_detail' news.slug %}">{{ news.title }}</a></h4>
-                    {% if news.short_description %}<p>{{ news.short_description|truncatewords:15 }}</p>{% endif %}
+                    <h4 class="post-classic-title"><a href="#">Родительское собрание в конце месяца</a></h4>
+                    <p>Приглашаем родителей учащихся на общее собрание. Обсудим итоги четверти, планы на весеннюю сессию и вопросы организации выпускных экзаменов.</p>
+                    <a class="button button-sm button-primary button-winona" href="#">Читать далее</a>
                   </article>
                 </div>
-                {% empty %}
-                <div class="col-12">
-                  <p class="text-gray-800">Новостей пока нет.</p>
+                <div class="col-sm-6">
+                  <article class="post-classic"><a class="post-classic-media" href="#"><img src="{% static 'images/popular-cruises-2-370x264.jpg' %}" alt="" width="370" height="264"/></a>
+                    <ul class="post-classic-meta">
+                      <li><a class="button-winona" href="#">Новости</a></li>
+                      <li>
+                        <time datetime="2025-02-12">12 февраля 2025</time>
+                      </li>
+                    </ul>
+                    <h4 class="post-classic-title"><a href="#">Открытый урок по математике</a></h4>
+                    <p>В среду, 19 февраля, состоится открытый урок для родителей и гостей. Покажем, как проходят занятия в группах подготовки к ЕГЭ и ответим на вопросы.</p>
+                    <a class="button button-sm button-primary button-winona" href="#">Читать далее</a>
+                  </article>
                 </div>
-                {% endfor %}
+                <div class="col-sm-6">
+                  <article class="post-classic"><a class="post-classic-media" href="#"><img src="{% static 'images/popular-cruises-3-370x264.jpg' %}" alt="" width="370" height="264"/></a>
+                    <ul class="post-classic-meta">
+                      <li><a class="button-winona" href="#">Новости</a></li>
+                      <li>
+                        <time datetime="2025-02-10">10 февраля 2025</time>
+                      </li>
+                    </ul>
+                    <h4 class="post-classic-title"><a href="#">Новый набор на подготовку к ОГЭ и ЕГЭ</a></h4>
+                    <p>Открыта запись в группы на 2025/26 учебный год. Осталось несколько мест по математике, русскому языку и английскому. Занятия стартуют в марте.</p>
+                    <a class="button button-sm button-primary button-winona" href="#">Читать далее</a>
+                  </article>
+                </div>
+                <div class="col-sm-6">
+                  <article class="post-classic"><a class="post-classic-media" href="#"><img src="{% static 'images/popular-cruises-4-370x264.jpg' %}" alt="" width="370" height="264"/></a>
+                    <ul class="post-classic-meta">
+                      <li><a class="button-winona" href="#">Новости</a></li>
+                      <li>
+                        <time datetime="2025-02-08">8 февраля 2025</time>
+                      </li>
+                    </ul>
+                    <h4 class="post-classic-title"><a href="#">Изменения в расписании на март</a></h4>
+                    <p>Опубликовано обновлённое расписание занятий на март. Обратите внимание на перенос занятий в праздничные дни и дополнительные консультации перед экзаменами.</p>
+                    <a class="button button-sm button-primary button-winona" href="#">Читать далее</a>
+                  </article>
+                </div>
+                <div class="col-sm-6">
+                  <article class="post-classic"><a class="post-classic-media" href="#"><img src="{% static 'images/popular-cruises-5-370x264.jpg' %}" alt="" width="370" height="264"/></a>
+                    <ul class="post-classic-meta">
+                      <li><a class="button-winona" href="#">Новости</a></li>
+                      <li>
+                        <time datetime="2025-02-05">5 февраля 2025</time>
+                      </li>
+                    </ul>
+                    <h4 class="post-classic-title"><a href="#">Региональная олимпиада по математике</a></h4>
+                    <p>Наши ученики приняли участие в региональном этапе олимпиады. Поздравляем призёров и благодарим всех за подготовку. Итоги и разбор заданий — на этой неделе.</p>
+                    <a class="button button-sm button-primary button-winona" href="#">Читать далее</a>
+                  </article>
+                </div>
+                <div class="col-sm-6">
+                  <article class="post-classic"><a class="post-classic-media" href="#"><img src="{% static 'images/popular-cruises-6-370x264.jpg' %}" alt="" width="370" height="264"/></a>
+                    <ul class="post-classic-meta">
+                      <li><a class="button-winona" href="#">Новости</a></li>
+                      <li>
+                        <time datetime="2025-02-01">1 февраля 2025</time>
+                      </li>
+                    </ul>
+                    <h4 class="post-classic-title"><a href="#">Мастер-класс по написанию сочинения</a></h4>
+                    <p>В субботу, 22 февраля, приглашаем старшеклассников на бесплатный мастер-класс по итоговому сочинению. Разберём критерии и типичные ошибки, дадим практические советы.</p>
+                    <a class="button button-sm button-primary button-winona" href="#">Читать далее</a>
+                  </article>
+                </div>
               </div>
-              {% if page_obj %}
               <div class="pagination justify-content-sm-center justify-content-md-start">
-                {% if page_obj.has_previous %}
-                <div class="page-item"><a class="page-link button-winona" href="?page={{ page_obj.previous_page_number }}">Назад</a></div>
-                {% endif %}
-                {% for num in page_obj.paginator.page_range %}
-                <div class="page-item {% if page_obj.number == num %}active{% endif %}"><a class="page-link button-winona" href="?page={{ num }}">{{ num }}</a></div>
-                {% endfor %}
-                {% if page_obj.has_next %}
-                <div class="page-item"><a class="page-link button-winona" href="?page={{ page_obj.next_page_number }}">Вперёд</a></div>
-                {% endif %}
+                <div class="page-item active"><a class="page-link button-winona" href="#">1</a></div>
+                <div class="page-item"><a class="page-link button-winona" href="#">2</a></div>
+                <div class="page-item"><a class="page-link button-winona" href="#">3</a></div>
+                <div class="page-item"><a class="page-link button-winona" href="#">4</a></div>
               </div>
-              {% endif %}
             </div>
             <div class="blog-layout-aside">
               <div class="blog-layout-aside-item">
-                <p class="blog-layout-aside-title">Поиск по новостям</p>
-                <!-- RD Search-->
+                <p class="blog-layout-aside-title">Search Blog</p>
                 <form class="rd-form rd-search rd-search-classic" action="#" method="GET">
                   <div class="form-wrap">
-                    <input class="form-input" id="rd-search-form-input-news" type="text" name="s" autocomplete="off">
-                    <label class="form-label" for="rd-search-form-input-news">Поиск</label>
+                    <input class="form-input" id="rd-search-form-input" type="text" name="s" autocomplete="off">
+                    <label class="form-label" for="rd-search-form-input">Search</label>
                   </div>
                   <button class="rd-search-submit" type="submit"></button>
                 </form>
               </div>
               <div class="blog-layout-aside-item">
-                <p class="blog-layout-aside-title">Архив</p>
+                <p class="blog-layout-aside-title">Archive</p>
                 <ul class="list-marked">
-                  <li><a href="#">Май 2018</a></li>
-                  <li><a href="#">Апрель 2018</a></li>
-                  <li><a href="#">Март 2018</a></li>
-                  <li><a href="#">Февраль 2018</a></li>
-                  <li><a href="#">Январь 2018</a></li>
+                  <li><a href="#">May 2018</a></li>
+                  <li><a href="#">April 2018</a></li>
+                  <li><a href="#">March 2018</a></li>
+                  <li><a href="#">February 2018</a></li>
+                  <li><a href="#">January 2018</a></li>
                 </ul>
               </div>
               <div class="blog-layout-aside-item">
-                <p class="blog-layout-aside-title">О нас</p>
+                <p class="blog-layout-aside-title">About Us</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
               </div>
               <div class="blog-layout-aside-item">
-                <p class="blog-layout-aside-title">Категории</p>
+                <p class="blog-layout-aside-title">Categories</p>
                 <ul class="list-marked">
-                  <li><a href="#">Новости</a></li>
-                  <li><a href="#">События</a></li>
-                  <li><a href="#">Объявления</a></li>
-                  <li><a href="#">Советы</a></li>
-                  <li><a href="#">Школа</a></li>
+                  <li><a href="#">News</a></li>
+                  <li><a href="#">Cruises</a></li>
+                  <li><a href="#">Traveling</a></li>
+                  <li><a href="#">Tips</a></li>
+                  <li><a href="#">Ships</a></li>
                 </ul>
               </div>
               <div class="blog-layout-aside-item">
-                <p class="blog-layout-aside-title">Теги</p>
+                <p class="blog-layout-aside-title">Tags</p>
                 <ul class="list-inline-comma">
-                  <li><a href="#">Новости</a></li>
-                  <li><a href="#">Советы</a></li>
-                  <li><a href="#">Школа</a></li>
-                  <li><a href="#">Рекомендации</a></li>
-                  <li><a href="#">События</a></li>
-                  <li><a href="#">Объявления</a></li>
+                  <li><a href="#">Cruises</a></li>
+                  <li><a href="#">Tips</a></li>
+                  <li><a href="#">Ships</a></li>
+                  <li><a href="#">Recommendations</a></li>
+                  <li><a href="#">Traveling</a></li>
+                  <li><a href="#">News</a></li>
                 </ul>
               </div>
             </div>
