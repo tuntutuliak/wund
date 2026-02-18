@@ -14,5 +14,5 @@ urlpatterns = [
     path('programs/', views.programms, name='programms'),
     path('programms/<slug:slug>/', views.course_detail, name='course_detail'),
     path('svedeniya/', RedirectView.as_view(url='/contacts/', permanent=True)),
-    path('news/', views.news_list, name='news_list'),
+    path('news/', views.news_list, name='news'),
 ]
