@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}События — Школа{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/programms.css' %}">
+{% endblock %}
+
+{% block content %}
+      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url({% static 'images/bg-about-us.jpg' %});">
+        <div class="breadcrumbs-custom-inner">
+          <div class="container breadcrumbs-custom-container">
+            <div class="breadcrumbs-custom-main">
+              <h6 class="breadcrumbs-custom-subtitle title-decorated">Страницы</h6>
+              <h1 class="breadcrumbs-custom-title">События</h1>
+            </div>
+            <ul class="breadcrumbs-custom-path">
+              <li><a href="{% url 'home' %}">Главная</a></li>
+              <li><a href="#">Страницы</a></li>
+              <li class="active">События</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="section section-lg">
+        <div class="container">
+          <div class="row row-50 justify-content-center justify-content-lg-between flex-lg-row-reverse">
+            <div class="col-md-10 col-lg-6 col-xl-5">
+              <h3>Мероприятия в нашей школе</h3>
+              <p>Мы регулярно проводим открытые уроки, родительские собрания, олимпиады и мастер-классы. Здесь вы можете узнать о ближайших событиях, датах и условиях участия. Приглашаем учеников и родителей присоединяться к нашим мероприятиям.</p><a class="button button-lg button-primary button-winona" href="{% url 'contacts' %}">Подробнее</a>
+            </div>
+            <div class="col-md-10 col-lg-6 col-xl-6"><img class="img-responsive" src="{% static 'img/ai_370x368.jpg' %}" alt="" width="570" height="368"/>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section section-md bg-gray-100 text-center">
+        <div class="container">
+          <h2 class="wow-outer font-weight-bold text-gray-800">Ближайшие мероприятия</h2>
+          <div class="row row-45">
+            <div class="col-md-6 col-lg-4">
+              <article class="career-classic">
+                <h4 class="career-classic-title"><a href="#">Родительское собрание</a></h4>
+                <div class="career-classic-divider"></div>
+                <ul class="career-classic-list">
+                  <li><span class="icon mdi mdi-calendar-clock"></span><span>28 февраля 2025</span></li>
+                  <li><span class="icon mdi mdi-map-marker"></span><span>Владивосток</span></li>
+                </ul>
+                <p>Приглашаем родителей учащихся на общее собрание. Обсудим итоги четверти, планы на весеннюю сессию и вопросы организации выпускных экзаменов. Встреча пройдёт в главном корпусе.</p>
+                <a class="button button-sm button-primary button-winona" href="#">Подробнее</a>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="career-classic">
+                <h4 class="career-classic-title"><a href="#">Открытый урок</a></h4>
+                <div class="career-classic-divider"></div>
+                <ul class="career-classic-list">
+                  <li><span class="icon mdi mdi-calendar-clock"></span><span>5 марта 2025</span></li>
+                  <li><span class="icon mdi mdi-map-marker"></span><span>Владивосток</span></li>
+                </ul>
+                <p>Открытый урок по математике для родителей и гостей. Покажем, как проходят занятия в группах подготовки к ЕГЭ, ответим на вопросы и проведём мини-консультации по записи.</p>
+                <a class="button button-sm button-primary button-winona" href="#">Записаться</a>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="career-classic">
+                <h4 class="career-classic-title"><a href="#">Олимпиада</a></h4>
+                <div class="career-classic-divider"></div>
+                <ul class="career-classic-list">
+                  <li><span class="icon mdi mdi-calendar-clock"></span><span>15 марта 2025</span></li>
+                  <li><span class="icon mdi mdi-map-marker"></span><span>Владивосток</span></li>
+                </ul>
+                <p>Региональная олимпиада по математике для школьников. Участие бесплатное. Победители получают сертификаты и призы. Регистрация открыта до 10 марта.</p>
+                <a class="button button-sm button-primary button-winona" href="#">Подробнее</a>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="career-classic">
+                <h4 class="career-classic-title"><a href="#">Мастер-класс</a></h4>
+                <div class="career-classic-divider"></div>
+                <ul class="career-classic-list">
+                  <li><span class="icon mdi mdi-calendar-clock"></span><span>22 марта 2025</span></li>
+                  <li><span class="icon mdi mdi-map-marker"></span><span>Владивосток</span></li>
+                </ul>
+                <p>Мастер-класс по написанию итогового сочинения для старшеклассников. Разберём критерии, типичные ошибки и дадим практические советы. Участие бесплатное по предварительной записи.</p>
+                <a class="button button-sm button-primary button-winona" href="#">Записаться</a>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="career-classic">
+                <h4 class="career-classic-title"><a href="#">День открытых дверей</a></h4>
+                <div class="career-classic-divider"></div>
+                <ul class="career-classic-list">
+                  <li><span class="icon mdi mdi-calendar-clock"></span><span>12 апреля 2025</span></li>
+                  <li><span class="icon mdi mdi-map-marker"></span><span>Владивосток</span></li>
+                </ul>
+                <p>День открытых дверей в образовательном центре. Знакомство с программами, преподавателями и помещениями. Пробные занятия и консультации для всех желающих.</p>
+                <a class="button button-sm button-primary button-winona" href="#">Подробнее</a>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="career-classic">
+                <h4 class="career-classic-title"><a href="#">Летний интенсив</a></h4>
+                <div class="career-classic-divider"></div>
+                <ul class="career-classic-list">
+                  <li><span class="icon mdi mdi-calendar-clock"></span><span>Июнь — август 2025</span></li>
+                  <li><span class="icon mdi mdi-map-marker"></span><span>Владивосток</span></li>
+                </ul>
+                <p>Летние интенсивы по математике, русскому языку и английскому. Короткие курсы для повторения и углубления материала. Запись открыта, количество мест ограничено.</p>
+                <a class="button button-sm button-primary button-winona" href="#">Записаться</a>
+              </article>
+            </div>
+          </div><a class="button button-lg button-primary button-winona" href="{% url 'contacts' %}">Связаться с нами</a>
+        </div>
+      </section>
+      <section class="section section-xs bg-primary-darker text-center">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-sm-10 col-md-12">
+              <div class="box-cta-thin">
+                <h4 class="wow-outer"><span class="wow slideInRight">Узнайте о <span class="font-weight-bold">предстоящих мероприятиях</span> и запишитесь!</span></h4>
+                <div class="wow-outer button-outer"><a class="button button-primary-lighten button-winona wow slideInLeft" href="{% url 'contacts' %}">Контакты</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}
