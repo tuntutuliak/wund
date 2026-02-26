@@ -74,12 +74,12 @@
           <div class="rd-navbar-nav-wrap" id="rd-navbar-nav-wrap-school">
             <a class="rd-navbar-brand" href="/"><img src="{% static 'img/logo_w_135x43.png' %}" alt="" width="135" height="43" srcset="{% static 'images/logo_w_135x43.png' %} 2x"/></a>
             <ul class="rd-navbar-nav">
-              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'home' %} active{% endif %}"><a class="rd-nav-link" href="/">Главная</a></li>
-              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'about' %} active{% endif %}"><a class="rd-nav-link" href="/about/">О нас</a></li>
-              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'programms' %} active{% endif %}"><a class="rd-nav-link" href="{% url 'programms' %}">Программы</a></li>
-              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'team' %} active{% endif %}"><a class="rd-nav-link" href="{% url 'team' %}">Преподаватели</a></li>
-              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'testimonials' %} active{% endif %}"><a class="rd-nav-link" href="/testimonials/">Отзывы</a></li>
-              <li class="rd-nav-item{% if request.resolver_match and request.resolver_match.url_name == 'contacts' %} active{% endif %}"><a class="rd-nav-link" href="{% url 'contacts' %}">Контакты</a></li>
+              <li class="rd-nav-item{% if request.path == '/' or request.path == '' %} active{% endif %}"><a class="rd-nav-link" href="{% url 'home' %}">Главная</a></li>
+              <li class="rd-nav-item{% if '/about' in request.path %} active{% endif %}"><a class="rd-nav-link" href="{% url 'about' %}">О нас</a></li>
+              <li class="rd-nav-item{% if '/program' in request.path %} active{% endif %}"><a class="rd-nav-link" href="{% url 'programms' %}">Программы</a></li>
+              <li class="rd-nav-item{% if '/teachers' in request.path %} active{% endif %}"><a class="rd-nav-link" href="{% url 'team' %}">Преподаватели</a></li>
+              <li class="rd-nav-item{% if '/news' in request.path %} active{% endif %}"><a class="rd-nav-link" href="{% url 'news' %}">Новости</a></li>
+              <li class="rd-nav-item{% if '/contacts' in request.path %} active{% endif %}"><a class="rd-nav-link" href="{% url 'contacts' %}">Контакты</a></li>
             </ul>
           </div>
         </div>
