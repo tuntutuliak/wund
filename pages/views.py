@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 
 from .models import News
@@ -94,6 +94,12 @@ def news_list(request):
     """Список опубликованных новостей."""
     news_list_qs = News.objects.filter(is_published=True)
     return render(request, 'news.html', {'news_list': news_list_qs})
+
+
+def news_detail(request, slug):
+    """Страница одной новости по slug. 404 если не найдена или не опубликована."""
+    news = get_object_or_404(News, slug=slug, is_published=True)
+    return render(request, 'single_news.html', {'news': news})
 
 
 def events(request):

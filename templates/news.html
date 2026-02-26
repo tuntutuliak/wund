@@ -28,84 +28,25 @@
           <article class="blog-layout">
             <div class="blog-layout-main">
               <div class="row row-50 row-xxl-70">
+                {% for news in news_list %}
                 <div class="col-sm-6">
-                  <article class="post-classic"><a class="post-classic-media" href="#"><img src="{% static 'images/popular-cruises-6-370x264.jpg' %}" alt="" width="370" height="264"/></a>
+                  <article class="post-classic"><a class="post-classic-media" href="{% url 'news_detail' news.slug %}">{% if news.image %}<img src="{{ news.image.url }}" alt="{{ news.title }}" width="370" height="264"/>{% else %}<img src="{% static 'img/ai_370x368.jpg' %}" alt="{{ news.title }}" width="370" height="264"/>{% endif %}</a>
                     <ul class="post-classic-meta">
-                      <li><a class="button-winona" href="#">Новости</a></li>
+                      <li><a class="button-winona" href="{% url 'news' %}">Новости</a></li>
                       <li>
-                        <time datetime="2025-02-15">15 февраля 2025</time>
+                        <time datetime="{{ news.created_at|date:'c' }}">{{ news.created_at|date:"d E Y" }}</time>
                       </li>
                     </ul>
-                    <h4 class="post-classic-title"><a href="#">Родительское собрание в конце месяца</a></h4>
-                    <p>Приглашаем родителей учащихся на общее собрание. Обсудим итоги четверти, планы на весеннюю сессию и вопросы организации выпускных экзаменов.</p>
-                    <a class="button button-sm button-primary button-winona" href="#">Читать далее</a>
+                    <h4 class="post-classic-title"><a href="{% url 'news_detail' news.slug %}">{{ news.title }}</a></h4>
+                    {% if news.short_description %}<p>{{ news.short_description|truncatewords:20 }}</p>{% endif %}
+                    <a class="button button-sm button-primary button-winona" href="{% url 'news_detail' news.slug %}">Читать далее</a>
                   </article>
                 </div>
-                <div class="col-sm-6">
-                  <article class="post-classic"><a class="post-classic-media" href="#"><img src="{% static 'images/popular-cruises-6-370x264.jpg' %}" alt="" width="370" height="264"/></a>
-                    <ul class="post-classic-meta">
-                      <li><a class="button-winona" href="#">Новости</a></li>
-                      <li>
-                        <time datetime="2025-02-12">12 февраля 2025</time>
-                      </li>
-                    </ul>
-                    <h4 class="post-classic-title"><a href="#">Открытый урок по математике</a></h4>
-                    <p>В среду, 19 февраля, состоится открытый урок для родителей и гостей. Покажем, как проходят занятия в группах подготовки к ЕГЭ и ответим на вопросы.</p>
-                    <a class="button button-sm button-primary button-winona" href="#">Читать далее</a>
-                  </article>
+                {% empty %}
+                <div class="col-12">
+                  <p class="text-gray-800">Новостей пока нет.</p>
                 </div>
-                <div class="col-sm-6">
-                  <article class="post-classic"><a class="post-classic-media" href="#"><img src="{% static 'images/popular-cruises-6-370x264.jpg' %}" alt="" width="370" height="264"/></a>
-                    <ul class="post-classic-meta">
-                      <li><a class="button-winona" href="#">Новости</a></li>
-                      <li>
-                        <time datetime="2025-02-10">10 февраля 2025</time>
-                      </li>
-                    </ul>
-                    <h4 class="post-classic-title"><a href="#">Новый набор на подготовку к ОГЭ и ЕГЭ</a></h4>
-                    <p>Открыта запись в группы на 2025/26 учебный год. Осталось несколько мест по математике, русскому языку и английскому. Занятия стартуют в марте.</p>
-                    <a class="button button-sm button-primary button-winona" href="#">Читать далее</a>
-                  </article>
-                </div>
-                <div class="col-sm-6">
-                  <article class="post-classic"><a class="post-classic-media" href="#"><img src="{% static 'images/popular-cruises-6-370x264.jpg' %}" alt="" width="370" height="264"/></a>
-                    <ul class="post-classic-meta">
-                      <li><a class="button-winona" href="#">Новости</a></li>
-                      <li>
-                        <time datetime="2025-02-08">8 февраля 2025</time>
-                      </li>
-                    </ul>
-                    <h4 class="post-classic-title"><a href="#">Изменения в расписании на март</a></h4>
-                    <p>Опубликовано обновлённое расписание занятий на март. Обратите внимание на перенос занятий в праздничные дни и дополнительные консультации перед экзаменами.</p>
-                    <a class="button button-sm button-primary button-winona" href="#">Читать далее</a>
-                  </article>
-                </div>
-                <div class="col-sm-6">
-                  <article class="post-classic"><a class="post-classic-media" href="#"><img src="{% static 'images/popular-cruises-6-370x264.jpg' %}" alt="" width="370" height="264"/></a>
-                    <ul class="post-classic-meta">
-                      <li><a class="button-winona" href="#">Новости</a></li>
-                      <li>
-                        <time datetime="2025-02-05">5 февраля 2025</time>
-                      </li>
-                    </ul>
-                    <h4 class="post-classic-title"><a href="#">Региональная олимпиада по математике</a></h4>
-                    <p>Наши ученики приняли участие в региональном этапе олимпиады. Поздравляем призёров и благодарим всех за подготовку. Итоги и разбор заданий — на этой неделе.</p>
-                    <a class="button button-sm button-primary button-winona" href="#">Читать далее</a>
-                  </article>
-                </div>
-                <div class="col-sm-6">
-                  <article class="post-classic"><a class="post-classic-media" href="#"><img src="{% static 'images/popular-cruises-6-370x264.jpg' %}" alt="" width="370" height="264"/></a>
-                    <ul class="post-classic-meta">
-                      <li><a class="button-winona" href="#">Новости</a></li>
-                      <li>
-                        <time datetime="2025-02-01">1 февраля 2025</time>
-                      </li>
-                    </ul>
-                    <h4 class="post-classic-title"><a href="#">Мастер-класс по написанию сочинения</a></h4>
-                    <p>В субботу, 22 февраля, приглашаем старшеклассников на бесплатный мастер-класс по итоговому сочинению. Разберём критерии и типичные ошибки, дадим практические советы.</p>
-                    <a class="button button-sm button-primary button-winona" href="#">Читать далее</a>
-                  </article>
-                </div>
+                {% endfor %}
               </div>
               <div class="pagination justify-content-sm-center justify-content-md-start">
                 <div class="page-item active"><a class="page-link button-winona" href="#">1</a></div>

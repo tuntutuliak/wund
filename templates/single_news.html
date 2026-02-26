@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ news.title }} — Школа{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/programms.css' %}">
+{% endblock %}
+
+{% block content %}
+      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url({% static 'images/bg-about-us.jpg' %});">
+        <div class="breadcrumbs-custom-inner">
+          <div class="container breadcrumbs-custom-container">
+            <div class="breadcrumbs-custom-main">
+              <h6 class="breadcrumbs-custom-subtitle title-decorated">Блог</h6>
+              <h1 class="breadcrumbs-custom-title">{{ news.title }}</h1>
+            </div>
+            <ul class="breadcrumbs-custom-path">
+              <li><a href="{% url 'home' %}">Главная</a></li>
+              <li><a href="{% url 'news' %}">Новости</a></li>
+              <li class="active">{{ news.title }}</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="section section-lg">
+        <div class="container">
+          <div class="row row-50">
+            <div class="col-lg-8">
+              <article class="post-creative">
+                <h3 class="post-creative-title font-weight-bold text-gray-800">{{ news.title }}</h3>
+                <ul class="post-creative-meta">
+                  <li><span class="icon mdi mdi-calendar-clock"></span>
+                    <time datetime="{{ news.created_at|date:'c' }}">{{ news.created_at|date:"d E Y" }}</time>
+                  </li>
+                  <li><span class="icon mdi mdi-tag-multiple"></span><a href="{% url 'news' %}">Новости</a></li>
+                </ul>
+                {% if news.short_description %}
+                <h4 class="text-gray-800 font-weight-light">{{ news.short_description }}</h4>
+                {% endif %}
+                {% if news.image %}
+                <img src="{{ news.image.url }}" alt="{{ news.title }}" width="770" height="458" class="img-responsive"/>
+                {% else %}
+                <img src="{% static 'img/ai_370x368.jpg' %}" alt="{{ news.title }}" width="770" height="458" class="img-responsive"/>
+                {% endif %}
+                <div class="post-creative-body">
+                  {{ news.content|safe }}
+                </div>
+                <ul class="post-creative-footer">
+                  <li>Поделиться</li>
+                  <li>
+                    <div class="group group-xs group-middle"><a class="icon icon-sm icon-creative mdi mdi-facebook" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-twitter" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-instagram" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-google" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-linkedin" href="#"></a></div>
+                  </li>
+                </ul>
+              </article>
+              <div class="section-sm">
+                <h3 class="post-creative-title text-gray-800 font-weight-light">Комментарии</h3>
+                <div class="comment-classic-group">
+                  <article class="comment-classic">
+                    <figure class="comment-classic-figure"><img class="comment-classic-image" src="{% static 'images/testimonials-person-1-96x96.jpg' %}" alt="" width="48" height="48"/></figure>
+                    <div class="comment-classic-main">
+                      <p class="comment-classic-name">Читатель</p>
+                      <div class="comment-classic-text"><p class="text-gray-800">Комментарии отключены. Форма ниже только для отображения.</p></div>
+                      <ul class="comment-classic-meta"><li><time>—</time></li></ul>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="section-sm section-bottom-0">
+                <h3 class="post-creative-title text-gray-800 font-weight-light">Написать комментарий</h3>
+                <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="#">
+                  {% csrf_token %}
+                  <div class="row row-10">
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <label class="form-label-outside" for="comment-first-name">Имя</label>
+                        <input class="form-input" id="comment-first-name" type="text" name="name" data-constraints="@Required">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <label class="form-label-outside" for="comment-last-name">Фамилия</label>
+                        <input class="form-input" id="comment-last-name" type="text" name="family" data-constraints="@Required">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <label class="form-label-outside" for="comment-email">E-mail</label>
+                        <input class="form-input" id="comment-email" type="email" name="email" data-constraints="@Email @Required">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <label class="form-label-outside" for="comment-phone">Телефон</label>
+                        <input class="form-input" id="comment-phone" type="text" name="phone">
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-wrap">
+                        <label class="form-label-outside" for="comment-message">Сообщение</label>
+                        <textarea class="form-input" id="comment-message" name="message" data-constraints="@Required"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="button button-primary button-winona" type="submit">Отправить</button>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <article class="profile-thin">
+                <div class="profile-thin-aside"><img class="profile-thin-image" src="{% static 'images/logo-painting-136x61.png' %}" alt="" width="168" height="168"/><a class="profile-thin-contact-button" href="{% url 'contacts' %}"><span class="icon mdi mdi-email-outline"></span><span class="icon mdi mdi-email-outline"></span></a></div>
+                <div class="profile-thin-main">
+                  <p class="profile-thin-title">Образовательный центр</p>
+                  <p class="profile-thin-subtitle">Новости и события</p>
+                  <p>Актуальные объявления, мероприятия и полезные материалы для учеников и родителей.</p>
+                  <a class="button button-sm button-primary-outline button-winona" href="{% url 'news' %}">Все новости</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}
