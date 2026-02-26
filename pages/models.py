@@ -26,7 +26,7 @@ class News(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
     short_description = models.CharField(max_length=500, blank=True)
     content = models.TextField(blank=True)
-    image = models.FileField(upload_to="news/", blank=True, null=True)
+    image = models.ImageField(upload_to="news_images/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_published = models.BooleanField(default=False)
 
@@ -40,3 +40,10 @@ class News(models.Model):
 
     def get_absolute_url(self):
         return reverse("news_detail", kwargs={"slug": self.slug})
+
+    @property
+    def image_url(self):
+        """URL изображения для шаблонов: загруженный файл (media) или None (подставьте static в шаблоне)."""
+        if self.image:
+            return self.image.url
+        return None

@@ -192,3 +192,7 @@ EMAIL_USE_TLS = get_env("EMAIL_USE_TLS", "True").lower() in ("true", "1", "yes")
 EMAIL_HOST_USER = get_env("EMAIL_HOST_USER", "")
 EMAIL_HOST_PASSWORD = get_env("EMAIL_HOST_PASSWORD", "")
 DEFAULT_FROM_EMAIL = get_env("DEFAULT_FROM_EMAIL", "noreply@example.com")
+
+# --- Медиа (загрузки): для localhost — папка media в корне проекта ---
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"

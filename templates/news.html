@@ -30,7 +30,7 @@
               <div class="row row-50 row-xxl-70">
                 {% for news in news_list %}
                 <div class="col-sm-6">
-                  <article class="post-classic"><a class="post-classic-media" href="{% url 'news_detail' news.slug %}">{% if news.image %}<img src="{{ news.image.url }}" alt="{{ news.title }}" width="370" height="264"/>{% else %}<img src="{% static 'img/ai_370x368.jpg' %}" alt="{{ news.title }}" width="370" height="264"/>{% endif %}</a>
+                  <article class="post-classic"><a class="post-classic-media" href="{% url 'news_detail' news.slug %}">{% if news.image_url %}<img src="{{ news.image_url }}" alt="{{ news.title }}" width="370" height="264"/>{% else %}<img src="{% static 'img/ai_570x352.jpg' %}" alt="{{ news.title }}" width="370" height="264"/>{% endif %}</a>
                     <ul class="post-classic-meta">
                       <li><a class="button-winona" href="{% url 'news' %}">Новости</a></li>
                       <li>

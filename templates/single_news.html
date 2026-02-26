@@ -38,10 +38,10 @@
                 {% if news.short_description %}
                 <h4 class="text-gray-800 font-weight-light">{{ news.short_description }}</h4>
                 {% endif %}
-                {% if news.image %}
-                <img src="{{ news.image.url }}" alt="{{ news.title }}" width="770" height="458" class="img-responsive"/>
+                {% if news.image_url %}
+                <img src="{{ news.image_url }}" alt="{{ news.title }}" width="770" height="458" class="img-responsive"/>
                 {% else %}
-                <img src="{% static 'img/ai_370x368.jpg' %}" alt="{{ news.title }}" width="770" height="458" class="img-responsive"/>
+                <img src="{% static 'img/ai_570x352.jpg' %}" alt="{{ news.title }}" width="770" height="458" class="img-responsive"/>
                 {% endif %}
                 <div class="post-creative-body">
                   {{ news.content|safe }}
