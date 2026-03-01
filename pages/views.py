@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 
-from .models import News, Teacher, EducationSection, ContactSection
+from .models import News, Teacher, ContactSection
 
 # MOCK DATA – replace with real database later
 MOCK_COURSES = [
@@ -163,9 +163,3 @@ def events(request):
 
 def group_course(request):
     return render(request, 'group_course.html')
-
-
-def organization(request):
-    """Одна страница «Сведения об образовательной организации» с якорной навигацией."""
-    sections = EducationSection.objects.filter(is_active=True).order_by("order")
-    return render(request, "pages/organization.html", {"sections": sections})
