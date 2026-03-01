@@ -4,7 +4,7 @@ from django.templatetags.static import static
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
-from .models import Course, News
+from .models import Course, News, Teacher
 
 User._meta.verbose_name = "Пользователь"
 User._meta.verbose_name_plural = "Пользователи"
@@ -49,3 +49,10 @@ class NewsAdmin(admin.ModelAdmin):
         )
 
     image_thumbnail.short_description = "Изображение"
+
+
+@admin.register(Teacher)
+class TeacherAdmin(admin.ModelAdmin):
+    list_display = ("full_name", "subject", "is_active")
+    list_filter = ("is_active",)
+    search_fields = ("full_name", "subject")

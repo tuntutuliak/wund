@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 
-from .models import News
+from .models import News, Teacher
 
 # MOCK DATA – replace with real database later
 MOCK_COURSES = [
@@ -73,8 +73,14 @@ def contacts(request):
 
 
 def team(request):
-    """Страница «Преподаватели»."""
-    return render(request, 'team.html')
+    """Страница-раздел «Преподаватели» (руководство и блок с кнопкой в каталог)."""
+    return render(request, "team.html")
+
+
+def teachers_catalog(request):
+    """Каталог преподавателей: сетка карточек, только is_active=True."""
+    teachers = Teacher.objects.filter(is_active=True)
+    return render(request, "teachers/catalog.html", {"teachers": teachers})
 
 
 def programms(request):

@@ -47,3 +47,18 @@ class News(models.Model):
         if self.image:
             return self.image.url
         return None
+
+
+class Teacher(models.Model):
+    full_name = models.CharField("ФИО", max_length=255)
+    subject = models.CharField("Предмет / направление", max_length=255, blank=True)
+    photo = models.ImageField("Фото", upload_to="teachers/", blank=True, null=True)
+    is_active = models.BooleanField("Показывать в каталоге", default=True)
+
+    class Meta:
+        verbose_name = "Преподаватель"
+        verbose_name_plural = "Преподаватели"
+        ordering = ["full_name"]
+
+    def __str__(self):
+        return self.full_name

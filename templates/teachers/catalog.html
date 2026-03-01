@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Каталог преподавателей — Школа{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/team.css' %}">
+<link rel="stylesheet" href="{% static 'css/teachers-catalog.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="section breadcrumbs-custom bg-image context-dark teachers-catalog-hero">
+  <div class="breadcrumbs-custom-inner">
+    <div class="container breadcrumbs-custom-container">
+      <div class="breadcrumbs-custom-main">
+        <h6 class="breadcrumbs-custom-subtitle title-decorated">Навигация</h6>
+        <h1 class="breadcrumbs-custom-title">Каталог преподавателей</h1>
+      </div>
+      <ul class="breadcrumbs-custom-path">
+        <li><a href="{% url 'home' %}">Главная</a></li>
+        <li><a href="{% url 'team' %}">Преподаватели</a></li>
+        <li class="active">Каталог</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section-lg">
+  <div class="container">
+    <div class="teachers-grid" role="list">
+      {% for teacher in teachers %}
+      <article class="teacher-card" role="listitem">
+        <div class="teacher-card-inner">
+          <button type="button" class="teacher-card-photo-wrap js-teacher-photo" aria-label="Увеличить фото {{ teacher.full_name }}" data-photo-url="{% if teacher.photo %}{{ teacher.photo.url }}{% else %}{% static 'img/dyu_270x273p.jpg' %}{% endif %}" data-name="{{ teacher.full_name }}">
+            {% if teacher.photo %}
+            <img src="{{ teacher.photo.url }}" alt="{{ teacher.full_name }}" width="270" height="273" loading="lazy" class="teacher-card-image"/>
+            {% else %}
+            <img src="{% static 'img/dyu_270x273p.jpg' %}" alt="{{ teacher.full_name }}" width="270" height="273" loading="lazy" class="teacher-card-image"/>
+            {% endif %}
+          </button>
+          <div class="teacher-card-body">
+            <h3 class="teacher-card-name">{{ teacher.full_name }}</h3>
+            {% if teacher.subject %}
+            <p class="teacher-card-subject">{{ teacher.subject }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+      {% empty %}
+      <p class="teachers-empty text-gray-800">Пока нет преподавателей в каталоге.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<div id="teacher-photo-modal" class="teacher-modal" role="dialog" aria-modal="true" aria-labelledby="teacher-modal-title" aria-hidden="true">
+  <div class="teacher-modal-backdrop js-modal-close"></div>
+  <div class="teacher-modal-content">
+    <button type="button" class="teacher-modal-close js-modal-close" aria-label="Закрыть">&times;</button>
+    <img id="teacher-modal-image" src="" alt="" class="teacher-modal-image"/>
+    <p id="teacher-modal-title" class="teacher-modal-caption"></p>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/teachers-modal.js' %}"></script>
+{% endblock %}
