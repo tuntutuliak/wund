@@ -1,0 +1,17 @@
+{% comment %}
+  Message contrast system: use message-light on light backgrounds (default),
+  message-dark inside dark sections (e.g. #newsletter, .bg-gray-700, .context-dark).
+  Usage: {% include "includes/messages.html" %}
+  For dark sections: {% include "includes/messages.html" with message_variant="dark" %}
+{% endcomment %}
+{% if messages %}
+  <div class="messages-list" aria-live="polite">
+    {% for message in messages %}
+      {% if message.tags == "error" or "error" in message.tags %}
+        <div class="alert alert-danger {% if message_variant == 'dark' %}message-dark{% else %}message-light{% endif %}" role="alert">{{ message }}</div>
+      {% else %}
+        <div class="alert alert-{{ message.tags|default:'info' }} {% if message_variant == 'dark' %}message-dark{% else %}message-light{% endif %}" role="alert">{{ message }}</div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

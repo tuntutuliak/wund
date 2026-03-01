@@ -432,7 +432,7 @@
               if (result.ok && result.data.success) {
                 if (msgEl) {
                   msgEl.textContent = result.data.message || 'Готово.';
-                  msgEl.className = 'mt-2 text-success subscribe-form-message--success';
+                  msgEl.className = 'mt-2 text-success message-dark';
                 }
                 form.reset();
               } else {
@@ -440,7 +440,7 @@
                 var text = (errors.__all__ && errors.__all__[0]) || (errors.email && errors.email[0]) || 'Исправьте ошибки в форме.';
                 if (msgEl) {
                   msgEl.textContent = text;
-                  msgEl.className = 'mt-2 text-danger' + (text.indexOf('Слишком частые') !== -1 ? ' subscribe-form-message--rate-limit' : '');
+                  msgEl.className = 'mt-2 text-danger message-dark';
                 }
               }
             });

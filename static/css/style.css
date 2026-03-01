@@ -618,14 +618,41 @@ html .page .text-primary {
 	color: #dc0000;
 }
 
-/* Subscribe form: rate-limit error on dark background — white text for contrast */
-.subscribe-form-message--rate-limit {
-	color: #ffffff;
+/* ==========================================================================
+   Message contrast system (WCAG AA)
+   Use .message-dark on dark backgrounds, .message-light on light backgrounds.
+   ========================================================================== */
+:root {
+	--message-dark-text: #ffffff;
+	--message-dark-bg: rgba(0, 0, 0, 0.25);
+	--message-dark-border: rgba(255, 255, 255, 0.2);
+	--message-light-text: #212529;
+	--message-light-bg: #ffffff;
+	--message-light-border: rgba(0, 0, 0, 0.1);
 }
 
-/* Subscribe form: success/confirmation on dark background — white text for contrast */
-.subscribe-form-message--success {
-	color: #ffffff;
+.message-dark {
+	color: var(--message-dark-text);
+	background-color: transparent;
+}
+
+.message-dark.alert,
+.alert.message-dark,
+#form-output-global.message-dark,
+.form-output.message-dark {
+	background-color: var(--message-dark-bg);
+	border: 1px solid var(--message-dark-border);
+}
+
+.message-light {
+	color: var(--message-light-text);
+	background-color: transparent;
+}
+
+.message-light.alert,
+.alert.message-light {
+	background-color: var(--message-light-bg);
+	border: 1px solid var(--message-light-border);
 }
 
 .page .text-gray-700 {
