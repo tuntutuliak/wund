@@ -449,35 +449,42 @@
       });
     })();
     </script>
-    <!-- Application modal: open on pencil button, close on overlay/ESC/close btn, lock body scroll -->
+    <!-- Application modal: open on any [data-application-modal-toggle], close on overlay/ESC/close btn -->
     <script>
       (function() {
         document.addEventListener('DOMContentLoaded', function() {
           var overlay = document.getElementById('application-modal-overlay');
-          var openBtn = document.querySelector('[data-application-modal-toggle]');
+          var openTriggers = document.querySelectorAll('[data-application-modal-toggle]');
           var closeBtn = document.getElementById('application-modal-close');
           var form = document.getElementById('application-form');
           var successEl = document.getElementById('application-modal-success');
-          if (!overlay || !openBtn) return;
+          if (!overlay) return;
 
-          function openModal() {
+          var lastFocusedTrigger = null;
+
+          function openModal(trigger) {
+            lastFocusedTrigger = trigger || null;
             overlay.classList.add('active');
             overlay.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
+            if (closeBtn) closeBtn.focus();
           }
 
           function closeModal() {
             overlay.classList.remove('active');
             overlay.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
+            if (lastFocusedTrigger && lastFocusedTrigger.focus) lastFocusedTrigger.focus();
+            lastFocusedTrigger = null;
           }
 
-          openBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.stopImmediatePropagation();
-            openModal();
-          }, true);
+          openTriggers.forEach(function(trigger) {
+            trigger.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              openModal(this);
+            }, true);
+          });
 
           if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
