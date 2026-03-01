@@ -114,4 +114,12 @@ class ApplicationAdmin(admin.ModelAdmin):
     list_display = ("name", "email", "phone", "created_at")
     search_fields = ("name", "email", "phone", "message")
     list_filter = ("created_at",)
-    readonly_fields = ("created_at",)
+    readonly_fields = ("name", "phone", "email", "message", "created_at")
+    fieldsets = (
+        (None, {"fields": ("name", "phone", "email", "message", "created_at")}),
+    )
+    list_display_links = ("name", "email")
+
+    def has_delete_permission(self, request, obj=None):
+        """Заявки не удаляются из админки."""
+        return False

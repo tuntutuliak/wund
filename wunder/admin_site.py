@@ -71,15 +71,19 @@ admin_site.register(Group, GroupAdmin)
 
 # Регистрация моделей pages (снять с default site и повесить на наш)
 import pages.admin as pages_admin_module  # noqa: E402
-from pages.models import Course, News, Teacher, ContactSection, ContactDocument  # noqa: E402
+from pages.models import Course, News, Teacher, ContactSection, ContactDocument, Subscriber, Application  # noqa: E402
 
 admin.site.unregister(Course)
 admin.site.unregister(News)
 admin.site.unregister(Teacher)
 admin.site.unregister(ContactSection)
 admin.site.unregister(ContactDocument)
+admin.site.unregister(Subscriber)
+admin.site.unregister(Application)
 admin_site.register(Course, pages_admin_module.CourseAdmin)
 admin_site.register(News, pages_admin_module.NewsAdmin)
 admin_site.register(Teacher, pages_admin_module.TeacherAdmin)
 admin_site.register(ContactSection, pages_admin_module.ContactSectionAdmin)
 admin_site.register(ContactDocument, pages_admin_module.ContactDocumentAdmin)
+admin_site.register(Subscriber, pages_admin_module.SubscriberAdmin)
+admin_site.register(Application, pages_admin_module.ApplicationAdmin)
