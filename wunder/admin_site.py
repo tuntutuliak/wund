@@ -1,11 +1,11 @@
 """
-Кастомный AdminSite: заголовки, главная с двумя блоками (Контент, Пользователи и группы).
-Модели регистрируются здесь, чтобы использовать этот site вместо стандартного.
+Кастомный AdminSite: заголовки, дашборд со статистикой и блоками (Контент, Пользователи и группы).
 """
 from django.contrib import admin
 from django.contrib.auth.admin import GroupAdmin, UserAdmin
 from django.contrib.auth.models import Group, User
 from django.template.response import TemplateResponse
+from django.urls import NoReverseMatch, reverse
 
 
 class WunderAdminSite(admin.AdminSite):
@@ -22,12 +22,40 @@ class WunderAdminSite(admin.AdminSite):
             {"name": "Контент", "apps": content_apps},
             {"name": "Пользователи и группы", "apps": auth_apps},
         ]
+
+        # Статистика для дашборда
+        from django.contrib.auth import get_user_model
+        from pages.models import Course, News
+
+        User = get_user_model()
+        dashboard_stats = {
+            "news_count": News.objects.count(),
+            "news_published_count": News.objects.filter(is_published=True).count(),
+            "courses_count": Course.objects.count(),
+            "users_count": User.objects.count(),
+        }
+
+        # URL для быстрых действий
+        def _url(name):
+            try:
+                return reverse(name, current_app=self.name)
+            except NoReverseMatch:
+                return None
+
+        quick_actions = {
+            "add_news_url": _url("admin:pages_news_add"),
+            "add_course_url": _url("admin:pages_course_add"),
+            "view_site_url": "/",
+        }
+
         context = {
             **self.each_context(request),
             "title": self.index_title,
             "subtitle": None,
             "app_list": app_list,
             "app_groups": app_groups,
+            "dashboard_stats": dashboard_stats,
+            "quick_actions": quick_actions,
             **(extra_context or {}),
         }
         request.current_app = self.name

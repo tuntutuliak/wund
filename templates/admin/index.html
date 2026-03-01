@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 {% load i18n static %}
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" href="{% static 'admin/css/dashboard.css' %}">{% endblock %}
+{% block extrastyle %}{{ block.super }}{% endblock %}
 
 {% block coltype %}colMS{% endblock %}
 
@@ -13,7 +13,7 @@
 
 {% block content %}
 <div id="content-main">
-  {% if app_groups %}
+  {% if app_groups is not None %}
     {% for group in app_groups %}
       {% if group.apps %}
       <div class="admin-app-group module">
@@ -88,5 +88,44 @@
     </ul>
     {% endif %}
   </div>
+
+  {% if dashboard_stats or quick_actions %}
+  <div class="dashboard-wrapper">
+    {% if dashboard_stats %}
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-value">{{ dashboard_stats.news_count }}</span>
+        <span class="stat-label">Новостей</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ dashboard_stats.news_published_count }}</span>
+        <span class="stat-label">Опубликовано</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ dashboard_stats.courses_count }}</span>
+        <span class="stat-label">Курсов</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ dashboard_stats.users_count }}</span>
+        <span class="stat-label">Пользователей</span>
+      </div>
+    </div>
+    {% endif %}
+    {% if quick_actions %}
+    <div class="quick-actions">
+      <h3 class="quick-actions-title">Быстрые действия</h3>
+      <div class="quick-actions-buttons">
+        {% if quick_actions.add_news_url %}
+        <a href="{{ quick_actions.add_news_url }}" class="dashboard-btn dashboard-btn-primary">Добавить новость</a>
+        {% endif %}
+        {% if quick_actions.add_course_url %}
+        <a href="{{ quick_actions.add_course_url }}" class="dashboard-btn dashboard-btn-primary">Добавить курс</a>
+        {% endif %}
+        <a href="{{ quick_actions.view_site_url }}" class="dashboard-btn dashboard-btn-secondary" target="_blank" rel="noopener">Просмотреть сайт</a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
 </div>
 {% endblock %}
