@@ -618,6 +618,16 @@ html .page .text-primary {
 	color: #dc0000;
 }
 
+/* Subscribe form: rate-limit error on dark background — white text for contrast */
+.subscribe-form-message--rate-limit {
+	color: #ffffff;
+}
+
+/* Subscribe form: success/confirmation on dark background — white text for contrast */
+.subscribe-form-message--success {
+	color: #ffffff;
+}
+
 .page .text-gray-700 {
 	color: #7a7a7a;
 }
@@ -2516,6 +2526,18 @@ html .button.button-primary-lighten:hover, html .button.button-primary-lighten:a
 input:-webkit-autofill ~ label,
 input:-webkit-autofill ~ .form-validation {
 	color: #000 !important;
+}
+
+.visually-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
 }
 
 .form-wrap {

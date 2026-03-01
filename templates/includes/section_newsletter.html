@@ -9,7 +9,7 @@
           {% csrf_token %}
           {{ subscribe_form.website }}
           <div class="form-wrap">
-            <label class="form-label" for="subscribe-form-email">Ваш e-mail</label>
+            <label class="form-label visually-hidden" for="subscribe-form-email">Ваш e-mail</label>
             {{ subscribe_form.email }}
             {% if subscribe_form.email.errors %}
               <span class="form-validation-error">{{ subscribe_form.email.errors.0 }}</span>

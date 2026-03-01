@@ -21,8 +21,9 @@ class SubscribeForm(forms.ModelForm):
                 attrs={
                     "class": "form-input",
                     "id": "subscribe-form-email",
-                    "placeholder": "",
+                    "placeholder": "Ваш e-mail",
                     "autocomplete": "email",
+                    "aria-label": "Ваш e-mail",
                 }
             ),
         }
