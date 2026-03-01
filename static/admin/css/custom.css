@@ -1,0 +1,57 @@
+/* Кастомизация админки: карточки разделов и общий вид */
+
+/* Блок группы приложений (Контент, Пользователи и группы) */
+.admin-app-group {
+  margin-bottom: 1.5rem;
+}
+
+.admin-app-group-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem 0;
+  padding-bottom: 0.35rem;
+  color: var(--body-quiet-color, #666);
+  border-bottom: 1px solid var(--border-color, #eee);
+  font-weight: 600;
+}
+
+/* Карточка приложения внутри группы */
+.admin-app-card {
+  background: var(--body-bg, #fff);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.admin-app-card table {
+  width: 100%;
+  margin: 0;
+}
+
+.admin-app-card caption {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: var(--darkened-bg, #f8f8f8);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color, #eee);
+}
+
+.admin-app-card caption a.section {
+  font-size: 1rem;
+}
+
+.admin-app-card th,
+.admin-app-card td {
+  padding: 0.5rem 1rem;
+  vertical-align: middle;
+}
+
+.admin-app-card tr:hover {
+  background: var(--selected-bg, #f3f3f3);
+}
+
+/* Сохраняем стандартное поведение для не-индексных страниц */
+#content-main .module:not(.admin-app-group) {
+  margin-bottom: 1rem;
+}

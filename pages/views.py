@@ -93,7 +93,7 @@ def course_detail(request, slug):
 def news_list(request):
     """Список опубликованных новостей."""
     news_list_qs = News.objects.filter(is_published=True)
-    return render(request, 'news.html', {'news_list': news_list_qs})
+    return render(request, "news.html", {"news_list": news_list_qs})
 
 
 def news_detail(request, slug):

@@ -1,0 +1,4 @@
+/* Фон блока breadcrumb на странице новостей */
+.news-breadcrumb-bg {
+  background-image: url("../img/most_original_bg.jpeg");
+}
