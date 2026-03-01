@@ -1,10 +1,16 @@
+from django import forms
 from django.contrib import admin
 from django.contrib.auth.models import Group, User
 from django.templatetags.static import static
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
-from .models import Course, News, Teacher, EducationSection
+from .models import Course, News, Teacher, EducationSection, ContactSection, ContactDocument
+
+try:
+    from ckeditor.widgets import CKEditorWidget
+except ImportError:
+    CKEditorWidget = None
 
 User._meta.verbose_name = "Пользователь"
 User._meta.verbose_name_plural = "Пользователи"
@@ -66,3 +72,40 @@ class EducationSectionAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     search_fields = ("title",)
     ordering = ("order",)
+
+
+class ContactDocumentInline(admin.TabularInline):
+    model = ContactDocument
+    extra = 0
+    fields = ("name", "file")
+
+
+class ContactSectionAdminForm(forms.ModelForm):
+    class Meta:
+        model = ContactSection
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if CKEditorWidget is not None:
+            self.fields["content"].widget = CKEditorWidget()
+
+
+@admin.register(ContactSection)
+class ContactSectionAdmin(admin.ModelAdmin):
+    form = ContactSectionAdminForm
+    list_display = ("order", "title")
+    list_editable = ("order",)
+    list_display_links = ("title",)
+    search_fields = ("title",)
+    ordering = ("order",)
+    prepopulated_fields = {"slug": ("title",)}
+    fieldsets = ((None, {"fields": ("title", "slug", "order", "content")}),)
+    inlines = [ContactDocumentInline]
+
+
+@admin.register(ContactDocument)
+class ContactDocumentAdmin(admin.ModelAdmin):
+    list_display = ("name", "section")
+    list_filter = ("section",)
+    search_fields = ("name",)

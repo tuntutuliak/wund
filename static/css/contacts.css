@@ -55,10 +55,28 @@
 }
 
 .contacts-page .menu-item {
-  padding: 0.8rem 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease, border-left-color 0.2s ease;
+  padding: 0;
   border-left: 3px solid transparent;
+  transition: border-left-color 0.2s ease;
+}
+
+.contacts-page .contacts-nav-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.8rem 1rem;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.contacts-page .contacts-nav-link:hover {
+  background-color: #f5f7fa;
+}
+
+.contacts-page .menu-item.active .contacts-nav-link {
+  font-weight: bold;
 }
 
 .contacts-page .menu-item:hover {
@@ -77,8 +95,9 @@
   min-width: 0;
 }
 
-.contacts-page .main-content section {
+.contacts-page .main-content section.contacts-section {
   margin-bottom: 3rem;
+  scroll-margin-top: 1.5rem;
 }
 
 .contacts-page .main-content h2 {
@@ -128,18 +147,50 @@
   margin-bottom: 1rem;
 }
 
+.contacts-page .document-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .contacts-page .document-item {
+  margin-bottom: 0.5rem;
+}
+
+.contacts-page .document-link {
   display: flex;
   align-items: center;
-  padding: 0.75rem;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
   border-radius: 4px;
   background-color: #f5f7fa;
-  margin-bottom: 0.5rem;
+  color: #333;
+  text-decoration: none;
   transition: background-color 0.2s ease;
 }
 
-.contacts-page .document-item:hover {
+.contacts-page .document-link:hover {
   background-color: #e9edf3;
+}
+
+.contacts-page .document-download {
+  font-size: 0.875rem;
+  color: var(--color-primary, #009966);
+}
+
+.contacts-page .contacts-section-body h3 {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.contacts-page .contacts-section-body p {
+  margin-bottom: 0.75rem;
+}
+
+.contacts-page .contacts-section-body ul {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
 }
 
 .contacts-page .document-icon {

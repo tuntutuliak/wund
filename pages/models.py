@@ -65,7 +65,7 @@ class Teacher(models.Model):
 
 
 class EducationSection(models.Model):
-    """Раздел страницы «Сведения об образовательной организации»."""
+    """Раздел страницы «Сведения об образовательной организации» (/organization/)."""
     title = models.CharField("Название", max_length=255)
     slug = models.SlugField("Якорь (slug)", max_length=255, unique=True)
     order = models.PositiveIntegerField("Порядок", default=0)
@@ -79,3 +79,38 @@ class EducationSection(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ContactSection(models.Model):
+    """Раздел страницы «Контакты и сведения об образовательной организации» (/contacts/)."""
+    title = models.CharField("Название", max_length=255)
+    slug = models.SlugField("Якорь (для навигации)", max_length=255, unique=True)
+    content = models.TextField("Содержимое (HTML)", blank=True)
+    order = models.IntegerField("Порядок", default=0)
+
+    class Meta:
+        verbose_name = "Раздел (контакты)"
+        verbose_name_plural = "Разделы (контакты и сведения)"
+        ordering = ["order"]
+
+    def __str__(self):
+        return self.title
+
+
+class ContactDocument(models.Model):
+    """Документ, прикреплённый к разделу страницы контактов."""
+    section = models.ForeignKey(
+        ContactSection,
+        on_delete=models.CASCADE,
+        related_name="documents",
+        verbose_name="Раздел",
+    )
+    name = models.CharField("Название документа", max_length=255)
+    file = models.FileField("Файл", upload_to="contacts_docs/%Y/%m/")
+
+    class Meta:
+        verbose_name = "Документ (контакты)"
+        verbose_name_plural = "Документы (контакты)"
+
+    def __str__(self):
+        return self.name

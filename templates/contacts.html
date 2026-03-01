@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Контакты — Школа{% endblock %}
+{% block title %}Контакты и сведения об образовательной организации — Школа{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/contacts.css' %}">
@@ -13,7 +13,7 @@
     <div class="container breadcrumbs-custom-container">
       <div class="breadcrumbs-custom-main">
         <h6 class="breadcrumbs-custom-subtitle title-decorated">Навигация</h6>
-        <h2 class="breadcrumbs-custom-title">Контакты</h2>
+        <h2 class="breadcrumbs-custom-title">Контакты и сведения об образовательной организации</h2>
       </div>
       <ul class="breadcrumbs-custom-path">
         <li><a href="{% url 'home' %}">Главная</a></li>
@@ -26,145 +26,60 @@
 
 <section class="contacts-page-content contacts-page section">
   <div class="contacts-main">
+    {% if sections %}
     <aside class="sidebar">
-      <nav class="sidebar-menu">
-        <div class="menu-header">Контакты и сведения об образовательной организации</div>
-        <ul class="menu-items">
-          <li class="menu-item active"><span>01</span> Основные сведения</li>
-          <li class="menu-item"><span>02</span> Структура и органы управления образовательной организацией</li>
-          <li class="menu-item"><span>03</span> Документы</li>
-          <li class="menu-item"><span>04</span> Образование</li>
-          <li class="menu-item"><span>05</span> Руководство</li>
-          <li class="menu-item"><span>06</span> Педагогический состав</li>
-          <li class="menu-item"><span>07</span> Материально-техническое обеспечение и оснащенность образовательного процесса</li>
-          <li class="menu-item"><span>08</span> Платные образовательные услуги</li>
-          <li class="menu-item"><span>09</span> Финансово-хозяйственная деятельность</li>
-          <li class="menu-item"><span>10</span> Вакантные места для приема (перевода) обучающихся</li>
-          <li class="menu-item"><span>11</span> Стипендии и меры поддержки обучающихся</li>
-          <li class="menu-item"><span>12</span> Международное сотрудничество</li>
-          <li class="menu-item"><span>13</span> Организация питания в образовательной организации</li>
-          <li class="menu-item"><span>14</span> Безопасность</li>
+      <nav class="sidebar-menu" aria-label="Разделы страницы">
+        <div class="menu-header">Разделы</div>
+        <ul class="menu-items" id="contacts-nav-list">
+          {% for section in sections %}
+          <li class="menu-item js-contacts-nav-item" data-slug="{{ section.slug }}">
+            <a href="#{{ section.slug }}" class="contacts-nav-link">
+              <span>{{ forloop.counter|stringformat:"02d" }}</span>
+              <span>{{ section.title }}</span>
+            </a>
+          </li>
+          {% endfor %}
         </ul>
       </nav>
     </aside>
+    {% endif %}
 
-    <section class="main-content">
-      <article class="info-block">
-        <h2>Основные сведения</h2>
-
-        <p>Полное наименование образовательной организации: Общество с ограниченной отвественностью «Вундер»</p>
-
-        <p>Сокращенное наименование образовательной организации: ООО «Вундер»</p>
-
-        <p>Дата создания образовательной организации: 26 августа 2009 г.</p>
-
-        <p>Сведения об учредителе: ******************</p>
-        <br/>
-
-        <h3>Местонахождение образовательной организации:</h3>
-        <p>Юридический адрес: 690911, Приморский край, г. Владивосток, ул. Адмирала Горшкова, д.52, помещ. 1/2</p>
-        <p>Место осуществления образовательной деятельности:</p>
-        <p>690911, г. Владивосток, Приморский край, г.Владивосток, ул. Адмирала Горшкова, д. 52, к. 1, помещ. 1/2 <br/> — адрес местонахождения средней школы  ООО «Вундер»</p>
-        <p>690101, г. Владивосток, Приморский край,  г.Владивосток,Океанский проспект 101А, оф.18-34 <br/> — адрес местонахождения старшей школы  ООО «Вундер»</p><br/>
-
-        <h3>Адрес электронной почты: info@wunder.education</h3>
-
-        <h3>Телефон: +7 (902) 506-74-44</h3>
-
-        <h3>График работы:</h3>
-        <p>Пн — Пт — 8:00-20:00<br>Сб — 8:00-18:00</p>
-
-        <h3>Режим занятий обучающихся:</h3>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Режим занятий обучающихся</th>
-              <th>Дошкольное образование</th>
-              <th>Начальное общее образование</th>
-              <th>Основное общее образование</th>
-              <th>Среднее общее образование</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Продолжительность учебной недели</td>
-              <td>5 дней</td>
-              <td>5 дней</td>
-              <td>6 дней</td>
-              <td>6 дней</td>
-            </tr>
-            <tr>
-              <td>Продолжительность уроков</td>
-              <td>25-30 минут</td>
-              <td>40 минут</td>
-              <td>40 минут</td>
-              <td>40 минут</td>
-            </tr>
-            <tr>
-              <td>Периодичность проведения промежуточной аттестации обучающихся</td>
-              <td>не проводится</td>
-              <td>учебный модуль, полугодие</td>
-              <td>полугодие</td>
-              <td>полногодие</td>
-            </tr>
-          </tbody>
-        </table>
-      </article>
-
-      <section class="documents-section">
-        <h3>Сведения о государственной регистрации некоммерческой организации</h3>
-
-        <div class="document-item">
-          <img src="{% static 'img/placeholder.jpg' %}" alt="" class="document-icon">
-          <span>Свидетельство о государственной регистрации некоммерческой организации</span>
+    <div class="main-content">
+      {% for section in sections %}
+      <section id="{{ section.slug }}" class="contacts-section info-block" data-slug="{{ section.slug }}">
+        <h2>{{ section.title }}</h2>
+        <div class="contacts-section-body">
+          {% if section.content %}
+          {{ section.content|safe }}
+          {% else %}
+          <p class="text-muted">Содержимое раздела можно заполнить в админ-панели.</p>
+          {% endif %}
         </div>
-
-        <div class="document-item">
-          <img src="{% static 'img/placeholder.jpg' %}" alt="" class="document-icon">
-          <span>Свидетельство о государственной регистрации юридического лица</span>
+        {% if section.documents_list %}
+        <div class="documents-section">
+          <h3>Документы</h3>
+          <ul class="document-list">
+            {% for doc in section.documents_list %}
+            <li class="document-item">
+              <a href="{{ doc.file.url }}" target="_blank" rel="noopener noreferrer" class="document-link">
+                <span class="document-name">{{ doc.name }}</span>
+                <span class="document-download">Скачать</span>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
         </div>
-
-        <div class="document-item">
-          <img src="{% static 'img/placeholder.jpg' %}" alt="" class="document-icon">
-          <span>Свидетельство о постановке на налоговый учет</span>
-        </div>
-
-        <div class="document-item">
-          <img src="{% static 'img/placeholder.jpg' %}" alt="" class="document-icon">
-          <span>Свидетельство о государственной регистрации некоммерческой организации (аин)</span>
-        </div>
-
-        <div class="document-item">
-          <img src="{% static 'img/placeholder.jpg' %}" alt="" class="document-icon">
-          <span>Свидетельство о государственной аккредитации</span>
-        </div>
-
-        <div class="document-item">
-          <img src="{% static 'img/placeholder.jpg' %}" alt="" class="document-icon">
-          <span>Лицензия на осуществление образовательной деятельности</span>
-        </div>
+        {% endif %}
       </section>
-
-      <article class="info-block">
-        <h2>Структура и органы управления образовательной организацией</h2>
-
-        <p><strong>Наименование:</strong> старшая школа </p>
-
-        <p><strong>Руководитель:</strong> директор, Ермак Анна Владимировна</p>
-
-        <p><strong>Адрес:</strong> 690100, г. Владивосток, Океанский проспект 101А, оф.18-34</p>
-
-        <p><strong>Адрес официального сайта в сети "Интернет":</strong> wunder.education</p>
-
-        <p><strong>Электронная почта:</strong> info@wunder.education</p>
-
-  </article>
-    </section>
+      {% empty %}
+      <p class="text-gray-800">Разделы не добавлены. Добавьте разделы в админ-панели или проверьте настройки.</p>
+      {% endfor %}
+    </div>
   </div>
 </section>
 {% endblock %}
 
 {% block extra_js %}
 <script src="{% static 'js/contacts.js' %}"></script>
+<script src="{% static 'js/contacts-nav.js' %}"></script>
 {% endblock %}
