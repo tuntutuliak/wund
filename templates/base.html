@@ -346,6 +346,7 @@
         <div class="application-modal-success" id="application-modal-success">Заявка отправлена. Мы свяжемся с вами.</div>
         <form class="application-form" id="application-form" novalidate>
           {% csrf_token %}
+          <input type="hidden" name="source" id="application-form-source" value="">
           <div class="application-form-group">
             <label for="application-form-name">Имя</label>
             <input type="text" id="application-form-name" name="name" required placeholder="Введите имя">
@@ -464,6 +465,10 @@
 
           function openModal(trigger) {
             lastFocusedTrigger = trigger || null;
+            var sourceInput = document.getElementById('application-form-source');
+            if (sourceInput && trigger && trigger.getAttribute) {
+              sourceInput.value = trigger.getAttribute('data-application-source') || 'header';
+            }
             overlay.classList.add('active');
             overlay.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
