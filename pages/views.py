@@ -133,8 +133,12 @@ def teachers_catalog(request):
 
 
 def programms(request):
-    """Страница «Программы» (MOCK: список из MOCK_COURSES)."""
-    return render(request, 'programms.html', {'courses': MOCK_COURSES})
+    """Страница «Программы» (MOCK: список из MOCK_COURSES). GET ?program=slug для фильтра/подсветки."""
+    program_slug = request.GET.get('program', '').strip()
+    return render(request, 'programms.html', {
+        'courses': MOCK_COURSES,
+        'program_filter': program_slug,
+    })
 
 
 def course_detail(request, slug):
