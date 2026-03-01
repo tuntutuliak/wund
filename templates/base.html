@@ -284,7 +284,7 @@
                       <li><a href="{% url 'events' %}">События</a></li>
                       <li><a href="{% url 'programs' %}">Образовательные программы</a></li>
                       <li><a href="{% url 'team' %}">Наша команда</a></li>
-                      <li><a href="{% url 'contacts' %}">Записаться</a></li>
+                      <li><a href="#" class="js-open-application-modal" data-application-modal-toggle data-application-source="footer" aria-label="Открыть форму заявки">Записаться</a></li>
                     </ul>
                   </div>
                   <div class="col-6 col-sm-3">
@@ -336,37 +336,8 @@
     </div>
     <!-- Global Mailform Output-->
     <div class="snackbars" id="form-output-global"></div>
-    <!-- Application modal (pencil button) -->
-    <div class="application-modal-overlay" id="application-modal-overlay" aria-hidden="true">
-      <div class="application-modal-content application-modal" role="dialog" aria-labelledby="application-modal-title">
-        <div class="application-modal-header">
-          <h2 id="application-modal-title">Оставить заявку</h2>
-          <button type="button" class="application-modal-close" id="application-modal-close" aria-label="Закрыть">×</button>
-        </div>
-        <div class="application-modal-success" id="application-modal-success">Заявка отправлена. Мы свяжемся с вами.</div>
-        <form class="application-form" id="application-form" novalidate>
-          {% csrf_token %}
-          <input type="hidden" name="source" id="application-form-source" value="">
-          <div class="application-form-group">
-            <label for="application-form-name">Имя</label>
-            <input type="text" id="application-form-name" name="name" required placeholder="Введите имя">
-          </div>
-          <div class="application-form-group">
-            <label for="application-form-phone">Телефон</label>
-            <input type="tel" id="application-form-phone" name="phone" required placeholder="Введите телефон">
-          </div>
-          <div class="application-form-group">
-            <label for="application-form-email">E-mail</label>
-            <input type="email" id="application-form-email" name="email" required placeholder="Введите e-mail">
-          </div>
-          <div class="application-form-group">
-            <label for="application-form-message">Сообщение</label>
-            <textarea id="application-form-message" name="message" rows="4" placeholder="Введите сообщение"></textarea>
-          </div>
-          <button type="submit" class="button button-block button-primary button-winona btn-primary">Отправить заявку</button>
-        </form>
-      </div>
-    </div>
+    <!-- Application modal: single include, one form in DOM -->
+    {% include 'includes/application_form.html' %}
     <!-- Javascript-->
     <script src="{% static 'js/core.min.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
@@ -455,7 +426,7 @@
       (function() {
         document.addEventListener('DOMContentLoaded', function() {
           var overlay = document.getElementById('application-modal-overlay');
-          var openTriggers = document.querySelectorAll('[data-application-modal-toggle]');
+          var openTriggers = document.querySelectorAll('[data-application-modal-toggle], .js-open-application-modal');
           var closeBtn = document.getElementById('application-modal-close');
           var form = document.getElementById('application-form');
           var successEl = document.getElementById('application-modal-success');

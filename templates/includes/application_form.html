@@ -1,0 +1,34 @@
+{% comment %}
+  Centralized application/contact form modal.
+  Include once in base.html. Open via .js-open-application-modal or [data-application-modal-toggle].
+{% endcomment %}
+<div class="application-modal-overlay" id="application-modal-overlay" aria-hidden="true">
+  <div class="application-modal-content application-modal" role="dialog" aria-labelledby="application-modal-title" aria-modal="true">
+    <div class="application-modal-header">
+      <h2 id="application-modal-title">Оставить заявку</h2>
+      <button type="button" class="application-modal-close" id="application-modal-close" aria-label="Закрыть">×</button>
+    </div>
+    <div class="application-modal-success" id="application-modal-success">Заявка отправлена. Мы свяжемся с вами.</div>
+    <form class="application-form" id="application-form" novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="source" id="application-form-source" value="">
+      <div class="application-form-group">
+        <label for="application-form-name">Имя</label>
+        <input type="text" id="application-form-name" name="name" required placeholder="Введите имя">
+      </div>
+      <div class="application-form-group">
+        <label for="application-form-phone">Телефон</label>
+        <input type="tel" id="application-form-phone" name="phone" required placeholder="Введите телефон">
+      </div>
+      <div class="application-form-group">
+        <label for="application-form-email">E-mail</label>
+        <input type="email" id="application-form-email" name="email" required placeholder="Введите e-mail">
+      </div>
+      <div class="application-form-group">
+        <label for="application-form-message">Сообщение</label>
+        <textarea id="application-form-message" name="message" rows="4" placeholder="Введите сообщение"></textarea>
+      </div>
+      <button type="submit" class="button button-block button-primary button-winona btn-primary">Отправить заявку</button>
+    </form>
+  </div>
+</div>
