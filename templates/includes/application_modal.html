@@ -1,0 +1,40 @@
+{% comment %}
+  Модальное окно «Оставить заявку». Один раз подключается в base.html.
+  Открытие: .js-open-application-modal или [data-application-modal-toggle].
+  Отправка: AJAX POST на {% url 'application_submit' %}.
+{% endcomment %}
+<div class="application-modal-overlay" id="application-modal-overlay" aria-hidden="true">
+  <div class="application-modal-content application-modal" role="dialog" aria-labelledby="application-modal-title" aria-modal="true">
+    <div class="application-modal-header">
+      <h2 id="application-modal-title">Оставить заявку</h2>
+      <button type="button" class="application-modal-close" id="application-modal-close" aria-label="Закрыть">×</button>
+    </div>
+    <div class="application-modal-success" id="application-modal-success">Заявка отправлена. Мы свяжемся с вами.</div>
+    <div id="application-form-errors" class="application-form-errors" aria-live="polite"></div>
+    <form class="application-form" id="application-form" action="{% url 'application_submit' %}" method="post" novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="source" id="application-form-source" value="">
+      <div class="application-form-group">
+        <label for="id_name">Имя</label>
+        {{ application_form.name }}
+        <span class="application-field-error" data-field="name"></span>
+      </div>
+      <div class="application-form-group">
+        <label for="id_phone">Телефон</label>
+        {{ application_form.phone }}
+        <span class="application-field-error" data-field="phone"></span>
+      </div>
+      <div class="application-form-group">
+        <label for="id_email">E-mail</label>
+        {{ application_form.email }}
+        <span class="application-field-error" data-field="email"></span>
+      </div>
+      <div class="application-form-group">
+        <label for="id_message">Сообщение</label>
+        {{ application_form.message }}
+        <span class="application-field-error" data-field="message"></span>
+      </div>
+      <button type="submit" class="button button-block button-primary button-winona btn-primary">Отправить заявку</button>
+    </form>
+  </div>
+</div>

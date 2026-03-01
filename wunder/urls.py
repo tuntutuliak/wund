@@ -9,6 +9,7 @@ from wunder.admin_site import admin_site
 urlpatterns = [
     path("subscribe/", views.subscribe_view, name="subscribe"),
     path("subscribe/confirm/<uuid:token>/", views.confirm_subscription_view, name="confirm_subscription"),
+    path("application/submit/", views.application_submit_view, name="application_submit"),
     path("admin/", admin_site.urls),
     path("", views.home, name="home"),
     path("testimonials/", views.testimonials, name="testimonials"),

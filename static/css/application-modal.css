@@ -124,6 +124,28 @@
   display: block;
 }
 
+.application-form-errors {
+  display: none;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  background-color: #f8d7da;
+  color: #721c24;
+  font-size: 0.9375rem;
+}
+
+.application-field-error {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  color: #dc3545;
+}
+
+.application-form-group.has-error input,
+.application-form-group.has-error textarea {
+  border-color: #dc3545;
+}
+
 /* Desktop: centered, max-width, scale animation */
 @media (min-width: 769px) {
   .application-modal-overlay {

@@ -337,7 +337,7 @@
     <!-- Global Mailform Output-->
     <div class="snackbars" id="form-output-global"></div>
     <!-- Application modal: single include, one form in DOM -->
-    {% include 'includes/application_form.html' %}
+    {% include 'includes/application_modal.html' %}
     <!-- Javascript-->
     <script src="{% static 'js/core.min.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
@@ -473,17 +473,61 @@
           });
 
           if (form) {
+            var errorsBlock = document.getElementById('application-form-errors');
+            var fieldErrors = form.querySelectorAll('.application-field-error');
+            function clearErrors() {
+              if (errorsBlock) errorsBlock.textContent = '';
+              errorsBlock.style.display = 'none';
+              fieldErrors.forEach(function(span) { span.textContent = ''; });
+              form.querySelectorAll('.application-form-group').forEach(function(g) { g.classList.remove('has-error'); });
+            }
             form.addEventListener('submit', function(e) {
               e.preventDefault();
-              var data = new FormData(form);
-              var obj = {};
-              data.forEach(function(v, k) { obj[k] = v; });
-              console.log('Application form data:', obj);
-              successEl.classList.add('visible');
-              setTimeout(function() {
-                successEl.classList.remove('visible');
-                closeModal();
-              }, 2500);
+              clearErrors();
+              var submitBtn = form.querySelector('button[type="submit"]');
+              if (submitBtn) submitBtn.disabled = true;
+              var fd = new FormData(form);
+              var csrfInput = form.querySelector('input[name="csrfmiddlewaretoken"]');
+              var token = csrfInput && csrfInput.value ? csrfInput.value : (document.cookie.match(/csrftoken=([^;]+)/) || [])[1];
+              fetch(form.getAttribute('action'), {
+                method: 'POST',
+                body: fd,
+                headers: token ? { 'X-CSRFToken': token } : {},
+                credentials: 'same-origin'
+              }).then(function(r) {
+                return r.json().then(function(data) {
+                  return { ok: r.ok, status: r.status, data: data };
+                }).catch(function() {
+                  return { ok: false, status: r.status, data: { errors: { __all__: ['Ошибка сервера.'] } } };
+                });
+              }).catch(function() {
+                return { ok: false, data: { errors: { __all__: ['Ошибка сети. Попробуйте позже.'] } } };
+              }).then(function(result) {
+                if (submitBtn) submitBtn.disabled = false;
+                if (result.ok && result.data.success) {
+                  successEl.classList.add('visible');
+                  form.reset();
+                  setTimeout(function() {
+                    successEl.classList.remove('visible');
+                    closeModal();
+                  }, 2500);
+                } else {
+                  var errors = result.data.errors || {};
+                  if (errors.__all__ && errors.__all__.length) {
+                    if (errorsBlock) {
+                      errorsBlock.textContent = errors.__all__[0];
+                      errorsBlock.style.display = 'block';
+                    }
+                  }
+                  Object.keys(errors).forEach(function(key) {
+                    if (key === '__all__') return;
+                    var span = form.querySelector('.application-field-error[data-field="' + key + '"]');
+                    var group = form.querySelector('[name="' + key + '"]');
+                    if (span && errors[key][0]) span.textContent = errors[key][0];
+                    if (group && group.closest) group.closest('.application-form-group').classList.add('has-error');
+                  });
+                }
+              });
             });
           }
         });

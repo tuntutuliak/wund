@@ -12,13 +12,14 @@ from django.core.mail import send_mail
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import ensure_csrf_cookie
 
-from .models import News, Teacher, ContactSection, Subscriber
-from .forms import SubscribeForm
+from .models import News, Teacher, ContactSection, Subscriber, Application
+from .forms import SubscribeForm, ApplicationForm
 from .utils import get_client_ip
 
 logger = logging.getLogger(__name__)
 
 SUBSCRIBE_RATE_LIMIT_SECONDS = 60
+APPLICATION_RATE_LIMIT_SECONDS = 60
 
 # MOCK DATA – replace with real database later
 MOCK_COURSES = [
@@ -275,3 +276,55 @@ def confirm_subscription_view(request, token):
         subscriber.save(update_fields=["is_active", "confirmed_at"])
         messages.success(request, "Подписка успешно подтверждена. Спасибо!")
     return render(request, "subscribe_confirm.html", {"subscriber": subscriber})
+
+
+def _check_application_rate_limit(request):
+    """Один запрос заявки в APPLICATION_RATE_LIMIT_SECONDS по сессии."""
+    key = "application_last_attempt"
+    now = time.time()
+    last = request.session.get(key)
+    if last is not None and (now - last) < APPLICATION_RATE_LIMIT_SECONDS:
+        return False
+    request.session[key] = now
+    return True
+
+
+@require_http_methods(["POST"])
+def application_submit_view(request):
+    """POST: принять заявку, сохранить в БД, отправить письмо-подтверждение. Ответ JSON."""
+    if not _check_application_rate_limit(request):
+        return JsonResponse(
+            {"success": False, "errors": {"__all__": ["Слишком частые запросы. Попробуйте позже."]}},
+            status=429,
+        )
+    form = ApplicationForm(request.POST)
+    if not form.is_valid():
+        errors = {k: [str(e) for e in v] for k, v in form.errors.items()}
+        return JsonResponse({"success": False, "errors": errors}, status=400)
+    try:
+        with transaction.atomic():
+            application = form.save()
+        email = application.email
+        from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "noreply@example.com")
+        subject = "Ваша заявка принята"
+        ctx = {"name": application.name, "message_text": application.message or "—"}
+        html_message = render_to_string("emails/application_confirm.html", ctx)
+        text_message = render_to_string("emails/application_confirm.txt", ctx)
+        send_mail(
+            subject=subject,
+            message=text_message,
+            from_email=from_email,
+            recipient_list=[email],
+            fail_silently=False,
+            html_message=html_message,
+        )
+        return JsonResponse({
+            "success": True,
+            "message": "Заявка отправлена. Мы свяжемся с вами в ближайшее время.",
+        })
+    except Exception as e:
+        logger.exception("Application submit error: %s", e)
+        return JsonResponse(
+            {"success": False, "errors": {"__all__": ["Произошла ошибка. Попробуйте позже."]}},
+            status=500,
+        )
