@@ -62,3 +62,20 @@ class Teacher(models.Model):
 
     def __str__(self):
         return self.full_name
+
+
+class EducationSection(models.Model):
+    """Раздел страницы «Сведения об образовательной организации»."""
+    title = models.CharField("Название", max_length=255)
+    slug = models.SlugField("Якорь (slug)", max_length=255, unique=True)
+    order = models.PositiveIntegerField("Порядок", default=0)
+    content = models.TextField("Содержимое (HTML)", blank=True)
+    is_active = models.BooleanField("Показывать на странице", default=True)
+
+    class Meta:
+        verbose_name = "Раздел (сведения)"
+        verbose_name_plural = "Разделы (сведения об организации)"
+        ordering = ["order"]
+
+    def __str__(self):
+        return self.title

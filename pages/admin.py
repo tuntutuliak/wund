@@ -4,7 +4,7 @@ from django.templatetags.static import static
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
-from .models import Course, News, Teacher
+from .models import Course, News, Teacher, EducationSection
 
 User._meta.verbose_name = "Пользователь"
 User._meta.verbose_name_plural = "Пользователи"
@@ -56,3 +56,13 @@ class TeacherAdmin(admin.ModelAdmin):
     list_display = ("full_name", "subject", "is_active")
     list_filter = ("is_active",)
     search_fields = ("full_name", "subject")
+
+
+@admin.register(EducationSection)
+class EducationSectionAdmin(admin.ModelAdmin):
+    list_display = ("order", "title", "slug", "is_active")
+    list_editable = ("is_active",)
+    list_display_links = ("title",)
+    prepopulated_fields = {"slug": ("title",)}
+    search_fields = ("title",)
+    ordering = ("order",)

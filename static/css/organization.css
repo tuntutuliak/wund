@@ -1,0 +1,170 @@
+/* Сведения об образовательной организации: двухколоночный layout */
+
+.organization-hero {
+  background-image: url("../img/wunder-bg1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.organization-hero .breadcrumbs-custom-title {
+  font-size: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .organization-hero {
+    min-height: 280px;
+  }
+}
+
+/* Layout: левая колонка 25–30%, правая 70–75% */
+.organization-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 992px) {
+  .organization-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
+}
+
+/* Левая колонка — навигация */
+.organization-nav {
+  flex-shrink: 0;
+}
+
+@media (min-width: 992px) {
+  .organization-nav {
+    width: 28%;
+    position: sticky;
+    top: 1.5rem;
+  }
+}
+
+.organization-nav-inner {
+  background: var(--card-bg, #f8f9fa);
+  border: 1px solid var(--border-color, #e9ecef);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.organization-nav-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: #333;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color, #dee2e6);
+}
+
+.organization-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.organization-nav-item {
+  margin: 0;
+  padding: 0;
+}
+
+.organization-nav-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  color: #495057;
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.organization-nav-link:last-child {
+  border-bottom: none;
+}
+
+.organization-nav-link:hover {
+  color: #0d6efd;
+}
+
+.organization-nav-link.is-active {
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+.organization-nav-num {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  color: #6c757d;
+}
+
+.organization-nav-link.is-active .organization-nav-num {
+  color: #0d6efd;
+}
+
+.organization-nav-text {
+  flex: 1;
+}
+
+/* Правая колонка — контент */
+.organization-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.organization-section {
+  scroll-margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.organization-section:last-child {
+  margin-bottom: 0;
+}
+
+.organization-section-body {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Типографика контента (h2, h3, p, ul) */
+.organization-section-body h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border-color, #eee);
+  color: #212529;
+}
+
+.organization-section-body h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.5rem 0;
+  color: #333;
+}
+
+.organization-section-body p {
+  margin: 0 0 0.75rem 0;
+}
+
+.organization-section-body ul {
+  margin: 0 0 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.organization-section-body li {
+  margin-bottom: 0.25rem;
+}
+
+.organization-section-body .text-muted {
+  color: #6c757d;
+  font-style: italic;
+}
