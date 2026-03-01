@@ -1,7 +1,24 @@
+import logging
+import time
+from django.conf import settings
+from django.contrib import messages
+from django.db import transaction
+from django.http import Http404, JsonResponse
 from django.shortcuts import render, get_object_or_404
-from django.http import Http404
+from django.template.loader import render_to_string
+from django.urls import reverse
+from django.utils import timezone
+from django.core.mail import send_mail
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import ensure_csrf_cookie
 
-from .models import News, Teacher, ContactSection
+from .models import News, Teacher, ContactSection, Subscriber
+from .forms import SubscribeForm
+from .utils import get_client_ip
+
+logger = logging.getLogger(__name__)
+
+SUBSCRIBE_RATE_LIMIT_SECONDS = 60
 
 # MOCK DATA – replace with real database later
 MOCK_COURSES = [
@@ -167,3 +184,94 @@ def events(request):
 
 def group_course(request):
     return render(request, 'group_course.html')
+
+
+def _check_subscribe_rate_limit(request):
+    """Session-based rate limit: один запрос подписки в SUBSCRIBE_RATE_LIMIT_SECONDS."""
+    key = "subscribe_last_attempt"
+    now = time.time()
+    last = request.session.get(key)
+    if last is not None and (now - last) < SUBSCRIBE_RATE_LIMIT_SECONDS:
+        return False
+    request.session[key] = now
+    return True
+
+
+@require_http_methods(["POST"])
+def subscribe_view(request):
+    """POST: принять подписку, сохранить в БД, отправить письмо подтверждения. Ответ JSON."""
+    if not _check_subscribe_rate_limit(request):
+        return JsonResponse(
+            {"success": False, "errors": {"__all__": ["Слишком частые запросы. Попробуйте позже."]}},
+            status=429,
+        )
+    form = SubscribeForm(request.POST)
+    if not form.is_valid():
+        errors = {k: [str(e) for e in v] for k, v in form.errors.items()}
+        return JsonResponse({"success": False, "errors": errors}, status=400)
+    if form.cleaned_data.get("website"):
+        return JsonResponse({
+            "success": True,
+            "message": "Проверьте почту: мы отправили ссылку для подтверждения подписки.",
+        })
+    email = form.cleaned_data["email"].lower().strip()
+    ip = get_client_ip(request)
+    user_agent = request.META.get("HTTP_USER_AGENT", "")[:500]
+    try:
+        with transaction.atomic():
+            subscriber, created = Subscriber.objects.get_or_create(
+                email=email,
+                defaults={
+                    "ip_address": ip or None,
+                    "user_agent": user_agent,
+                },
+            )
+            if not created:
+                subscriber.ip_address = ip or subscriber.ip_address
+                subscriber.user_agent = user_agent
+                subscriber.save(update_fields=["ip_address", "user_agent"])
+            if subscriber.is_active:
+                return JsonResponse({
+                    "success": True,
+                    "message": "Вы уже подписаны на рассылку.",
+                })
+            confirm_url = request.build_absolute_uri(
+                reverse("confirm_subscription", kwargs={"token": str(subscriber.confirmation_token)})
+            )
+            subject = "Подтвердите подписку на рассылку"
+            from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "noreply@example.com")
+            ctx = {"confirm_url": confirm_url}
+            html_message = render_to_string("emails/subscribe_confirm.html", ctx)
+            text_message = render_to_string("emails/subscribe_confirm.txt", ctx)
+            send_mail(
+                subject=subject,
+                message=text_message,
+                from_email=from_email,
+                recipient_list=[email],
+                fail_silently=False,
+                html_message=html_message,
+            )
+        return JsonResponse({
+            "success": True,
+            "message": "Проверьте почту: мы отправили ссылку для подтверждения подписки.",
+        })
+    except Exception as e:
+        logger.exception("Subscribe error for %s: %s", email, e)
+        return JsonResponse(
+            {"success": False, "errors": {"__all__": ["Произошла ошибка. Попробуйте позже."]}},
+            status=500,
+        )
+
+
+@require_http_methods(["GET"])
+def confirm_subscription_view(request, token):
+    """Подтверждение подписки по токену из письма."""
+    subscriber = get_object_or_404(Subscriber, confirmation_token=token)
+    if subscriber.is_active:
+        messages.success(request, "Ваша подписка уже была подтверждена ранее.")
+    else:
+        subscriber.is_active = True
+        subscriber.confirmed_at = timezone.now()
+        subscriber.save(update_fields=["is_active", "confirmed_at"])
+        messages.success(request, "Подписка успешно подтверждена. Спасибо!")
+    return render(request, "subscribe_confirm.html", {"subscriber": subscriber})

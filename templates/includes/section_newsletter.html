@@ -5,15 +5,20 @@
       <div class="col-sm-10 col-md-8 col-lg-7 col-xl-6">
         <h2 class="wow-outer text-title-block-white"><span class="wow slideInUp">Подписка на новости</span></h2>
         <p class="text-white text-left wow-outer"><span class="wow slideInLeft">Будьте в курсе наших новостей и обновлений. Введите ваш e-mail и подпишитесь на рассылку.</span></p>
-        <form class="rd-form rd-mailform form-inline wow fadeIn" data-wow-delay=".2s" data-form-output="form-output-global" data-form-type="subscribe" method="post" action="#">
+        <form id="subscribe-form" class="rd-form form-inline wow fadeIn js-subscribe-form" data-wow-delay=".2s" method="post" action="{% url 'subscribe' %}">
           {% csrf_token %}
+          {{ subscribe_form.website }}
           <div class="form-wrap">
-            <input class="form-input" id="subscribe-form-3-email" type="email" name="email" data-constraints="@Email @Required">
-            <label class="form-label" for="subscribe-form-3-email">Ваш e-mail</label>
+            <label class="form-label" for="subscribe-form-email">Ваш e-mail</label>
+            {{ subscribe_form.email }}
+            {% if subscribe_form.email.errors %}
+              <span class="form-validation-error">{{ subscribe_form.email.errors.0 }}</span>
+            {% endif %}
           </div>
           <div class="form-button">
             <button class="button button-primary button-winona button-secondary" type="submit">Подписаться</button>
           </div>
+          <div id="subscribe-form-message" class="mt-2" aria-live="polite"></div>
         </form>
       </div>
     </div>

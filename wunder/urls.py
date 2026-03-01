@@ -7,6 +7,8 @@ from pages import views
 from wunder.admin_site import admin_site
 
 urlpatterns = [
+    path("subscribe/", views.subscribe_view, name="subscribe"),
+    path("subscribe/confirm/<uuid:token>/", views.confirm_subscription_view, name="confirm_subscription"),
     path("admin/", admin_site.urls),
     path("", views.home, name="home"),
     path("testimonials/", views.testimonials, name="testimonials"),

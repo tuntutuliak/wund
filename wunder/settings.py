@@ -60,9 +60,22 @@ SECRET_KEY = get_env("DJANGO_SECRET_KEY", required=True)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = get_env("DJANGO_DEBUG", "False").lower() in ("true", "1", "yes")
 
-ALLOWED_HOSTS = [
-    h.strip() for h in get_env("DJANGO_ALLOWED_HOSTS", "").split(",") if h.strip()
+_default_hosts = ["localhost", "127.0.0.1"]
+_env_hosts = [h.strip() for h in get_env("DJANGO_ALLOWED_HOSTS", "").split(",") if h.strip()]
+ALLOWED_HOSTS = _env_hosts if _env_hosts else _default_hosts
+
+# CSRF: origins that are allowed to make cross-origin requests (scheme + host required)
+# Required in Django 4.0+ when Origin/Referer differ from request host (e.g. proxy, alternate port)
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "https://localhost:8000",
+    "https://127.0.0.1:8000",
 ]
+# Append any extra origins from env (comma-separated, e.g. https://mysite.com)
+_extra_csrf = get_env("DJANGO_CSRF_TRUSTED_ORIGINS", "")
+if _extra_csrf:
+    CSRF_TRUSTED_ORIGINS.extend([o.strip() for o in _extra_csrf.split(",") if o.strip()])
 
 
 # Application definition
@@ -102,6 +115,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "pages.context_processors.subscribe_form",
             ],
         },
     },

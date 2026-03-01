@@ -5,7 +5,7 @@ from django.templatetags.static import static
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
-from .models import Course, News, Teacher, ContactSection, ContactDocument
+from .models import Course, News, Teacher, ContactSection, ContactDocument, Subscriber
 
 try:
     from ckeditor.widgets import CKEditorWidget
@@ -99,3 +99,11 @@ class ContactDocumentAdmin(admin.ModelAdmin):
     list_display = ("name", "section")
     list_filter = ("section",)
     search_fields = ("name",)
+
+
+@admin.register(Subscriber)
+class SubscriberAdmin(admin.ModelAdmin):
+    list_display = ("email", "is_active", "created_at", "confirmed_at")
+    search_fields = ("email",)
+    list_filter = ("is_active", "created_at")
+    readonly_fields = ("confirmation_token", "created_at", "confirmed_at", "ip_address", "user_agent")

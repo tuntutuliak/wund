@@ -230,15 +230,20 @@
             <div class="col-sm-10 col-md-8 col-lg-7 col-xl-6">
               <h2 class="wow-outer text-title-block-white"><span class="wow slideInUp">Подписка на новости</span></h2>
               <p class="text-white text-left wow-outer"><span class="wow slideInLeft">Будьте в курсе наших новостей и обновлений. Введите ваш e-mail и подпишитесь на рассылку.</span></p>
-              <!-- RD Mailform-->
-              <form class="rd-form rd-mailform form-inline wow fadeIn" data-wow-delay=".2s" data-form-output="form-output-global" data-form-type="subscribe" method="post" action="#">
+              <form id="subscribe-form-base" class="rd-form form-inline wow fadeIn js-subscribe-form" data-wow-delay=".2s" method="post" action="{% url 'subscribe' %}">
+                {% csrf_token %}
+                {{ subscribe_form.website }}
                 <div class="form-wrap">
-                  <input class="form-input" id="subscribe-form-3-email" type="email" name="email" data-constraints="@Email @Required">
-                  <label class="form-label" for="subscribe-form-3-email">Ваш e-mail</label>
+                  <label class="form-label" for="subscribe-form-email">Ваш e-mail</label>
+                  {{ subscribe_form.email }}
+                  {% if subscribe_form.email.errors %}
+                    <span class="form-validation-error">{{ subscribe_form.email.errors.0 }}</span>
+                  {% endif %}
                 </div>
                 <div class="form-button">
                   <button class="button button-primary button-winona button-secondary" type="submit">Подписаться</button>
                 </div>
+                <div id="subscribe-form-message-base" class="mt-2" aria-live="polite"></div>
               </form>
             </div>
           </div>
@@ -366,6 +371,84 @@
     <script src="{% static 'js/script.js' %}"></script>
     <script src="{% static 'js/testimonials.js' %}"></script>
     {% block extra_js %}{% endblock %}
+    <!-- Subscribe form: AJAX submit with CSRF, no reload -->
+    <script>
+    (function() {
+      function getCookie(name) {
+        var c = document.cookie || '';
+        var parts = c.split(';');
+        for (var i = 0; i < parts.length; i++) {
+          var p = parts[i].replace(/^\s+|\s+$/g, '');
+          if (p.indexOf(name + '=') === 0)
+            return decodeURIComponent(p.slice(name.length + 1).replace(/^"|"$/g, ''));
+        }
+        return null;
+      }
+      function getCsrfToken(form) {
+        var input = form.querySelector('input[name="csrfmiddlewaretoken"]');
+        if (input && input.value) return input.value;
+        return getCookie('csrftoken');
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        var forms = document.querySelectorAll('.js-subscribe-form');
+        forms.forEach(function(form) {
+          var msgEl = form.querySelector('[id^="subscribe-form-message"]');
+          if (!msgEl) msgEl = form.querySelector('.mt-2');
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+              submitBtn.disabled = true;
+              submitBtn.setAttribute('aria-busy', 'true');
+            }
+            if (msgEl) msgEl.textContent = '';
+            var fd = new FormData(form);
+            var token = getCsrfToken(form);
+            var headers = {};
+            if (token) headers['X-CSRFToken'] = token;
+            fetch(form.getAttribute('action'), {
+              method: 'POST',
+              body: fd,
+              headers: headers,
+              credentials: 'same-origin'
+            }).then(function(r) {
+              var ct = r.headers.get('Content-Type') || '';
+              if (ct.indexOf('application/json') !== -1) {
+                return r.json().then(function(data) {
+                  return { ok: r.ok, status: r.status, data: data };
+                });
+              }
+              if (r.status === 403) {
+                return { ok: false, status: 403, data: { errors: { '__all__': ['Ошибка безопасности (CSRF). Обновите страницу и попробуйте снова.'] } } };
+              }
+              return { ok: false, status: r.status, data: { errors: { '__all__': ['Ошибка сервера. Попробуйте позже.'] } } };
+            }).catch(function() {
+              return { ok: false, status: 0, data: { errors: { '__all__': ['Ошибка сети. Попробуйте позже.'] } } };
+            }).then(function(result) {
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.removeAttribute('aria-busy');
+              }
+              if (result.ok && result.data.success) {
+                if (msgEl) {
+                  msgEl.textContent = result.data.message || 'Готово.';
+                  msgEl.className = 'mt-2 text-success';
+                }
+                form.reset();
+              } else {
+                var errors = result.data.errors || {};
+                var text = (errors.__all__ && errors.__all__[0]) || (errors.email && errors.email[0]) || 'Исправьте ошибки в форме.';
+                if (msgEl) {
+                  msgEl.textContent = text;
+                  msgEl.className = 'mt-2 text-danger';
+                }
+              }
+            });
+          });
+        });
+      });
+    })();
+    </script>
     <!-- Application modal: open on pencil button, close on overlay/ESC/close btn, lock body scroll -->
     <script>
       (function() {

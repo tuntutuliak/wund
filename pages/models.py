@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.urls import reverse
 
@@ -97,3 +98,27 @@ class ContactDocument(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Subscriber(models.Model):
+    """Подписчик на рассылку (double opt-in)."""
+    email = models.EmailField("E-mail", unique=True, db_index=True)
+    is_active = models.BooleanField("Подтверждён", default=False)
+    confirmation_token = models.UUIDField(
+        "Токен подтверждения",
+        unique=True,
+        default=uuid.uuid4,
+        editable=False,
+    )
+    created_at = models.DateTimeField("Дата подписки", auto_now_add=True)
+    confirmed_at = models.DateTimeField("Дата подтверждения", null=True, blank=True)
+    ip_address = models.GenericIPAddressField("IP-адрес", null=True, blank=True)
+    user_agent = models.TextField("User-Agent", blank=True)
+
+    class Meta:
+        verbose_name = "Подписчик"
+        verbose_name_plural = "Подписчики"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return self.email

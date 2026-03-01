@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Подтвердите подписку</title>
+</head>
+<body style="font-family: sans-serif; line-height: 1.5; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <p>Здравствуйте!</p>
+  <p>Вы подписались на рассылку. Подтвердите подписку, нажав на кнопку ниже.</p>
+  <p style="margin: 24px 0;">
+    <a href="{{ confirm_url }}" style="display: inline-block; padding: 12px 24px; background: #007bff; color: #fff; text-decoration: none; border-radius: 6px;">Подтвердить подписку</a>
+  </p>
+  <p>Или скопируйте ссылку в браузер:</p>
+  <p><a href="{{ confirm_url }}" style="word-break: break-all;">{{ confirm_url }}</a></p>
+  <p style="font-size: 0.9em; color: #666;">Ссылка действительна 72 часа. Если вы не подписывались, проигнорируйте это письмо.</p>
+</body>
+</html>
