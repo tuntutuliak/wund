@@ -127,6 +127,6 @@ class ApplicationAdmin(admin.ModelAdmin):
 
 @admin.register(GroupCourseRequest)
 class GroupCourseRequestAdmin(admin.ModelAdmin):
-    list_display = ("name", "phone", "email", "group_type", "level", "schedule", "created_at", "processed")
+    list_display = ("name", "phone", "email", "group_type", "level", "schedule", "preferred_start_date", "created_at", "processed")
     list_filter = ("group_type", "level", "schedule", "processed", "created_at")
     search_fields = ("name", "phone", "email")

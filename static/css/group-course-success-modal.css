@@ -1,0 +1,65 @@
+.group-course-success-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.group-course-success-overlay[hidden] {
+  display: none;
+}
+
+.group-course-success-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.group-course-success-modal {
+  position: relative;
+  background: #fff;
+  border-radius: 4px;
+  padding: 1.5rem 2.5rem 1.5rem 1.5rem;
+  max-width: 420px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.group-course-success-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+.group-course-success-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #666;
+  cursor: pointer;
+}
+
+.group-course-success-close:hover {
+  color: #333;
+}
+
+.form-label-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.form-label-checkbox input {
+  margin: 0;
+}

@@ -157,17 +157,19 @@ class GroupCourseRequest(models.Model):
         ("3_per_week", "3 times per week"),
         ("daily", "Intensive (daily)"),
     ]
-    preferred_start_date = models.CharField(max_length=100, blank=True)
-    group_type = models.CharField(max_length=20, choices=GROUP_TYPE_CHOICES)
-    level = models.CharField(max_length=20, choices=LEVEL_CHOICES)
-    schedule = models.CharField(max_length=20, choices=SCHEDULE_CHOICES)
-    name = models.CharField(max_length=150)
-    phone = models.CharField(max_length=50)
-    email = models.EmailField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    processed = models.BooleanField(default=False)
+    preferred_start_date = models.DateField("Желаемая дата начала", null=True, blank=True)
+    group_type = models.CharField("Тип группы", max_length=20, choices=GROUP_TYPE_CHOICES)
+    level = models.CharField("Уровень", max_length=20, choices=LEVEL_CHOICES)
+    schedule = models.CharField("Расписание", max_length=20, choices=SCHEDULE_CHOICES)
+    name = models.CharField("Имя", max_length=150)
+    phone = models.CharField("Телефон", max_length=50)
+    email = models.EmailField("Email")
+    created_at = models.DateTimeField("Дата создания", auto_now_add=True)
+    processed = models.BooleanField("Обработано", default=False)
 
     class Meta:
+        verbose_name = "Заявка на групповой курс"
+        verbose_name_plural = "Заявки на групповые курсы"
         ordering = ["-created_at"]
 
     def __str__(self):

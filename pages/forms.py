@@ -81,24 +81,31 @@ class ApplicationForm(forms.ModelForm):
 
 
 GROUP_COURSE_INITIAL = {
-    "preferred_start_date": "",
+    "preferred_start_date": None,
     "group_type": "mini",
     "level": "beginner",
     "schedule": "2_per_week",
+    "any_date": False,
 }
 
 
 class GroupCourseRequestForm(forms.ModelForm):
+    any_date = forms.BooleanField(
+        label="Мне подходит любая дата",
+        required=False,
+        initial=False,
+        widget=forms.CheckboxInput(attrs={"class": "form-input-checkbox", "id": "id_any_date"}),
+    )
+
     class Meta:
         model = GroupCourseRequest
         fields = ("preferred_start_date", "group_type", "level", "schedule", "name", "phone", "email")
         widgets = {
-            "preferred_start_date": forms.TextInput(
+            "preferred_start_date": forms.DateInput(
                 attrs={
-                    "class": "form-input select2-input-gray",
-                    "placeholder": "Дата начала",
-                    "data-minimum-results-for-search": "Infinity",
-                    "data-container-class": "input-gray",
+                    "class": "form-input",
+                    "type": "date",
+                    "id": "id_preferred_start_date",
                 }
             ),
             "group_type": forms.Select(
@@ -142,6 +149,7 @@ class GroupCourseRequestForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("initial", {}).update(GROUP_COURSE_INITIAL)
         super().__init__(*args, **kwargs)
+        self.fields["preferred_start_date"].required = False
         self.fields["group_type"].choices = [
             ("mini", "Мини-группа (до 6 человек)"),
             ("standard", "Стандартная группа"),
@@ -160,3 +168,19 @@ class GroupCourseRequestForm(forms.ModelForm):
         self.fields["group_type"].required = True
         self.fields["level"].required = True
         self.fields["schedule"].required = True
+
+    def clean_preferred_start_date(self):
+        value = self.cleaned_data.get("preferred_start_date")
+        if self.data.get("any_date") == "on":
+            return None
+        return value
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if self.cleaned_data.get("any_date"):
+            instance.preferred_start_date = None
+        else:
+            instance.preferred_start_date = self.cleaned_data.get("preferred_start_date")
+        if commit:
+            instance.save()
+        return instance
