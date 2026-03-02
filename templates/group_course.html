@@ -65,15 +65,14 @@
                 <h2 class="wow-outer font-weight-bold text-gray-800"><span class="wow slideInUp">Записаться на курс</span></h2>
                 <form class="rd-form booking-form" method="post" action="">
                   {% csrf_token %}
-                  <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".2s">
+                  <div class="form-group wow fadeInLeftSmall" data-wow-delay=".2s">
+                    <label class="form-label-outside" for="id_preferred_start_date">Желаемая дата начала</label>
                     {{ form.preferred_start_date }}
                     {{ form.preferred_start_date.errors }}
-                  </div>
-                  <div class="form-wrap wow fadeInLeftSmall" data-wow-delay=".2s">
-                    <label class="form-label form-label-checkbox">
+                    <div class="checkbox-wrapper">
                       {{ form.any_date }}
-                      Мне подходит любая дата
-                    </label>
+                      <label for="id_any_date">Мне подходит любая дата</label>
+                    </div>
                     {{ form.any_date.errors }}
                   </div>
                   <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".2s">
@@ -95,17 +94,17 @@
                     </div>
                   </div>
                   <div class="form-wrap wow fadeInLeftSmall" data-wow-delay=".2s">
-                    <label class="form-label-outside" for="id_name">Имя</label>
+                    <label for="id_name">Имя</label>
                     {{ form.name }}
                     {{ form.name.errors }}
                   </div>
                   <div class="form-wrap wow fadeInLeftSmall" data-wow-delay=".2s">
-                    <label class="form-label-outside" for="id_phone">Телефон</label>
+                    <label for="id_phone">Телефон</label>
                     {{ form.phone }}
                     {{ form.phone.errors }}
                   </div>
                   <div class="form-wrap wow fadeInLeftSmall" data-wow-delay=".2s">
-                    <label class="form-label-outside" for="id_email">E-mail</label>
+                    <label for="id_email">E-mail</label>
                     {{ form.email }}
                     {{ form.email.errors }}
                   </div>
@@ -173,13 +172,10 @@
 
 {% block extra_js %}
 <script>
-(function () {
-  function hasSuccessParam() {
-    var params = new URLSearchParams(window.location.search);
-    return params.get("success") === "1";
-  }
+document.addEventListener("DOMContentLoaded", function() {
   var overlay = document.getElementById("group-course-success-overlay");
-  if (overlay && hasSuccessParam()) {
+  var params = new URLSearchParams(window.location.search);
+  if (overlay && params.get("success") === "1") {
     overlay.hidden = false;
     var backdrop = overlay.querySelector(".group-course-success-backdrop");
     var closeBtn = overlay.querySelector(".group-course-success-close");
@@ -195,16 +191,18 @@
       }
     });
   }
-  var anyDateCheck = document.getElementById("id_any_date");
+  var checkbox = document.getElementById("id_any_date");
   var dateInput = document.getElementById("id_preferred_start_date");
-  if (anyDateCheck && dateInput) {
-    function toggleDateInput() {
-      dateInput.disabled = anyDateCheck.checked;
-      if (anyDateCheck.checked) dateInput.value = "";
-    }
-    anyDateCheck.addEventListener("change", toggleDateInput);
-    toggleDateInput();
+  if (checkbox && dateInput) {
+    checkbox.addEventListener("change", function() {
+      if (this.checked) {
+        dateInput.value = "";
+        dateInput.disabled = true;
+      } else {
+        dateInput.disabled = false;
+      }
+    });
   }
-})();
+});
 </script>
 {% endblock %}

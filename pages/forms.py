@@ -123,9 +123,9 @@ class GroupCourseRequestForm(forms.ModelForm):
                     "data-dropdown-class": "select-gray",
                 }
             ),
-            "name": forms.TextInput(attrs={"class": "form-input", "placeholder": "Имя"}),
-            "phone": forms.TextInput(attrs={"class": "form-input", "placeholder": "Телефон"}),
-            "email": forms.EmailInput(attrs={"class": "form-input", "placeholder": "E-mail"}),
+            "name": forms.TextInput(attrs={"class": "form-input"}),
+            "phone": forms.TextInput(attrs={"class": "form-input"}),
+            "email": forms.EmailInput(attrs={"class": "form-input"}),
         }
         labels = {
             "preferred_start_date": "",

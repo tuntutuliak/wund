@@ -53,15 +53,26 @@
   color: #333;
 }
 
-.form-label-checkbox {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
+.rd-form.booking-form .form-group .form-label-outside,
+.rd-form.booking-form .form-wrap > label {
+  display: block;
+  margin-bottom: 4px;
 }
 
-.form-label-checkbox input {
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.checkbox-wrapper input {
   margin: 0;
+}
+
+.checkbox-wrapper label {
+  margin: 0;
+  cursor: pointer;
 }
 
 .rd-form.booking-form .form-input:focus,
