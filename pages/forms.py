@@ -80,15 +80,6 @@ class ApplicationForm(forms.ModelForm):
         return value
 
 
-GROUP_COURSE_INITIAL = {
-    "preferred_start_date": None,
-    "group_type": "mini",
-    "level": "beginner",
-    "schedule": "2_per_week",
-    "any_date": False,
-}
-
-
 class GroupCourseRequestForm(forms.ModelForm):
     any_date = forms.BooleanField(
         label="Мне подходит любая дата",
@@ -147,20 +138,24 @@ class GroupCourseRequestForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        kwargs.setdefault("initial", {}).update(GROUP_COURSE_INITIAL)
         super().__init__(*args, **kwargs)
+        for fn in ("name", "phone", "email", "preferred_start_date", "group_type", "level", "schedule"):
+            self.fields[fn].initial = None
         self.fields["preferred_start_date"].required = False
         self.fields["group_type"].choices = [
+            ("", "Тип группы"),
             ("mini", "Мини-группа (до 6 человек)"),
             ("standard", "Стандартная группа"),
             ("intensive", "Интенсив"),
         ]
         self.fields["level"].choices = [
+            ("", "Уровень"),
             ("beginner", "Начальный"),
             ("intermediate", "Средний"),
             ("advanced", "Продвинутый"),
         ]
         self.fields["schedule"].choices = [
+            ("", "Расписание"),
             ("2_per_week", "2 раза в неделю"),
             ("3_per_week", "3 раза в неделю"),
             ("daily", "Интенсив (ежедневно)"),

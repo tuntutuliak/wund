@@ -63,3 +63,11 @@
 .form-label-checkbox input {
   margin: 0;
 }
+
+.rd-form.booking-form .form-input:focus,
+.rd-form.booking-form textarea.form-input:focus,
+.rd-form.booking-form select.form-input:focus {
+  background-color: #ffffff;
+  color: #333;
+  outline: none;
+}

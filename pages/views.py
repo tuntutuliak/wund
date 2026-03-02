@@ -185,14 +185,14 @@ def events(request):
 
 def group_course(request):
     from django.shortcuts import redirect
-    from .forms import GroupCourseRequestForm, GROUP_COURSE_INITIAL
+    from .forms import GroupCourseRequestForm
     if request.method == "POST":
         form = GroupCourseRequestForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect(reverse("group_course") + "?success=1")
     else:
-        form = GroupCourseRequestForm(initial=GROUP_COURSE_INITIAL)
+        form = GroupCourseRequestForm()
     return render(request, "group_course.html", {"form": form, "success": request.GET.get("success") == "1"})
 
 
