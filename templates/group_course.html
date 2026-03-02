@@ -65,6 +65,18 @@
                 <h2 class="wow-outer font-weight-bold text-gray-800"><span class="wow slideInUp">Записаться на курс</span></h2>
                 <form class="rd-form booking-form" method="post" action="">
                   {% csrf_token %}
+                  <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".2s">
+                    {{ form.group_type }}
+                    {{ form.group_type.errors }}
+                  </div>
+                  <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".2s">
+                    {{ form.level }}
+                    {{ form.level.errors }}
+                  </div>
+                  <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".2s">
+                    {{ form.schedule }}
+                    {{ form.schedule.errors }}
+                  </div>
                   <div class="form-group wow fadeInLeftSmall" data-wow-delay=".2s">
                     <label class="form-label-outside" for="id_preferred_start_date">Желаемая дата начала</label>
                     {{ form.preferred_start_date }}
@@ -74,24 +86,6 @@
                       <label for="id_any_date">Мне подходит любая дата</label>
                     </div>
                     {{ form.any_date.errors }}
-                  </div>
-                  <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".2s">
-                    {{ form.group_type }}
-                    {{ form.group_type.errors }}
-                  </div>
-                  <div class="form-group">
-                    <div>
-                      <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".2s">
-                        {{ form.level }}
-                        {{ form.level.errors }}
-                      </div>
-                    </div>
-                    <div>
-                      <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".2s">
-                        {{ form.schedule }}
-                        {{ form.schedule.errors }}
-                      </div>
-                    </div>
                   </div>
                   <div class="form-wrap wow fadeInLeftSmall" data-wow-delay=".2s">
                     <label for="id_name">Имя</label>
@@ -109,15 +103,16 @@
                     {{ form.email.errors }}
                   </div>
                   <div class="form-wrap form-wrap-button">
-                    <button type="submit" class="button button-block button-primary button-winona" data-wow-delay=".4s">Записаться</button>
+                    <button type="submit" class="button button-block button-primary button-winona group-course-submit" data-wow-delay=".4s">Оставить заявку</button>
                   </div>
                 </form>
               </div>
               <div id="group-course-success-overlay" class="group-course-success-overlay" role="dialog" aria-modal="true" aria-labelledby="group-course-success-title" hidden>
                 <div class="group-course-success-backdrop"></div>
                 <div class="group-course-success-modal">
-                  <p id="group-course-success-title" class="group-course-success-text">Спасибо! Ваша заявка успешно отправлена. Мы свяжемся с вами в ближайшее время.</p>
-                  <button type="button" class="group-course-success-close" aria-label="Закрыть">&times;</button>
+                  <h3 id="group-course-success-title" class="group-course-success-title">Заявка отправлена</h3>
+                  <p class="group-course-success-text">Спасибо! Мы получили вашу заявку и свяжемся с вами в ближайшее время.</p>
+                  <button type="button" class="group-course-success-close-btn">Закрыть</button>
                 </div>
               </div>
             </div>
@@ -173,12 +168,26 @@
 {% block extra_js %}
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  var overlay = document.getElementById("group-course-success-overlay");
-  var params = new URLSearchParams(window.location.search);
+  const checkbox = document.getElementById("id_any_date");
+  const dateInput = document.getElementById("id_preferred_start_date");
+
+  if (checkbox && dateInput) {
+    checkbox.addEventListener("change", function() {
+      if (this.checked) {
+        dateInput.value = '';
+        dateInput.disabled = true;
+      } else {
+        dateInput.disabled = false;
+      }
+    });
+  }
+
+  const overlay = document.getElementById("group-course-success-overlay");
+  const params = new URLSearchParams(window.location.search);
   if (overlay && params.get("success") === "1") {
     overlay.hidden = false;
-    var backdrop = overlay.querySelector(".group-course-success-backdrop");
-    var closeBtn = overlay.querySelector(".group-course-success-close");
+    const backdrop = overlay.querySelector(".group-course-success-backdrop");
+    const closeBtn = overlay.querySelector(".group-course-success-close-btn");
     function closeModal() {
       overlay.hidden = true;
     }
@@ -188,18 +197,6 @@ document.addEventListener("DOMContentLoaded", function() {
       if (e.key === "Escape") {
         closeModal();
         document.removeEventListener("keydown", onEsc);
-      }
-    });
-  }
-  var checkbox = document.getElementById("id_any_date");
-  var dateInput = document.getElementById("id_preferred_start_date");
-  if (checkbox && dateInput) {
-    checkbox.addEventListener("change", function() {
-      if (this.checked) {
-        dateInput.value = "";
-        dateInput.disabled = true;
-      } else {
-        dateInput.disabled = false;
       }
     });
   }

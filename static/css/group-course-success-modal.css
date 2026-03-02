@@ -22,35 +22,45 @@
   position: relative;
   background: #fff;
   border-radius: 4px;
-  padding: 1.5rem 2.5rem 1.5rem 1.5rem;
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
   max-width: 420px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
+.group-course-success-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #333;
+}
+
 .group-course-success-text {
-  margin: 0;
+  margin: 0 0 1.25rem 0;
   font-size: 1rem;
   line-height: 1.5;
   color: #333;
 }
 
-.group-course-success-close {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
-  border: none;
-  background: transparent;
-  font-size: 1.5rem;
-  line-height: 1;
-  color: #666;
+.group-course-success-close-btn {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.group-course-success-close:hover {
-  color: #333;
+.group-course-success-close-btn:hover {
+  background: #e8e8e8;
+}
+
+.rd-form.booking-form .group-course-submit {
+  margin-top: 24px;
 }
 
 .rd-form.booking-form .form-group .form-label-outside,

@@ -90,15 +90,8 @@ class GroupCourseRequestForm(forms.ModelForm):
 
     class Meta:
         model = GroupCourseRequest
-        fields = ("preferred_start_date", "group_type", "level", "schedule", "name", "phone", "email")
+        fields = ("group_type", "level", "schedule", "preferred_start_date", "name", "phone", "email")
         widgets = {
-            "preferred_start_date": forms.DateInput(
-                attrs={
-                    "class": "form-input",
-                    "type": "date",
-                    "id": "id_preferred_start_date",
-                }
-            ),
             "group_type": forms.Select(
                 attrs={
                     "class": "form-input select",
@@ -123,15 +116,29 @@ class GroupCourseRequestForm(forms.ModelForm):
                     "data-dropdown-class": "select-gray",
                 }
             ),
+            "preferred_start_date": forms.DateInput(
+                attrs={
+                    "class": "form-input",
+                    "type": "date",
+                    "id": "id_preferred_start_date",
+                }
+            ),
             "name": forms.TextInput(attrs={"class": "form-input"}),
-            "phone": forms.TextInput(attrs={"class": "form-input"}),
+            "phone": forms.TextInput(
+                attrs={
+                    "class": "form-input",
+                    "type": "tel",
+                    "inputmode": "numeric",
+                    "autocomplete": "tel",
+                }
+            ),
             "email": forms.EmailInput(attrs={"class": "form-input"}),
         }
         labels = {
-            "preferred_start_date": "",
             "group_type": "",
             "level": "",
             "schedule": "",
+            "preferred_start_date": "",
             "name": "Имя",
             "phone": "Телефон",
             "email": "E-mail",
@@ -142,6 +149,7 @@ class GroupCourseRequestForm(forms.ModelForm):
         for fn in ("name", "phone", "email", "preferred_start_date", "group_type", "level", "schedule"):
             self.fields[fn].initial = None
         self.fields["preferred_start_date"].required = False
+        self.fields["email"].required = False
         self.fields["group_type"].choices = [
             ("", "Тип группы"),
             ("mini", "Мини-группа (до 6 человек)"),

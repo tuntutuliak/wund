@@ -163,7 +163,7 @@ class GroupCourseRequest(models.Model):
     schedule = models.CharField("Расписание", max_length=20, choices=SCHEDULE_CHOICES)
     name = models.CharField("Имя", max_length=150)
     phone = models.CharField("Телефон", max_length=50)
-    email = models.EmailField("Email")
+    email = models.EmailField("Email", blank=True)
     created_at = models.DateTimeField("Дата создания", auto_now_add=True)
     processed = models.BooleanField("Обработано", default=False)
 
