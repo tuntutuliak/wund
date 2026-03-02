@@ -62,42 +62,50 @@
             <div class="col-md-10 col-lg-5 col-xl-4">
               <div class="inset-left-2">
                 <h2 class="wow-outer font-weight-bold text-gray-800"><span class="wow slideInUp">Записаться на курс</span></h2>
-                <form class="rd-form booking-form">
+                {% if success %}
+                <p class="text-success mb-3">Thank you! We will contact you shortly.</p>
+                {% endif %}
+                <form class="rd-form booking-form" method="post" action="">
+                  {% csrf_token %}
                   <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".2s">
-                    <input class="form-input select2-input-gray" name="find-job-location" data-minimum-results-for-search="Infinity" data-container-class="input-gray" placeholder="Дата начала">
+                    {{ form.preferred_start_date }}
+                    {{ form.preferred_start_date.errors }}
                   </div>
                   <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".2s">
-                    <select class="form-input select" name="find-job-location" data-minimum-results-for-search="Infinity" data-container-class="select-gray" data-dropdown-class="select-gray">
-                      <option value="1">Тип группы</option>
-                      <option value="2">Мини-группа (до 6 человек)</option>
-                      <option value="3">Стандартная группа</option>
-                      <option value="4">Интенсив</option>
-                    </select>
+                    {{ form.group_type }}
+                    {{ form.group_type.errors }}
                   </div>
                   <div class="form-group">
                     <div>
                       <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".2s">
-                        <select class="form-input select" name="find-job-location" data-minimum-results-for-search="Infinity" data-container-class="select-gray" data-dropdown-class="select-gray">
-                          <option value="1">Уровень</option>
-                          <option value="2">Начальный</option>
-                          <option value="3">Средний</option>
-                          <option value="4">Продвинутый</option>
-                        </select>
+                        {{ form.level }}
+                        {{ form.level.errors }}
                       </div>
                     </div>
                     <div>
                       <div class="form-wrap form-wrap-select wow fadeInLeftSmall" data-wow-delay=".2s">
-                        <select class="form-input select" name="find-job-location" data-minimum-results-for-search="Infinity" data-container-class="select-gray" data-dropdown-class="select-gray">
-                          <option value="1">Расписание</option>
-                          <option value="2">2 раза в неделю</option>
-                          <option value="3">3 раза в неделю</option>
-                          <option value="4">Интенсив (ежедневно)</option>
-                        </select>
+                        {{ form.schedule }}
+                        {{ form.schedule.errors }}
                       </div>
                     </div>
                   </div>
+                  <div class="form-wrap wow fadeInLeftSmall" data-wow-delay=".2s">
+                    <label class="form-label" for="id_name">Имя</label>
+                    {{ form.name }}
+                    {{ form.name.errors }}
+                  </div>
+                  <div class="form-wrap wow fadeInLeftSmall" data-wow-delay=".2s">
+                    <label class="form-label" for="id_phone">Телефон</label>
+                    {{ form.phone }}
+                    {{ form.phone.errors }}
+                  </div>
+                  <div class="form-wrap wow fadeInLeftSmall" data-wow-delay=".2s">
+                    <label class="form-label" for="id_email">E-mail</label>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                  </div>
                   <div class="form-wrap form-wrap-button">
-                    <button class="button button-block button-primary button-winona" data-wow-delay=".4s">Записаться</button>
+                    <button type="submit" class="button button-block button-primary button-winona" data-wow-delay=".4s">Записаться</button>
                   </div>
                 </form>
               </div>

@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from .models import Subscriber, Application
+from .models import Subscriber, Application, GroupCourseRequest
 
 
 class SubscribeForm(forms.ModelForm):
@@ -78,3 +78,85 @@ class ApplicationForm(forms.ModelForm):
         if not value:
             raise ValidationError("Укажите имя.")
         return value
+
+
+GROUP_COURSE_INITIAL = {
+    "preferred_start_date": "",
+    "group_type": "mini",
+    "level": "beginner",
+    "schedule": "2_per_week",
+}
+
+
+class GroupCourseRequestForm(forms.ModelForm):
+    class Meta:
+        model = GroupCourseRequest
+        fields = ("preferred_start_date", "group_type", "level", "schedule", "name", "phone", "email")
+        widgets = {
+            "preferred_start_date": forms.TextInput(
+                attrs={
+                    "class": "form-input select2-input-gray",
+                    "placeholder": "Дата начала",
+                    "data-minimum-results-for-search": "Infinity",
+                    "data-container-class": "input-gray",
+                }
+            ),
+            "group_type": forms.Select(
+                attrs={
+                    "class": "form-input select",
+                    "data-minimum-results-for-search": "Infinity",
+                    "data-container-class": "select-gray",
+                    "data-dropdown-class": "select-gray",
+                }
+            ),
+            "level": forms.Select(
+                attrs={
+                    "class": "form-input select",
+                    "data-minimum-results-for-search": "Infinity",
+                    "data-container-class": "select-gray",
+                    "data-dropdown-class": "select-gray",
+                }
+            ),
+            "schedule": forms.Select(
+                attrs={
+                    "class": "form-input select",
+                    "data-minimum-results-for-search": "Infinity",
+                    "data-container-class": "select-gray",
+                    "data-dropdown-class": "select-gray",
+                }
+            ),
+            "name": forms.TextInput(attrs={"class": "form-input", "placeholder": "Имя"}),
+            "phone": forms.TextInput(attrs={"class": "form-input", "placeholder": "Телефон"}),
+            "email": forms.EmailInput(attrs={"class": "form-input", "placeholder": "E-mail"}),
+        }
+        labels = {
+            "preferred_start_date": "",
+            "group_type": "",
+            "level": "",
+            "schedule": "",
+            "name": "Имя",
+            "phone": "Телефон",
+            "email": "E-mail",
+        }
+
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault("initial", {}).update(GROUP_COURSE_INITIAL)
+        super().__init__(*args, **kwargs)
+        self.fields["group_type"].choices = [
+            ("mini", "Мини-группа (до 6 человек)"),
+            ("standard", "Стандартная группа"),
+            ("intensive", "Интенсив"),
+        ]
+        self.fields["level"].choices = [
+            ("beginner", "Начальный"),
+            ("intermediate", "Средний"),
+            ("advanced", "Продвинутый"),
+        ]
+        self.fields["schedule"].choices = [
+            ("2_per_week", "2 раза в неделю"),
+            ("3_per_week", "3 раза в неделю"),
+            ("daily", "Интенсив (ежедневно)"),
+        ]
+        self.fields["group_type"].required = True
+        self.fields["level"].required = True
+        self.fields["schedule"].required = True

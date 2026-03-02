@@ -5,7 +5,7 @@ from django.templatetags.static import static
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
-from .models import Course, News, Teacher, ContactSection, ContactDocument, Subscriber, Application
+from .models import Course, News, Teacher, ContactSection, ContactDocument, Subscriber, Application, GroupCourseRequest
 
 try:
     from ckeditor.widgets import CKEditorWidget
@@ -123,3 +123,10 @@ class ApplicationAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         """Заявки не удаляются из админки."""
         return False
+
+
+@admin.register(GroupCourseRequest)
+class GroupCourseRequestAdmin(admin.ModelAdmin):
+    list_display = ("name", "phone", "email", "group_type", "level", "schedule", "created_at", "processed")
+    list_filter = ("group_type", "level", "schedule", "processed", "created_at")
+    search_fields = ("name", "phone", "email")

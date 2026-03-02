@@ -139,3 +139,36 @@ class Application(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.email})"
+
+
+class GroupCourseRequest(models.Model):
+    GROUP_TYPE_CHOICES = [
+        ("mini", "Mini-group (up to 6 students)"),
+        ("standard", "Standard group"),
+        ("intensive", "Intensive"),
+    ]
+    LEVEL_CHOICES = [
+        ("beginner", "Beginner"),
+        ("intermediate", "Intermediate"),
+        ("advanced", "Advanced"),
+    ]
+    SCHEDULE_CHOICES = [
+        ("2_per_week", "2 times per week"),
+        ("3_per_week", "3 times per week"),
+        ("daily", "Intensive (daily)"),
+    ]
+    preferred_start_date = models.CharField(max_length=100, blank=True)
+    group_type = models.CharField(max_length=20, choices=GROUP_TYPE_CHOICES)
+    level = models.CharField(max_length=20, choices=LEVEL_CHOICES)
+    schedule = models.CharField(max_length=20, choices=SCHEDULE_CHOICES)
+    name = models.CharField(max_length=150)
+    phone = models.CharField(max_length=50)
+    email = models.EmailField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    processed = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.name} — {self.phone} — {self.created_at}"
