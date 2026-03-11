@@ -7403,7 +7403,7 @@ input.select2-input-gray::placeholder {
 	transform: translate(-50%, -50%);
 	font-size: 250px;
 	font-family: "Alegreya Sans SC", sans-serif;
-	text-transform: capitalize;
+	text-transform: none;
 	font-weight: 700;
 	color: rgba(255, 255, 255, 0.1);
 	display: none;
