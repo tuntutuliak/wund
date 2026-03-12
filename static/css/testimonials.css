@@ -153,7 +153,6 @@
 
 /* Нижний блок страницы отзывов: фон + ссылки */
 .testimonials-page-links {
-  background-image: url("../img/wunder-bg1.jpg");
   background-size: cover;
   background-position: center;
 }

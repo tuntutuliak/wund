@@ -1,7 +1,6 @@
 /* Teachers catalog: grid layout and cards */
 
 .teachers-catalog-hero {
-  background-image: url("../img/wunder-bg1.jpg");
   background-size: cover;
   background-position: center;
 }

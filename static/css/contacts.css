@@ -9,7 +9,6 @@
 
 /* Hero block: image + internal navigation (same pattern as testimonials-page-links) */
 .contacts-page-links {
-  background-image: url("../img/wunder-bg1.jpg");
   background-size: cover;
   background-position: center;
 }

@@ -1,7 +1,6 @@
 /* Programms page — hero block (same pattern as about/contacts/team) */
 
 .programms-page-links {
-  background-image: url("../img/wunder-bg1.jpg");
   background-size: cover;
   background-position: center;
 }
