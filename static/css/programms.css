@@ -3,6 +3,22 @@
 .programms-page-links {
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Dark overlay so text stays readable on top of background image */
+.programms-page-links::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
+}
+
+.programms-page-links .breadcrumbs-custom-inner {
+  position: relative;
+  z-index: 1;
 }
 
 .programms-page-links .breadcrumbs-custom-title {
