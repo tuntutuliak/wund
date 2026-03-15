@@ -4,11 +4,18 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.programms-page-links .breadcrumbs-custom-title {
+  font-size: 1.75rem;
+}
+
+/* Only the single course detail page (/programms/<slug>/) — overlay and stacking */
+.hero-course-detail {
   position: relative;
 }
 
-/* Dark overlay so text stays readable on top of background image */
-.programms-page-links::before {
+.hero-course-detail::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -16,13 +23,9 @@
   z-index: 0;
 }
 
-.programms-page-links .breadcrumbs-custom-inner {
+.hero-course-detail .breadcrumbs-custom-inner {
   position: relative;
   z-index: 1;
-}
-
-.programms-page-links .breadcrumbs-custom-title {
-  font-size: 1.75rem;
 }
 
 @media (min-width: 768px) {
