@@ -9364,6 +9364,13 @@ html:not(.lt-ie10) .not-animated {
 	padding: 40px;
 }
 
+.preloader-logo img {
+	display: block;
+	width: 135px;
+	height: 43px;
+	object-fit: contain;
+}
+
 .preloader-body {
 	position: absolute;
 	top: 50%;
