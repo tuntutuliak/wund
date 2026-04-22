@@ -125,6 +125,11 @@ def about(request):
     return render(request, 'about.html')
 
 
+def privacy(request):
+    """Политика конфиденциальности и cookies (152‑ФЗ)."""
+    return render(request, "privacy.html")
+
+
 def contacts_view(request):
     """Контакты и сведения об образовательной организации — разделы из БД или mock."""
     sections = list(ContactSection.objects.all().order_by("order").prefetch_related("documents"))

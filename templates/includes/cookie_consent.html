@@ -1,0 +1,17 @@
+{# Баннер согласия на cookies (152‑ФЗ / GDPR-подобный) #}
+<div class="cookie-consent" id="cookie-consent" hidden aria-live="polite" aria-label="Уведомление о cookies">
+  <div class="cookie-consent__inner" role="dialog" aria-modal="false" aria-describedby="cookie-consent-text">
+    <div class="cookie-consent__text" id="cookie-consent-text">
+      <div class="cookie-consent__title">Мы используем cookies</div>
+      <div class="cookie-consent__desc">
+        Мы используем файлы cookies и аналогичные технологии для работы сайта, а также (только с вашего согласия) для аналитики и улучшения сервиса.
+        Подробнее — в <a class="cookie-consent__link" href="{% url 'privacy' %}">Политике конфиденциальности</a>.
+      </div>
+    </div>
+    <div class="cookie-consent__actions">
+      <button type="button" class="cookie-consent__btn" data-cookie-consent="accept">Принять всё</button>
+      <button type="button" class="cookie-consent__btn" data-cookie-consent="reject">Отклонить всё</button>
+    </div>
+  </div>
+</div>
+
