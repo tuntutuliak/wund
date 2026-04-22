@@ -19,4 +19,7 @@ def social_links(request):
 
     Важно: держим Telegram URL централизованно, чтобы он был одинаковым в хедере/футере/страницах.
     """
-    return {"TELEGRAM_URL": "https://t.me/schoolwunder"}
+    return {
+        "TELEGRAM_URL": "https://t.me/schoolwunder",
+        "VK_URL": "https://vk.ru/wunder_vl",
+    }
