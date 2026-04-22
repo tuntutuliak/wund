@@ -117,6 +117,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "pages.context_processors.subscribe_form",
                 "pages.context_processors.application_form",
+                "pages.context_processors.social_links",
             ],
         },
     },
