@@ -12,22 +12,21 @@
                 <li><a href="{% url 'programs' %}">Базовые программы</a></li>
                 <li><a href="{% url 'programs' %}">Углубленные программы</a></li>
                 <li><a href="{% url 'programs' %}">Подготовка к экзаменам</a></li>
-                <li><a href="{% url 'programs' %}">Дополнительные курсы</a></li>
+                <li><a href="{% url 'group_course' %}">Дополнительные курсы</a></li>
               </ul>
             </div>
             <div class="col-6 col-sm-3">
               <ul class="list list-xs">
                 <li><a href="{% url 'news' %}">Новости</a></li>
-                <li><a href="{% url 'about' %}">О нас</a></li>
+                <li><a href="/about/">О нас</a></li>
                 <li><a href="{% url 'team' %}">Преподаватели</a></li>
-                <li><a href="{% url 'testimonials' %}">Отзывы</a></li>
+                <li><a href="/testimonials/">Отзывы</a></li>
                 <li><a href="{% url 'contacts' %}">Контакты</a></li>
               </ul>
             </div>
             <div class="col-6 col-sm-3">
               <ul class="list list-xs">
-                <li><a href="{% url 'contacts' %}">Контакты</a></li>
-                <li><a href="{% url 'about' %}">История школы</a></li>
+                <li><a href="{% url 'events' %}">События</a></li>
                 <li><a href="{% url 'programs' %}">Образовательные программы</a></li>
                 <li><a href="{% url 'team' %}">Наша команда</a></li>
                 <li><a href="#" class="js-open-application-modal" data-application-modal-toggle data-application-source="footer" aria-label="Открыть форму заявки">Записаться</a></li>
@@ -35,9 +34,12 @@
             </div>
             <div class="col-6 col-sm-3">
               <ul class="list list-xs">
-                <li><a href="#">MAX</a></li>
+                <li><a href="#">ООО"ВУНДЕР"</a></li>
+                <li><a href="#">ИНН 2538130699</a></li>
+                <li><a href="#">ОГРНИП 1092538005317</a></li>
+
                 <li><a href="{{ VK_URL }}" target="_blank" rel="noopener noreferrer">VK</a></li>
-                <li><a href="{{ TELEGRAM_URL }}" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+                <li><a href="{{ TELEGRAM_URL }}" target="_blank" rel="noopener noreferrer">Телеграм</a></li>
               </ul>
             </div>
           </div>
@@ -46,15 +48,15 @@
           <h4 class="text-title-footer">Контактная информация</h4>
           <hr>
           <ul class="list-sm">
-            <li class="object-inline"><span class="icon icon-md mdi mdi-map-marker"></span><a class="link-default" href="#">г. Москва, ул. Образовательная, д. 1<br> 123456, Россия</a></li>
-            <li class="object-inline"><span class="icon icon-md mdi mdi-map-marker"></span><a class="link-default" href="#">Second Branch Address</a></li>
+
+            <li class="object-inline"><span class="icon icon-md mdi mdi-map-marker"></span><a class="link-default" href="#">г. Владивосток, ЖК Лидер, ул.Адмирала Горшкова 52 корпус 1 </a></li>
             <li class="object-inline"><span class="icon icon-md mdi mdi-phone"></span>
               <ul class="list-0">
-                <li><a class="link-default" href="tel:+79025067444">+7(902)506-74-44</a></li>
-                <li><a class="link-default" href="tel:#">+7 (495) 987-65-43</a></li>
+                <li><a class="link-default" href="tel:#">+7 (902) 506-74-44</a></li>
+                <li><a class="link-default" href="tel:#">+7 (902) 557-37-19</a></li>
               </ul>
             </li>
-            <li class="object-inline"><span class="icon icon-md mdi mdi-email"></span><a class="link-default" href="mailto:#">info@school.ru</a></li>
+            <li class="object-inline"><span class="icon icon-md mdi mdi-email"></span><a class="link-default" href="mailto:#">wunder.vl@mail.ru</a></li>
           </ul>
         </div>
       </div>
@@ -62,6 +64,7 @@
   </div>
   <div class="footer-linked-aside">
     <div class="container">
+      <!-- Rights-->
       <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>Все права защищены.</span><span>&nbsp;</span><br class="d-sm-none"/><a href="{% url 'terms' %}">Условия использования</a><span> и</span><span>&nbsp;</span><a href="{% url 'privacy' %}">Политика конфиденциальности</a><span>&nbsp;•&nbsp;</span><a href="#" data-cookie-settings-open>Настройки cookies</a></p>
     </div>
   </div>
