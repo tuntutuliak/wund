@@ -130,6 +130,11 @@ def privacy(request):
     return render(request, "privacy.html")
 
 
+def terms(request):
+    """Условия использования / согласие на обработку персональных данных."""
+    return render(request, "terms.html")
+
+
 def contacts_view(request):
     """Контакты и сведения об образовательной организации — разделы из БД или mock."""
     sections = list(ContactSection.objects.all().order_by("order").prefetch_related("documents"))
