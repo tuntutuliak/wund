@@ -57,7 +57,9 @@
         </div>
         {% if section.documents_list %}
         <div class="documents-section">
+          {% if section.title != "Документы" %}
           <h3>Документы</h3>
+          {% endif %}
           <ul class="document-list">
             {% for doc in section.documents_list %}
             <li class="document-item">
