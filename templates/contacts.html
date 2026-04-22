@@ -57,9 +57,6 @@
         </div>
         {% if section.documents_list %}
         <div class="documents-section">
-          {% if section.title != "Документы" %}
-          <h3>Документы</h3>
-          {% endif %}
           <ul class="document-list">
             {% for doc in section.documents_list %}
             <li class="document-item">
@@ -70,6 +67,10 @@
             </li>
             {% endfor %}
           </ul>
+        </div>
+        {% elif section.title == "Документы" %}
+        <div class="documents-section">
+          <p class="text-muted">Документы появятся в этом разделе после добавления в админ‑панели.</p>
         </div>
         {% endif %}
       </section>
