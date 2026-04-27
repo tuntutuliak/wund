@@ -92,6 +92,37 @@
   margin: 0 auto;
 }
 
+/* Карточки событий (главная, тот же каркас slick) */
+.testimonials-light .event-card {
+  text-align: center;
+}
+.testimonials-light .event-title {
+  color: #151515;
+  font-size: 20px;
+  font-weight: 600;
+}
+@media (min-width: 768px) {
+  .testimonials-light .event-title {
+    font-size: 24px;
+  }
+}
+.testimonials-light .event-date {
+  color: #6c757d;
+  margin-top: 6px;
+  font-size: 15px;
+}
+.testimonials-light .event-text {
+  color: #333333;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 12px;
+}
+@media (min-width: 768px) {
+  .testimonials-light .event-text {
+    font-size: 18px;
+  }
+}
+
 /* Текст отзыва — тёмный на белом */
 .testimonials-light .quote-light .quote-light-cite {
   color: #151515;

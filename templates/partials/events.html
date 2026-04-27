@@ -1,0 +1,61 @@
+{% load static %}
+<!-- События: тот же каркас секции и slick-slider, что у блока отзывов -->
+<section class="section section-lg text-center testimonials-light">
+  <div class="container">
+    <h2 class="wow-outer font-weight-bold testimonials-heading"><span class="wow slideInUp">События</span></h2>
+    <div class="slick-widget-testimonials wow fadeIn">
+      <div class="slick-slider carousel-child" id="child-carousel" data-for=".carousel-parent" data-arrows="true" data-loop="true" data-dots="false" data-swipe="true" data-items="1" data-sm-items="3" data-md-items="5" data-lg-items="5" data-xl-items="5" data-center-mode="true" data-slide-to-scroll="1">
+        <div class="item wow-outer"><img class="wow slideInLeft" src="{% static 'img/ai_96X96_new.jpg' %}" width="96" height="96" alt="event"/></div>
+        <div class="item wow-outer"><img class="wow slideInLeft" src="{% static 'img/ai_96X96_new.jpg' %}" width="96" height="96" alt="event"/></div>
+        <div class="item wow-outer"><img class="wow slideInLeft" src="{% static 'img/ai_96X96_new.jpg' %}" width="96" height="96" alt="event"/></div>
+        <div class="item wow-outer"><img class="wow slideInLeft" src="{% static 'img/ai_96X96_new.jpg' %}" width="96" height="96" alt="event"/></div>
+        <div class="item wow-outer"><img class="wow slideInLeft" src="{% static 'img/ai_96X96_new.jpg' %}" width="96" height="96" alt="event"/></div>
+        <div class="item wow-outer"><img class="wow slideInLeft" src="{% static 'img/ai_96X96_new.jpg' %}" width="96" height="96" alt="event"/></div>
+      </div>
+      <div class="slick-slider carousel-parent" data-arrows="false" data-loop="true" data-dots="false" data-swipe="false" data-items="1" data-fade="true" data-child="#child-carousel" data-for="#child-carousel" data-autoplay="true">
+        <div class="item">
+          <div class="event-card">
+            <div class="event-title">День открытых дверей</div>
+            <div class="event-date">10 мая 2026</div>
+            <div class="event-text">Экскурсия по центру, встреча с преподавателями и ответы на вопросы о программах и поступлении.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="event-card">
+            <div class="event-title">Мастер-класс по робототехнике</div>
+            <div class="event-date">18 мая 2026</div>
+            <div class="event-text">Практическое занятие для школьников: сборка модели и первые шаги в программировании микроконтроллера.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="event-card">
+            <div class="event-title">Лекция «Профориентация»</div>
+            <div class="event-date">24 мая 2026</div>
+            <div class="event-text">Как осознанно выбрать направление после 9 и 11 класса: тесты интересов и разбор востребованных профессий.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="event-card">
+            <div class="event-title">Выставка проектов учеников</div>
+            <div class="event-date">1–5 июня 2026</div>
+            <div class="event-text">Работы по информатике, дизайну и естественным наукам — гости смогут пообщаться с авторами проектов.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="event-card">
+            <div class="event-title">Встреча с выпускниками</div>
+            <div class="event-date">12 июня 2026</div>
+            <div class="event-text">Неформальный разговор о вузах, олимпиадах и том, как центр помог подготовиться к экзаменам и поступлению.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="event-card">
+            <div class="event-title">Неделя науки</div>
+            <div class="event-date">15–21 июня 2026</div>
+            <div class="event-text">Серия коротких открытых уроков и демонстраций: физика, химия и математика в экспериментах и задачах.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
