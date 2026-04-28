@@ -12,7 +12,7 @@ from wunder.admin_site import admin_site
 urlpatterns = [
     path(
         "favicon.ico",
-        RedirectView.as_view(url="/static/images/favicon.ico", permanent=True),
+        RedirectView.as_view(url="/static/img/favicon.ico", permanent=True),
         name="favicon",
     ),
     path("subscribe/", views.subscribe_view, name="subscribe"),
