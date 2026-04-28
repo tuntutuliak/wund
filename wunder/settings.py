@@ -183,9 +183,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = get_env("DJANGO_STATIC_ROOT", "") or None
-if STATIC_ROOT:
-    STATIC_ROOT = Path(STATIC_ROOT)
+STATIC_ROOT = BASE_DIR /  "staticfiles"
 
 # --- Site / SEO base URL (used for canonical, sitemap, structured data) ---
 # Keep this consistent across environments; override via env on staging if needed.
