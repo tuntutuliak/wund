@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sitemaps",
     "ckeditor",
     "core",
     "pages",
@@ -118,6 +119,7 @@ TEMPLATES = [
                 "pages.context_processors.subscribe_form",
                 "pages.context_processors.application_form",
                 "pages.context_processors.social_links",
+                "pages.context_processors.site_settings",
             ],
         },
     },
@@ -179,11 +181,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = get_env("DJANGO_STATIC_ROOT", "") or None
 if STATIC_ROOT:
     STATIC_ROOT = Path(STATIC_ROOT)
+
+# --- Site / SEO base URL (used for canonical, sitemap, structured data) ---
+# Keep this consistent across environments; override via env on staging if needed.
+SITE_URL = get_env("DJANGO_SITE_URL", "https://wunder.education").strip().rstrip("/")
 
 
 # Default primary key field type

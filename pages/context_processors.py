@@ -1,5 +1,7 @@
 """Context processors для приложения pages."""
 
+from django.conf import settings
+
 from .forms import SubscribeForm, ApplicationForm
 
 
@@ -22,4 +24,11 @@ def social_links(request):
     return {
         "TELEGRAM_URL": "https://t.me/schoolwunder",
         "VK_URL": "https://vk.ru/wunder_vl",
+    }
+
+
+def site_settings(request):
+    """Базовые настройки сайта для SEO/ссылок (каноникал, sitemap, JSON-LD)."""
+    return {
+        "SITE_URL": getattr(settings, "SITE_URL", "https://wunder.education").rstrip("/"),
     }

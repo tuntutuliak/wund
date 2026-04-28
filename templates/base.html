@@ -2,27 +2,56 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="ru">
   <head>
-    <title>{% if title %}{{ title }}{% else %}{% block title %}Инновационный центр 'Вундер'{% endblock %}{% endif %}</title>
-    <meta name="description" content="{% if description %}{{ description }}{% else %}Образовательный центр «ВУНДЕР»: программы обучения, подготовка к экзаменам и развитие навыков для школьников.{% endif %}">
-    <meta name="keywords" content="{% if keywords %}{{ keywords }}{% else %}образовательный центр, дополнительное образование, курсы, подготовка к ЕГЭ, школа, ВУНДЕР{% endif %}">
+    {% static 'img/wlogo_135x43.jpg' as default_social_image_path %}
+
+    {% firstof title "Инновационный центр 'Вундер'" as page_title %}
+    {% firstof description "Современный образовательный центр" as page_description %}
+    {% firstof SITE_URL "https://wunder.education" as site_url %}
+    {% firstof TELEGRAM_URL "https://t.me/schoolwunder" as telegram_url %}
+    {% firstof VK_URL "https://vk.ru/wunder_vl" as vk_url %}
+
+    <title>{% block title %}{{ page_title }}{% endblock %}</title>
+    <meta name="description" content="{{ page_description }}">
+    <meta name="keywords" content="{{ keywords|default:'' }}">
     <meta name="robots" content="index, follow">
-    {% if request %}<link rel="canonical" href="{{ request.build_absolute_uri }}">{% endif %}
 
-    <meta property="og:title" content="{% if title %}{{ title }}{% else %}ВУНДЕР — образовательный центр{% endif %}">
-    <meta property="og:description" content="{% if description %}{{ description }}{% else %}Образовательный центр «ВУНДЕР»: программы обучения, подготовка к экзаменам и развитие навыков для школьников.{% endif %}">
+    <link rel="canonical" href="{% if canonical %}{{ canonical }}{% else %}{{ site_url }}{{ request.get_full_path }}{% endif %}">
+
+    {% firstof og_title page_title as og_title_final %}
+    {% firstof og_description page_description as og_description_final %}
+    {% firstof twitter_title og_title_final as twitter_title_final %}
+    {% firstof twitter_description og_description_final as twitter_description_final %}
+
+    <meta property="og:title" content="{{ og_title_final }}">
+    <meta property="og:description" content="{{ og_description_final }}">
     <meta property="og:type" content="website">
-    {% if request %}<meta property="og:url" content="{{ request.build_absolute_uri }}">{% endif %}
-    <meta property="og:image" content="{% if og_image %}{{ og_image }}{% else %}{% static 'img/wlogo_135x43.jpg' %}{% endif %}">
+    <meta property="og:url" content="{% if og_url %}{{ og_url }}{% else %}{{ site_url }}{{ request.get_full_path }}{% endif %}">
+    <meta property="og:image" content="{% if og_image %}{{ og_image }}{% else %}{{ site_url }}{{ default_social_image_path }}{% endif %}">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}ВУНДЕР — образовательный центр{% endif %}">
-    <meta name="twitter:description" content="{% if description %}{{ description }}{% else %}Образовательный центр «ВУНДЕР»: программы обучения, подготовка к экзаменам и развитие навыков для школьников.{% endif %}">
-    <meta name="twitter:image" content="{% if twitter_image %}{{ twitter_image }}{% elif og_image %}{{ og_image }}{% else %}{% static 'img/wlogo_135x43.jpg' %}{% endif %}">
+    <meta name="twitter:card" content="{{ twitter_card|default:'summary_large_image' }}">
+    <meta name="twitter:title" content="{{ twitter_title_final }}">
+    <meta name="twitter:description" content="{{ twitter_description_final }}">
+    <meta name="twitter:image" content="{% if twitter_image %}{{ twitter_image }}{% elif og_image %}{{ og_image }}{% else %}{{ site_url }}{{ default_social_image_path }}{% endif %}">
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Инновационный центр \"Вундер\"",
+        "url": "{{ site_url }}",
+        "logo": "{{ site_url }}{{ default_social_image_path }}",
+        "sameAs": [
+          "{{ telegram_url }}",
+          "{{ vk_url }}"
+        ]
+      }
+    </script>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
+    <link rel="alternate icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700,800%7COswald:300,400,500%7CAlegreya+Sans+SC:300,400,700%7COld+Standard+TT:400,700">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">

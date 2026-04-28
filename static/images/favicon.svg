@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Wunder">
+  <rect width="512" height="512" fill="#ffffff"/>
+  <path
+    fill="#16A34A"
+    d="M96 140h54l38 168 44-168h48l44 168 38-168h52L336 372h-52l-42-150-42 150h-52L96 140z"
+  />
+</svg>
