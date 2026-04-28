@@ -7311,6 +7311,16 @@ input.select2-input-gray::placeholder {
 	margin-bottom: 0px;
 }
 
+@media (max-width: 480px) {
+	.jumbotron-modern-content h1.text-extra-large-title {
+		font-size: 44px;
+		line-height: 1.1;
+		letter-spacing: -0.01em;
+		overflow-wrap: anywhere;
+		word-break: break-word;
+	}
+}
+
 @media (min-width: 1600px) {
 	.jumbotron-modern-content h1 {
 		margin-bottom: 57px;
