@@ -2,7 +2,22 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="ru">
   <head>
-    <title>{% block title %}Главная - Школа{% endblock %}</title>
+    <title>{% if title %}{{ title }}{% else %}{% block title %}Инновационный центр 'Вундер'{% endblock %}{% endif %}</title>
+    <meta name="description" content="{% if description %}{{ description }}{% else %}Образовательный центр «ВУНДЕР»: программы обучения, подготовка к экзаменам и развитие навыков для школьников.{% endif %}">
+    <meta name="keywords" content="{% if keywords %}{{ keywords }}{% else %}образовательный центр, дополнительное образование, курсы, подготовка к ЕГЭ, школа, ВУНДЕР{% endif %}">
+    <meta name="robots" content="index, follow">
+    {% if request %}<link rel="canonical" href="{{ request.build_absolute_uri }}">{% endif %}
+
+    <meta property="og:title" content="{% if title %}{{ title }}{% else %}ВУНДЕР — образовательный центр{% endif %}">
+    <meta property="og:description" content="{% if description %}{{ description }}{% else %}Образовательный центр «ВУНДЕР»: программы обучения, подготовка к экзаменам и развитие навыков для школьников.{% endif %}">
+    <meta property="og:type" content="website">
+    {% if request %}<meta property="og:url" content="{{ request.build_absolute_uri }}">{% endif %}
+    <meta property="og:image" content="{% if og_image %}{{ og_image }}{% else %}{% static 'img/wlogo_135x43.jpg' %}{% endif %}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}ВУНДЕР — образовательный центр{% endif %}">
+    <meta name="twitter:description" content="{% if description %}{{ description }}{% else %}Образовательный центр «ВУНДЕР»: программы обучения, подготовка к экзаменам и развитие навыков для школьников.{% endif %}">
+    <meta name="twitter:image" content="{% if twitter_image %}{{ twitter_image }}{% elif og_image %}{{ og_image }}{% else %}{% static 'img/wlogo_135x43.jpg' %}{% endif %}">
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
