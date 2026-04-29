@@ -71,6 +71,8 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
     "https://localhost:8000",
     "https://127.0.0.1:8000",
+    "https://wunder.education",
+    "https://www.wunder.education",
 ]
 # Append any extra origins from env (comma-separated, e.g. https://mysite.com)
 _extra_csrf = get_env("DJANGO_CSRF_TRUSTED_ORIGINS", "")
