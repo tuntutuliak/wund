@@ -225,3 +225,5 @@ MEDIA_ROOT = BASE_DIR / "media"
 # correctly detect the original scheme/host (important for admin, redirects, CSRF).
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800
+FILE_UPLOAD_MAX_MEMORY_SIZE = 52428800
