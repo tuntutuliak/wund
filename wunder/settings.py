@@ -219,3 +219,9 @@ DEFAULT_FROM_EMAIL = get_env("DEFAULT_FROM_EMAIL", "noreply@example.com")
 # --- Медиа (загрузки): для localhost — папка media в корне проекта ---
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+# --- Reverse proxy / HTTPS behind Nginx ---
+# When Django is behind Nginx (SSL termination), these headers allow Django to
+# correctly detect the original scheme/host (important for admin, redirects, CSRF).
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
