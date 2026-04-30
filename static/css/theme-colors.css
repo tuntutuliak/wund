@@ -318,3 +318,30 @@ hr,
 	background-color: #01bdff;
 	border-color: #01bdff;
 }
+
+/* Navbar: keep all items on one line (desktop only) */
+@media (min-width: 1024px) {
+	/* Prevent wrapping inside navbar area */
+	.rd-navbar-thin.rd-navbar-static .rd-navbar-nav-wrap {
+		min-width: 0;
+	}
+
+	/* Make nav list a single-row flex container */
+	.rd-navbar-thin.rd-navbar-static .rd-navbar-nav {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		flex-wrap: nowrap;
+		white-space: nowrap;
+	}
+
+	/* Ensure each item never shrinks to next line */
+	.rd-navbar-thin.rd-navbar-static .rd-nav-item {
+		flex: 0 0 auto;
+	}
+
+	/* Slightly tighter spacing than default (35px) */
+	.rd-navbar-thin.rd-navbar-static .rd-nav-item + .rd-nav-item {
+		margin-left: 24px;
+	}
+}
