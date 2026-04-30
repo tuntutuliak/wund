@@ -324,6 +324,8 @@ hr,
 	/* Prevent wrapping inside navbar area */
 	.rd-navbar-thin.rd-navbar-static .rd-navbar-nav-wrap {
 		min-width: 0;
+		/* Keep reserved space for controls on the right (search/toggle/etc.) */
+		right: 80px;
 	}
 
 	/* Make nav list a single-row flex container */
@@ -342,6 +344,11 @@ hr,
 
 	/* Slightly tighter spacing than default (35px) */
 	.rd-navbar-thin.rd-navbar-static .rd-nav-item + .rd-nav-item {
-		margin-left: 24px;
+		margin-left: 16px;
+	}
+
+	/* Small typography nudge for tighter fit */
+	.rd-navbar-thin.rd-navbar-static .rd-nav-link {
+		font-size: 15px;
 	}
 }
