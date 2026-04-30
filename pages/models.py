@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 
 class Course(models.Model):
@@ -13,10 +14,13 @@ class Course(models.Model):
     start_date = models.DateField(null=True, blank=True)
     duration = models.CharField(max_length=100, blank=True)
     price = models.CharField(max_length=100, blank=True)
+    is_active = models.BooleanField("Активна", default=True)
+    created_at = models.DateTimeField("Создана", default=timezone.now, editable=False)
 
     class Meta:
         verbose_name = "Курс"
         verbose_name_plural = "Курсы"
+        ordering = ["created_at", "title"]
 
     def __str__(self):
         return self.title

@@ -46,7 +46,11 @@
           {% if course.subtitle %}
           <h4 class="text-gray-800 font-weight-light">{{ course.subtitle }}</h4>
           {% endif %}
-          <img src="{% static 'img/ai_570x352.jpg' %}" alt="{{ course.title }}" width="770" height="458"/>
+          {% if course.image %}
+            <img src="{{ course.image.url }}" alt="{{ course.title }}" width="770" height="458"/>
+          {% else %}
+            <img src="{% static 'img/ai_570x352.jpg' %}" alt="{{ course.title }}" width="770" height="458"/>
+          {% endif %}
           <div class="post-creative-body">
             {{ course.description|safe }}
           </div>

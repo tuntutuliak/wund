@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.db import transaction
 from django.http import Http404, JsonResponse
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse
@@ -12,7 +13,7 @@ from django.core.mail import send_mail
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import ensure_csrf_cookie
 
-from .models import News, Teacher, ContactSection, Subscriber, Application
+from .models import Course, News, Teacher, ContactSection, Subscriber, Application
 from .forms import SubscribeForm, ApplicationForm
 from .utils import get_client_ip
 
@@ -20,55 +21,6 @@ logger = logging.getLogger(__name__)
 
 SUBSCRIBE_RATE_LIMIT_SECONDS = 60
 APPLICATION_RATE_LIMIT_SECONDS = 60
-
-# MOCK DATA – replace with real database later
-MOCK_COURSES = [
-    {
-        "title": "Подготовка к ЕГЭ по математике",
-        "slug": "ege-matematika",
-        "subtitle": "Системный курс подготовки к профильному ЕГЭ по математике.",
-        "image": "images/grid-blog-1-570x352.jpg",
-        "description": "<p>Разбор заданий, пробные экзамены и сопровождение до дня экзамена. Курс рассчитан на учеников 10–11 классов.</p><p>Занятия проходят в мини-группах, возможна индивидуальная подготовка.</p>",
-        "teacher": "Образовательный центр",
-        "start_date": "15.03.2025",
-        "duration": "8 месяцев",
-        "price": "от 6 000 ₽/мес",
-    },
-    {
-        "title": "Подготовка к ЕГЭ по русскому языку",
-        "slug": "ege-russkij",
-        "subtitle": "Работа с текстом и сочинением, подготовка к итоговому сочинению и ЕГЭ.",
-        "image": "images/grid-blog-2-570x352.jpg",
-        "description": "<p>Подготовка к итоговому сочинению и ЕГЭ по русскому языку. Разбор критериев, тренировка заданий и письменных работ.</p>",
-        "teacher": "Образовательный центр",
-        "start_date": "01.04.2025",
-        "duration": "7 месяцев",
-        "price": "от 5 500 ₽/мес",
-    },
-    {
-        "title": "Углублённый курс английского языка",
-        "slug": "anglijskij",
-        "subtitle": "Коммуникативная методика, подготовка к ОГЭ и ЕГЭ, разговорный английский.",
-        "image": "images/grid-blog-3-570x352.jpg",
-        "description": "<p>Практика с носителями, подготовка к ОГЭ и ЕГЭ. Программа для 7–11 классов.</p>",
-        "teacher": "Образовательный центр",
-        "start_date": "10.02.2025",
-        "duration": "9 месяцев",
-        "price": "от 7 000 ₽/мес",
-    },
-    {
-        "title": "Курс программирования для школьников",
-        "slug": "programmirovanie",
-        "subtitle": "Основы алгоритмов и программирования на Python, олимпиады и проекты.",
-        "image": "images/grid-blog-4-570x352.jpg",
-        "description": "<p>Подготовка к олимпиадам и проектная работа. Курс для 7–10 классов.</p>",
-        "teacher": "Образовательный центр",
-        "start_date": "20.02.2025",
-        "duration": "6 месяцев",
-        "price": "от 6 500 ₽/мес",
-    },
-]
-
 
 def _get_mock_contact_sections():
     """Mock sections for contacts page when DB has none (for preview)."""
@@ -161,19 +113,22 @@ def teachers_catalog(request):
 
 
 def programms(request):
-    """Страница «Программы» (MOCK: список из MOCK_COURSES). GET ?program=slug для фильтра/подсветки."""
+    """Страница «Программы». GET ?program=slug для фильтра/подсветки."""
     program_slug = request.GET.get('program', '').strip()
+    qs = Course.objects.filter(is_active=True).order_by("created_at", "title")
+    paginator = Paginator(qs, 8)
+    page_obj = paginator.get_page(request.GET.get("page"))
     return render(request, 'programms.html', {
-        'courses': MOCK_COURSES,
+        'courses': page_obj.object_list,
+        'page_obj': page_obj,
+        'paginator': paginator,
         'program_filter': program_slug,
     })
 
 
 def course_detail(request, slug):
-    """Страница курса по slug (MOCK: поиск в MOCK_COURSES)."""
-    course = next((c for c in MOCK_COURSES if c['slug'] == slug), None)
-    if course is None:
-        raise Http404()
+    """Страница курса по slug."""
+    course = get_object_or_404(Course, slug=slug, is_active=True)
     return render(request, 'single_course.html', {'course': course})
 
 

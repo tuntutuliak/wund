@@ -148,7 +148,9 @@ class ContactDocumentAdminForm(forms.ModelForm):
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ("title", "slug", "teacher", "start_date", "price")
+    list_display = ("title", "slug", "is_active", "teacher", "start_date", "price", "created_at")
+    list_filter = ("is_active", "start_date", "created_at")
+    search_fields = ("title", "subtitle", "description", "teacher")
     prepopulated_fields = {"slug": ("title",)}
 
 
